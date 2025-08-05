@@ -1595,3 +1595,18 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
+
+## Ruby 风格 ########################################################################
+
+style ruby_style is default:
+    size 12
+    yoffset -33
+    color None # 使用主文本相同的颜色。
+
+style say_dialogue:
+    ruby_line_leading 12
+    ruby_style style.ruby_style
+
+style history_text:
+    ruby_line_leading 12
+    ruby_style style.ruby_style

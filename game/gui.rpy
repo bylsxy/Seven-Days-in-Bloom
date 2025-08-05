@@ -86,7 +86,7 @@ define gui.title_text_size = 75
 ## 标题和游戏菜单 #####################################################################
 
 ## 标题菜单和游戏菜单使用的图像。
-define gui.main_menu_background = "gui/main_menu.png"
+define gui.main_menu_background = "gui/game_menu.png"
 define gui.game_menu_background = "gui/game_menu.png"
 
 
@@ -348,10 +348,10 @@ define gui.nvl_borders = Borders(0, 15, 0, 30)
 
 ## Ren'Py 所显示的 NVL 模式条目的最大数量。当要显示的条目多于此数量时，最旧的
 ## 条目将被删除。
-define gui.nvl_list_length = 6
+define gui.nvl_list_length = 13
 
 ## NVL 模式条目的高度。将此设置为 None 可使条目动态调整高度。
-define gui.nvl_height = 173
+define gui.nvl_height = None
 
 ## 当 gui.nvl_height 为 None 时，NVL 模式条目之间的间距，以及 NVL 模式条目和
 ## NVL 模式菜单之间的间距。
