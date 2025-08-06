@@ -13,10 +13,10 @@ define n = nvl_narrator
 # 其他设定：立绘所谓的平常标签“normal”，应该是略带微笑的表情，而none才是面无表情
 # 如果立绘一点都找不着了，就把差分全删了
 
-label start:
-    jump chapter_1
+label start: # 调试的时候可以直接从指定章节开玩
+    jump chapter_2 
 
-label chapter_0:
+label chapter_1:
     stop music
     "【序章:沙化的毕业季】"
 
@@ -82,7 +82,7 @@ label chapter_0:
     "她说完就离开了，只剩我和书看着窗外在樱花树下正在沙化的落花。"
     stop music
     # 依照篇幅，此处应有op
-    jump chapter_1
+    jump chapter_2
 
 label love_mogic:
     n """
@@ -130,7 +130,7 @@ label diary:
     nvl clear
     return
 
-label chapter_1:
+label chapter_2:
     $ f1=0
     play music "家.mp3"
     scene bg home with fade
@@ -154,6 +154,8 @@ label chapter_1:
 
     "先塞书包里面明天还给图书管理员吧。"
     stop music
+    scene black with Dissolve(2.5)
+    "day 2"
 
     scene bg school with fade
     play music "阳光.mp3"
@@ -163,7 +165,7 @@ label chapter_1:
     "一想到马上就要毕业了，我的心里也有些许对校园和同学的不舍。"
     "顺带一提，由于马上就要毕业了，这周并不上课。"
     "但还是有一部分同学留在学校里忙着社团的事，以及听老师讲过无数遍的的安全教育。"
-    scene bg school2 with dissolve
+    scene bg school2 with dissolve # 既然这样，背景学校2的就默认是在图书馆前拍摄的广角相片
     "我来到图书馆门口，发现门还没有开。"
     "男の声" "『你书包不放在教室吗？』"
     "学生会的同僚吗。他看起来也是来还书的。"
@@ -257,7 +259,7 @@ label chapter_1:
     "体育部老师A" "『小早川！过来！』"
     aoi "『好！』"
 
-    # 定义一个 transform 变换，控制移动
+    # 定义一个 transform 变换，移动进场
     transform move_left_to_center:
         xalign 0.1       # 起始位置（左侧）
         linear 1.0 xalign 0.5  # 用 linear 函数在 2 秒内平移到右侧
@@ -295,7 +297,7 @@ label chapter_1:
     "刚进器材室，葵就伸手把我手上的笔记本连同清单一起抽走。"
     show aoi angry
     aoi "『你就是过来找我麻烦的吗？』"
-    play music "神秘.mp3"
+    play music "神秘.mp3" #用作压抑、微恐、神迹的音乐
     show aoi surprise
     "还没等我回答，笔记本不出意外也发出了光，并且在封闭的器材室更加明显。"
     show aoi serious with dissolve
@@ -314,6 +316,7 @@ label chapter_1:
     with AlphaDissolve(move_out_right, delay=1.0, reverse=True) #向右渐隐移动
     
     "说着就跑出去了，剩下我捡起地上的书。"
+    "离谱的是清单也不知道去哪了，我却要一个人负责清点项目。"
     
     scene bg classroom with fade
     play music "风.mp3" fadeout 1.0 fadein 1.0
@@ -403,9 +406,158 @@ label chapter_1:
     nvl clear
     scene black with Dissolve(2.5)
 
-    jump chapter_2
+    jump chapter_3
 
-label chapter_2:
+label chapter_3:
     stop music
+    "day 3"
+    scene bg school with fade
+    play music "阳光.mp3"
+    "终于记得带上那本《心动魔法》，我走在去教室的路上。"
+    scene bg school2 with dissolve
+    "顺路也去了趟图书馆，不过图书馆还是没开门，又吃了一次闭门羹。"
+    yt "『又来早了？』"
+    akn "『没有啊』"
+    yt "『！？』"
+    show akane normal with dissolve
+    "熟悉的声音又从我身后传出来。"
+    "转过头那个图书管理员已经自顾自地从我书包里拿出了一本书。"
+    yt "『不要突然出现在别人身后啊』"
+    akn "『怎么样你试过了吗，这本？』"
+    yt "『啊，试过啦，除了会突然像个手电筒一样发光也没什么』"
+    akn "『啊不是，我说的是这个“翻开了的”心动魔法』"
+    yt "『………………』"
+
+    play music "平静.mp3"
+    scene bg library with fade
+    "大概讲了一下共感日记旁发生的种种奇怪的事情。"
+    show akane happy2 with dissolve
+    akn "『哈哈，看来你就是那个命定之人啊哈哈』"
+    yt "『所以到底是怎么回事？』"
+    show akane happy with dissolve
+    akn "『反正是对你有用的，你就先拿着那本书呗』"
+    yt "『你倒是听人说话啊……』"
+    "说着我从包里掏出了共感日记。"
+    "封面上有着三行让人格外醒目的标识。"
+    akn "『三个啊……这样，我们先交换line，之后你跟她们聊完再找我怎么样？』"
+    yt "『你先回答我问题……』"
+    show akane normal with dissolve
+    akn "『行』"
+    "她一反刚刚不靠谱的样子，变作严肃地把我拉到隔壁自习室。"
+
+    play music "神秘.mp3" fadeout 1.0 fadein 1.0
+    scene bg classroom with fade
+    show akane serious with dissolve
+    akn "『你有注意到在你身边落下的花瓣吗？』"
+    yt "『花瓣？』"
+    show cherry_flower at truecenter with dissolve
+    yt "『这个怎么了吗？』"
+    akn "『你看』"
+    hide cherry_flower with Dissolve(2.0)
+    "说着，花瓣就像灭霸打了响指一样散去了。"
+    yt "『！』"
+    akn "『一开始，也只是这些不起眼的小物件』"
+    yt "『！昨天在地上消失的清单』"
+    akn "『其他的我也不是很了解，不过我觉得是这本本子在发挥作用』"
+    
+    "陆陆续续有人来到自习室里嘟嘟囔囔了几声。"
+    "风见茜看到后，便把我赶了出去。"
+    akn "『“总之，你只需要完成上面的任务就可以了，我会帮助你的』"
+
+    scene bg student_council with fade
+    play music "平静.mp3"
+    "本想叫昨天的同僚一起去来学生会办公室。发现人不在了，就直接来了。"
+    "而到了学生会办公室，则比昨天更加地寂静，甚至会长都不在。"
+    yt "『……』"
+    stop music
+    yt "（难道人也会像花瓣一样消失……！）"
+    "想到这里我不由得紧张起来。"
+    "我疯狂地在办公室内查看，试图找寻一些蛛丝马迹。"
+    yt "『不会吧……不会吧……』"
+
+    "女の声" "『你东西忘在哪里了？』『不知道啊我去办公室找找』"
+    "办公室外传来女生的声音。"
+    show sakura dress normal with dissolve
+    "『砰』的一声门开了，是穿着烹饪围裙的会长藤原樱。"
+    play music "阳光.mp3"
+    skr "『啊，阳太你在办公室啊，你有没有看见我的挂包』"
+    yt "『啊！……哦哦，是这个吗』"
+    "我心里大舒一口气，提起了窗边的一个白色包包，上面已经有几片樱花花瓣了。"
+    skr "『对没错』"
+    "她接过包包。"
+    skr "『里面装着我的药』"
+    yt "『你身体不舒服吗会长？』"
+    skr "『没事……谢谢你，那我先走了』"
+    yt "『你要去哪？』"
+    show sakura dress none with dissolve
+    "莫名担心使我急忙上去抓住了樱。"
+    "刹那间的理性思考又让我只拉住她的围裙边。"
+    skr "『……』"
+    yt "『抱歉拉住了你！对不起……』"
+    "我松开了手，为我不礼貌的行为道歉。"
+    "藤原樱看着我低头思考了一会。"
+    "再抬起头时，便是和我对上了眼睛。"
+    show sakura dress normal with dissolve
+    skr "『好啊。一起吧』"
+
+    scene bg cooking_classroom with fade #资产建议：把bg classroom传给AI让它在桌子上添加一些厨具得到。
+
+    "我放好书包，接过烹饪围裙，戴上了一次性手套和口罩在藤原樱旁边帮忙打下手。"
+    show sakura dress normal with dissolve
+    skr "『你昨天的工作搞完了吗』"
+    yt "『哦，还、还差一点，当时太多了整理到饭点也没整理完，老师就让我这几天继续』"
+    skr "『工作量这么多啊，需不需要我来帮忙』"
+    yt "『不用了不用了，我可以的！相信我』"
+    "说实话我有一点想，但是器材室我还没打扫，灰尘比较多还是不要让会长来了。"
+    "而听到了我的回答，会长眼睛好像亮了一点，转过头继续切面团，像笑了一下说道。"
+    skr "『这样啊，这么厉害』"
+
+    scene bg cooking_classroom with fade
+    "我在帮忙打发奶油。"
+    "到了如今这么自动化的社会还手动打奶油吗……感觉很快就会累了。"
+    show sakura dress normal with dissolve
+    "藤原樱在分面团，好像是要做小蛋糕。"
+    yt "『好香的味道。已经有人烤好面包了吗？』"
+    skr "『是吗？』"
+    "樱环顾了一下四周。"
+    skr "『看样子是的』"
+    yt "『会长你喜欢烹饪啊，我都不知道学校里还有烹饪教室来着哈哈』"
+    skr "『嗯，确实比较偏来着』"
+    ？
+…………
+    "!!阿!!!哦!!!好的!!!"
+    我高兴的飞起
+    "我我去装点水，你渴了吧!”我慌忙地转过头去找饮水机的位置
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    ""
+    
+
+
+
 
     return
