@@ -14,7 +14,7 @@ define n = nvl_narrator
 # 如果立绘一点都找不着了，就把差分全删了
 
 label start: # 调试的时候可以直接从指定章节开玩
-    jump chapter_2 
+    jump chapter_3
 
 label chapter_1:
     stop music
@@ -446,7 +446,7 @@ label chapter_3:
     "她一反刚刚不靠谱的样子，变作严肃地把我拉到隔壁自习室。"
 
     play music "神秘.mp3" fadeout 1.0 fadein 1.0
-    scene bg classroom with fade
+    scene bg classroom with dissolve
     show akane serious with dissolve
     akn "『你有注意到在你身边落下的花瓣吗？』"
     yt "『花瓣？』"
@@ -462,7 +462,7 @@ label chapter_3:
     
     "陆陆续续有人来到自习室里嘟嘟囔囔了几声。"
     "风见茜看到后，便把我赶了出去。"
-    akn "『“总之，你只需要完成上面的任务就可以了，我会帮助你的』"
+    akn "『总之，你只需要完成上面的任务就可以了，我会帮助你的』"
 
     scene bg student_council with fade
     play music "平静.mp3"
@@ -495,10 +495,10 @@ label chapter_3:
     skr "『……』"
     yt "『抱歉拉住了你！对不起……』"
     "我松开了手，为我不礼貌的行为道歉。"
-    "藤原樱看着我低头思考了一会。"
+    "藤原樱看着我的表情低头思考了一会。"
     "再抬起头时，便是和我对上了眼睛。"
     show sakura dress normal with dissolve
-    skr "『好啊。一起吧』"
+    skr "『那你也一起来吧』"
 
     scene bg cooking_classroom with fade #资产建议：把bg classroom传给AI让它在桌子上添加一些厨具得到。
 
@@ -523,23 +523,27 @@ label chapter_3:
     skr "『看样子是的』"
     yt "『会长你喜欢烹饪啊，我都不知道学校里还有烹饪教室来着哈哈』"
     skr "『嗯，确实比较偏来着』"
-    ？
-…………
-    "!!阿!!!哦!!!好的!!!"
-    我高兴的飞起
-    "我我去装点水，你渴了吧!”我慌忙地转过头去找饮水机的位置
-    ""
-    ""
-    ""
-    ""
-    ""
-    ""
-    ""
-    ""
-    ""
-    ""
-    ""
-    ""
+    yt "『那个，如果你喜欢的话……』{nw=0.5}" #打断说话效果
+    skr "『不过我鼻子可能闻不清什么味道，所以我更习惯和别人一起烹饪』"
+    "她抬头看向我。"
+    skr "『而且我也喜欢和别人一起聊天』"
+    yt "『！啊，哦！！好的！！！』"
+    "我开心到飞起。"
+    yt "『我我去装点水，你渴了吧！』"
+    "我慌忙地转过头去找饮水机的位置。"
+    skr "『嗯谢谢你』"
+    "她轻笑着说。"
+    "水拿回来了，但我太过激动，以至于不小心碰到了她的手——"
+    "我猛地收回来，差点把水打翻。"
+    "但同时一阵疲惫的感觉清晰地传入脑内。"
+    "看着藤原樱的笑容，我的注意力却放在了她眼睛下的一点淤青上。"
+    yt "『藤原樱同学。』"
+    show sakura dress question with dissolve
+    skr "『嗯？』"
+    yt "『你最近很累吗？』"
+    skr "『为什么突然这么说？』"
+    "果然刚刚那个就是“共感”吗。"
+    "我这么笃定，是因为我这几天完全没有熬夜。"
     ""
     ""
     ""
