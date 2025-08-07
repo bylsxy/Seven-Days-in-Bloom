@@ -14,7 +14,7 @@ define n = nvl_narrator
 # 如果立绘一点都找不着了，就把差分全删了
 
 label start: # 调试的时候可以直接从指定章节开玩
-    jump chapter_3
+    jump chapter_1
 
 label chapter_1:
     stop music
@@ -55,8 +55,8 @@ label chapter_1:
     "不，是超级不好意思！"
     yt "『啊啊……不用麻烦你了，我自己找就可以了』"
     show akane none with dissolve #无表情
-    akn "『我需要早点下班，所以你只要告诉我就可以了。{nw}"
-    show akane interesting with dissolve #饶有趣味
+    akn "『我需要早点下班，所以你只要告诉我就可以了。{nw}" #语句中切换
+    show akane interesting #饶有趣味
     akn "『我需要早点下班，所以你只要告诉我就可以了。{fast}还是说，你是在等谁吗？』"
     yt "『！！』"
     scene black with fade
@@ -189,7 +189,7 @@ label chapter_2:
     skr "『这是你要干的活，园艺社的，最上面那张是我打印出来的工作细则』"
     "同僚" "『好~知道了~~会长大人~~~』"
 
-    scene bg student_council with fade
+    scene bg student_council with dissolve
     show sakura normal with dissolve
     "同僚走了之后，办公室内就只剩下我和会长两个人。"
     "或许是樱花的原因，窗外的风景让会长显得比平常更加神圣。"
@@ -544,7 +544,9 @@ label chapter_3:
     skr "『为什么突然这么说？』"
     "果然刚刚那个就是“共感”吗。"
     "我这么笃定，是因为我这几天完全没有熬夜。"
-    yt "『这里，有些淤青了』。"
+    scene black #以下场景暂无立绘和场景切换演出，我之后再配————xy
+
+    yt "『这里，有些淤青了』"
     "我指了指她眼睛底下。"
     "现在看她还拿化妆品铺了一层粉来盖住的。"
     yt "『熬夜了吗？那对皮肤会很不好的。』"
