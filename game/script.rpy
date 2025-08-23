@@ -1,4 +1,21 @@
 ﻿# 游戏的脚本可置于此文件中。
+# 先加一个开场logo
+image splash = "splash.png"
+
+label splashscreen:
+    scene black
+    with Pause(1)
+
+    play sound "dinglingling.MP3"
+
+    show splash with dissolve
+    with Pause(2)
+
+    scene black with dissolve
+    with Pause(1)
+
+    return
+
 # 声明此游戏使用的角色。颜色参数可使角色姓名着色。
 
 define yt = Character("佐佐木 阳太")
