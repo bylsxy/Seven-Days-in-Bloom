@@ -282,14 +282,14 @@ label chapter_2:
     "体育部老师A" "『小早川！过来！』"
     aoi "『好！』"
 
-    # 定义一个 transform 变换，移动进场
-    transform move_left_to_center:
-        xalign 0.1       # 起始位置（左侧）
-        linear 1.0 xalign 0.5  # 用 linear 函数在 2 秒内平移到右侧
+    transform move_in_left:
+        xalign 0.0    # 起点在最左边
+        alpha 0.0     # 从透明开始
+        linear 1.0 xalign 0.5 alpha 1.0  # 一秒钟内移到中间并渐显
 
     # 展示角色并播放移动动画
     scene bg field with fade
-    show aoi none at move_left_to_center
+    show aoi none at move_in_left
     "看到还有我在体育部办公室，葵这家伙先是不解，随后便装着没看见我走到了老师旁边。"
     stop music
     "体育部老师A" "『呐，你的资料，现在该确定了吧』"
@@ -298,7 +298,7 @@ label chapter_2:
     "嗯？什么事？她要改学籍？"
     aoi "『老师……我还需要想一想……』"
     "体育部老师A" "『你还有多久时间？剩六七天了，现在人家都过来了，你为难我也别为难他啊』"
-    show aoi serious with dissolve
+    show aoi serious with Dissolve(0.2)
     aoi "『……！』"
     "小早川葵突然朝我瞪了一眼，但她的事好像依旧没有确定。"
     show aoi none with dissolve
@@ -318,15 +318,17 @@ label chapter_2:
     scene bg lab2 with fade
     show aoi serious at top with dissolve
     "刚进器材室，葵就伸手把我手上的笔记本连同清单一起抽走。"
-    show aoi angry
+    show aoi angry with Dissolve(0.2)
     aoi "『你就是过来找我麻烦的吗？』"
-    play music "神秘.mp3" #用作压抑、微恐、神迹的音乐
     show aoi surprise with dissolve
-    "还没等我回答，笔记本不出意外也发出了光，并且在封闭的器材室更加明显。"
+    "还没等我回答，笔记本不出意外也发出了光，并且在封闭的器材室更加明显。{nw}"
+    play music "神秘.mp3" #用作压抑、微恐、神迹的音乐
+    "还没等我回答，笔记本不出意外也发出了光，并且在封闭的器材室更加明显。{fast}"
     show aoi serious with dissolve
     aoi "『这是什么啊？』"
     "她刚翻看着几页，手却突然像被电击般抽走，书掉落在地上。"
     yt "『嗨！干嘛？』"
+    show aoi suffering with dissolve
     "她用手捂着肩胛骨的位置，延续了在老师那时的沉默。"
     aoi "『嘶。随便你，你自己干吧软脚虾』"
 
@@ -335,6 +337,7 @@ label chapter_2:
         xalign 0.5 #从中间
         linear 1.0 xalign 1.2 alpha 0.0  #移动到右侧
 
+    show aoi serious with dissolve
     show aoi serious at move_out_right
     with AlphaDissolve(move_out_right, delay=1.0, reverse=True) #向右渐隐移动
     
@@ -620,8 +623,9 @@ label chapter_3:
     "思考间，手机响了一声。是风见茜发来的。"
     "没有任何前缀或多余的话语——"
     "『去器材室』"
-    "『快』"
-    play music "神秘.mp3" 
+    "『快』{nw}"
+    play music "神秘.mp3"
+    "『快』{fast}"
     yt "（她怎么知道我在田径部？我刚刚去到过器材室，器材室是锁着的啊？）"
     yt "（什么情况？）"
     "不知为何，我开始有些紧张，身上的汗毛都立起来了，像是要有不好的事情发生。"
@@ -634,7 +638,8 @@ label chapter_3:
     "也许是我制造的声响太大声，不等我解释，一阵细微的女声就从器材室里传出来。"    
     "微弱の声" "『有人吗……救命……』"
     "佐佐木 阳太&体育老师B" "『有人在里面！！』"
-    scene black with Dissolve(2.5)
+    scene black with Dissolve(0.5)
+    scene bg lab with Dissolve(2.0)
     "终于打开了门，室外的光亮与室内形成鲜明的对比。"
     show aoi sad2 with dissolve
     "进来的光线照在了趴在地上的小早川葵，旁边是堆起来的纸箱子，上面是窗户。"
@@ -644,22 +649,29 @@ label chapter_3:
     "肩膀，膝盖，小腿……一阵阵的疼痛让我切实感受到了共感的强烈。"
     "我和小早川葵互相支撑着对方，她看上去很虚弱，一只手还一直摁着肩膀。"
     yt "（我要不行了……）"
-    stop music
+    stop music fadeout 1.0
     play sound "扑通倒地音效.mp3"
     scene black with fade
+    pause 2.0
+    "……"
+    "…………"
+    "………………"
+    scene bg health_room with Dissolve(2.5)
+    pause 2.0
     "在老师的帮助下，我们两个都到了保健室。"
     "体育老师B把办公室里面的其他老师叫来了，把我们两个直接公主抱了过去。"
     "抱小早川葵是因为她很虚弱，而我是因为受了共感的影响平地摔了一下。"    
     "我浑身脱力，在被老师带去保健室时就晕了过去。"
+    scene black with fade
     "迷糊间隐隐约约听见了葵的声音。"
-    "……"
     "…………"
     "………………"
     scene bg health_room with Dissolve(2.5)
     "再次醒来是因为又一阵的痛觉传递，小早川葵在擦风油精。"
     "看到我醒了，旁边床的葵出声把保健室老师叫了过来。"
     play music "休息.mp3"
-    "保健室老师" "『你是因为没吃饭加上运动的低血糖晕倒了是吗。来一杯葡萄糖休息一下应该就能走了，等会记得去吃饭，知道了吗？』"
+    "保健室老师" "『你是因为没吃饭加上运动的低血糖晕倒了是吗』"
+    "保健室老师" "『来一杯葡萄糖休息一下应该就能走了，等会记得去吃饭，知道了吗？』"
     yt "『知道了，谢谢老师』"
     "随着保健室老师出门吃饭的关门声响起，我还没开口小早川葵就把糖水递到了我手边。"
     show aoi sad with dissolve
@@ -730,7 +742,9 @@ label chapter_3:
     yt "『……抱歉我已经约了同学了。』"
     "我不好意思地回复她，在她失落之际补充到又补充道。"
     show aoi none with dissolve
-    yt "『那要一起去吗？』"
+    yt "『……那要一起去吗？』"
+    show aoi surprise with Dissolve(0.2)
+    aoi "『！』"
     show aoi happy2 with dissolve
     aoi "『好！』"
     # 今日改写工作至此，明天有脑子再继续。25.8.9-4:09
