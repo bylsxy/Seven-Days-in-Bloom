@@ -23,8 +23,9 @@ label chapter_1:
 
     play music "平静.mp3"
 
-    scene bg library
+    scene bg sky with fade
     "樱花盛开的3月份。"
+    scene bg library with dissolve
     "随风飘落的樱花通过窗户进到了图书馆内。"
     "我上前想要把窗户关上。"
     show akane normal with dissolve
@@ -71,7 +72,7 @@ label chapter_1:
     "我看着她帮我登记，羞愧的心理让我完全不敢抬起头来。"
     "登记完后她把《心动魔法》递给了我，同时在包里掏什么东西。应该是钥匙吧。"
     "我跟着她离开了图书馆。"
-    scene bg corridor with dissolve
+    scene bg corridor2 with dissolve
     show akane normal with dissolve
     "就在她锁完门后，她突然递给了我一本樱花色的笔记本。"
     "上面赫然写着“共感日记”四个大字。"
@@ -135,13 +136,16 @@ label chapter_2:
     $ f1=0
     play music "休息.mp3"
     scene bg home with fade
-    "我回到了家里，简单看了一下两本【情｜神】【感｜秘】【偏｜小】【方｜书】。"
     menu:
-        "看看《心动魔法》。":
+        "看看《心动魔法》":
             $ f1=1
             call love_mogic
-        "看看《共感日记》。":
+        "看看《共感日记》":
             call diary
+        "玩游戏":
+            "回到家还是打游戏要紧！"
+            call play_pong
+            jump chapter_2
     
     if f1:
         menu:
@@ -180,7 +184,7 @@ label chapter_2:
     "我们来到了学生会办公室门口。"
     play music "平静.mp3"
     "我推开门，与平时拥挤的场景不同，办公室里一片寂静。"
-    show sakura serious with dissolve
+    show sakura serious at top with dissolve
     "只有会长一个人坐在办公桌前，埋头在资料上写写画画，听得见笔尖划过纸张的细微声响。"
     "同僚" "『我们这么早的？』"
     skr "『嗯？你们来晚了』"
@@ -190,8 +194,8 @@ label chapter_2:
     skr "『这是你要干的活，园艺社的，最上面那张是我打印出来的工作细则』"
     "同僚" "『好~知道了~~会长大人~~~』"
 
-    scene bg student_council with dissolve
-    show sakura normal with dissolve
+    scene bg student_council with fade
+    show sakura normal at top with dissolve
     "同僚走了之后，办公室内就只剩下我和会长两个人。"
     "或许是樱花的原因，窗外的风景让会长显得比平常更加神圣。"
     skr "『你怎么还背着包？』"
@@ -241,6 +245,7 @@ label chapter_2:
             pass
 
     "关上门，隐隐约约听见会长在自言自语。"
+    show sakura none with dissolve
     skr "『味觉吗，我的……』"
 
     scene bg field with fade
@@ -293,13 +298,13 @@ label chapter_2:
     show aoi none with dissolve
     aoi "『。好』"
 
-    scene bg lab with fade
-    show aoi serious with dissolve
+    scene bg lab2 with fade
+    show aoi serious at top with dissolve
     "刚进器材室，葵就伸手把我手上的笔记本连同清单一起抽走。"
     show aoi angry
     aoi "『你就是过来找我麻烦的吗？』"
     play music "神秘.mp3" #用作压抑、微恐、神迹的音乐
-    show aoi surprise
+    show aoi surprise with dissolve
     "还没等我回答，笔记本不出意外也发出了光，并且在封闭的器材室更加明显。"
     show aoi serious with dissolve
     aoi "『这是什么啊？』"
@@ -885,4 +890,181 @@ label choice_b:
     yt "『认识，今天上午还和她聊了几句。』"
     skr "『哦，这样子啊。』"
     ao "『』"  # 同样雾岛蓝台词后续补充
+    return
+
+#内嵌小游戏
+
+init python:
+    class PongDisplayable(renpy.Displayable):
+        def __init__(self):
+            renpy.Displayable.__init__(self)
+            
+            #游戏参数
+            self.PADDLE_WIDTH = 22
+            self.PADDLE_HEIGHT = 142
+            self.PADDLE_X = 360
+            self.BALL_WIDTH = 22
+            self.BALL_HEIGHT = 22
+            self.COURT_TOP = 193
+            self.COURT_BOTTOM = 975
+            
+            #元素
+            self.paddle = Solid("#ffffff", xsize=self.PADDLE_WIDTH, ysize=self.PADDLE_HEIGHT)
+            self.ball = Solid("#ffffff", xsize=self.BALL_WIDTH, ysize=self.BALL_HEIGHT)
+            
+            #状态
+            self.stuck = True
+            self.playery = (self.COURT_BOTTOM - self.COURT_TOP) / 2
+            self.computery = self.playery
+            self.computerspeed = 570.0
+            self.bx = self.PADDLE_X + self.PADDLE_WIDTH + 15
+            self.by = self.playery
+            self.bdx = .5
+            self.bdy = .5
+            self.bspeed = 525.0
+            self.oldst = None
+            self.winner = None
+
+        def visit(self):
+            return [self.paddle, self.ball]
+
+        def render(self, width, height, st, at):
+            r = renpy.Render(width, height)
+            
+            if self.oldst is None:
+                self.oldst = st
+            dtime = st - self.oldst
+            self.oldst = st
+            
+            #球移动逻辑
+            speed = dtime * self.bspeed
+            oldbx = self.bx
+            
+            if self.stuck:
+                self.by = self.playery
+            else:
+                self.bx += self.bdx * speed
+                self.by += self.bdy * speed
+            
+            #电脑移动
+            cspeed = self.computerspeed * dtime
+            if abs(self.by - self.computery) <= cspeed:
+                self.computery = self.by
+            else:
+                self.computery += cspeed * (self.by - self.computery) / abs(self.by - self.computery)
+            
+            #碰撞检测
+            ball_top = self.COURT_TOP + self.BALL_HEIGHT / 2
+            if self.by < ball_top:
+                self.by = ball_top + (ball_top - self.by)
+                self.bdy = -self.bdy
+                if not self.stuck:
+                    renpy.sound.play("pong_beep.opus", channel=0)
+            
+            ball_bot = self.COURT_BOTTOM - self.BALL_HEIGHT / 2
+            if self.by > ball_bot:
+                self.by = ball_bot - (self.by - ball_bot)
+                self.bdy = -self.bdy
+                if not self.stuck:
+                    renpy.sound.play("pong_beep.opus", channel=0)
+            
+            #球拍渲染和碰撞
+            def paddle(px, py, hotside):
+                pi = renpy.render(self.paddle, width, height, st, at)
+                r.blit(pi, (int(px), int(py - self.PADDLE_HEIGHT / 2)))
+                
+                if py - self.PADDLE_HEIGHT / 2 <= self.by <= py + self.PADDLE_HEIGHT / 2:
+                    hit = False
+                    if oldbx >= hotside >= self.bx:
+                        self.bx = hotside + (hotside - self.bx)
+                        self.bdx = -self.bdx
+                        hit = True
+                    elif oldbx <= hotside <= self.bx:
+                        self.bx = hotside - (self.bx - hotside)
+                        self.bdx = -self.bdx
+                        hit = True
+                    if hit:
+                        renpy.sound.play("pong_boop.opus", channel=1)
+                        self.bspeed *= 1.10
+            
+            paddle(self.PADDLE_X, self.playery, self.PADDLE_X + self.PADDLE_WIDTH)
+            paddle(width - self.PADDLE_X - self.PADDLE_WIDTH, self.computery, width - self.PADDLE_X - self.PADDLE_WIDTH)
+            
+            #?
+            ball = renpy.render(self.ball, width, height, st, at)
+            r.blit(ball, (int(self.bx - self.BALL_WIDTH / 2), int(self.by - self.BALL_HEIGHT / 2)))
+            
+            #结束
+            if self.bx < -75:
+                self.winner = "computer"
+                renpy.timeout(0)
+            elif self.bx > width + 75:
+                self.winner = "player"
+                renpy.timeout(0)
+            
+            renpy.redraw(self, 0)
+            return r
+
+        def event(self, ev, x, y, st):
+            import pygame
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                self.stuck = False
+                renpy.restart_interaction()
+            
+            y = max(y, self.COURT_TOP)
+            y = min(y, self.COURT_BOTTOM)
+            self.playery = y
+            
+            if self.winner:
+                return self.winner
+            raise renpy.IgnoreEvent()
+
+screen pong():
+    default pong = PongDisplayable()
+    add "bg pong" #背景
+    add pong #游戏
+
+    #例字
+    text "Youtai":
+        xpos 360
+        xanchor 0.5
+        ypos 37
+        size 60
+
+    text "电脑":
+        xpos 1560
+        xanchor 0.5
+        ypos 37
+        size 60
+    
+    #开始提示
+    if pong.stuck:
+        text "点击开始游戏":
+            xalign 0.5
+            ypos 75
+            size 60
+
+# 游戏入口标签
+label play_pong:
+    window hide
+    $ quick_menu = False
+    
+    call screen pong
+    
+    $ quick_menu = True
+    window show
+    
+    if _return == "computer":
+        yt "『……』"
+        yt "『哈——哈，其实我放水了啦』"
+        yt "『我认真起来区区电脑又能怎样』"
+        "电脑突然嗡嗡地叫了两声。"
+        "看起来机魂大不悦。"
+
+    else:
+        yt "『哈哈』"
+        yt "『喂，你就是逊啦』"
+        "电脑突然嗡嗡地叫了两声。"
+        "看起来机魂大不悦。"
+    
     return
