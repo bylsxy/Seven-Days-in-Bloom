@@ -945,7 +945,8 @@ init python:
             
             #状态
             self.stuck = True
-            self.playery = (self.COURT_BOTTOM - self.COURT_TOP) / 2
+            # 初始化球拍位置于球场中心
+            self.playery = (self.COURT_BOTTOM - self.COURT_TOP) / 2 + self.COURT_TOP
             self.computery = self.playery
             self.computerspeed = 570.0
             self.bx = self.PADDLE_X + self.PADDLE_WIDTH + 15
