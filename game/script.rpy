@@ -16,6 +16,9 @@ label splashscreen:
 
     return
 
+# 确保有默认值
+default quick_menu = True
+
 # 声明此游戏使用的角色。颜色参数可使角色姓名着色。
 
 define yt = Character("佐佐木 阳太")
@@ -89,7 +92,7 @@ label chapter_1:
     "我看着她帮我登记，羞愧的心理让我完全不敢抬起头来。"
     "登记完后她把《心动魔法》递给了我，同时在包里掏什么东西。应该是钥匙吧。"
     "我跟着她离开了图书馆。"
-    scene bg corridor2 with dissolve
+    scene bg corridor with dissolve
     show akane normal with dissolve
     "就在她锁完门后，她突然递给了我一本樱花色的笔记本。"
     "上面赫然写着“共感日记”四个大字。"
@@ -111,7 +114,7 @@ label love_mogic:
 
     {space=60}分别在三个纸条上写上在意之人会出现的地方{nw}
 
-    {space=60}摆成三角阵，中间是在意之人喜欢的饮料{nw}
+    {space=60}摆成三角阵，中间是在意之人喜欢的饮料
 
     {space=60}在饮料上放上在意之人的头发{nw}
 
@@ -135,7 +138,7 @@ label diary:
 
     （手写字迹：）{nw}
     
-    {space=60}必须在剩下的七天内与一人完成【共感契约】{nw}
+    {space=60}必须在剩下的七天内与一人完成【共感契约】
 
     {space=60}且一起记录下二人间的故事{nw}
 
@@ -247,7 +250,7 @@ label chapter_2:
 
                 {space=60}2.找体育部老师签名确定运动员保送名单{nw}
 
-                {space=60}3.将田径场假期建设资料给到体育老师，保证假期田径部的正常练习{nw}
+                {space=60}3.将田径场假期建设资料给到体育老师，保证假期田径部的正常练习
 
                 {space=60}4.清点田径部器材，上报损坏明细{nw}
 
@@ -437,7 +440,7 @@ label chapter_2:
 label chapter_3:
     stop music
     "day 3"
-    scene bg school with fade
+    scene bg sky with fade
     play music "阳光.mp3"
     "终于记得带上那本《心动魔法》，我走在去教室的路上。"
     scene bg school2 with dissolve
@@ -594,7 +597,7 @@ label chapter_3:
     "仿佛这一天比过去的每一天都明亮。"
     "犯花痴的我刚开始不知所措就被会长提醒该去田径部了。"
     skr "『下午我带小蛋糕去找你』"
-    scene bg school with fade
+    scene bg sky with fade
     "我在一路上走路都轻飘飘的。"
     scene bg field with dissolve
     "到了体育部办公室的时候发现其他老师都在，但昨天帮忙的体育老师不见了。"
@@ -749,6 +752,11 @@ label chapter_3:
     aoi "『好！』"
     # 今日改写工作至此，明天有脑子再继续。25.8.9-4:09
     "青春期jk喜极而泣的笑容和话语交错着回应我。"
+    scene black with Dissolve(2.5)
+    "———"
+    "后续剧情暂未进行修缮并制作演出，敬请期待~"
+
+
     "下午的下课铃响起。"
     "走廊是熙熙攘攘的人群嘈杂(培养学生情的班级活动)。"
     "聊天间，我们也差不多休息好了。"
