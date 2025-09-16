@@ -1,4 +1,4 @@
-﻿# 游戏的脚本可置于此文件中。
+# 游戏的脚本可置于此文件中。
 # 先加一个开场logo
 image splash = "splash.png"
 
@@ -15,9 +15,6 @@ label splashscreen:
     with Pause(1)
 
     return
-
-# 确保有默认值
-default quick_menu = True
 
 # 声明此游戏使用的角色。颜色参数可使角色姓名着色。
 
@@ -37,6 +34,13 @@ define n = nvl_narrator
 label start: # 调试的时候可以直接从指定章节开玩
     jump chapter_1
 
+transform nod_greeting: # 立绘点头
+    xalign 0.5
+    yalign 0.0
+    yoffset 0
+    linear 0.3 yoffset 18
+    linear 0.3 yoffset 0
+
 label chapter_1:
     stop music
     "【序章:沙化的毕业季】"
@@ -48,7 +52,7 @@ label chapter_1:
     scene bg library with dissolve
     "随风飘落的樱花通过窗户进到了图书馆内。"
     "我上前想要把窗户关上。"
-    show akane normal with dissolve
+    show akane normal at nod_greeting with dissolve
     akn "『开着吧，反正之后也会清理的』"
     show akane normal2 with dissolve #闭眼
     "被不知道什么时候在我身后的图书管理员阻止了。"
@@ -62,10 +66,10 @@ label chapter_1:
     hide cherry_flower with Dissolve(2.0)
     yt "『是我眼花了吗？』"
 
-    show akane question with dissolve
+    show akane normal at top with dissolve
     akn "『阳太同学，这个点你怎么还在图书馆？』"
     yt "『啊，我是学生会成员，过来帮忙整理图书馆的』"
-    "此乃谎言。"
+    "——此乃谎言。"
     "其实我是想掐着点在图书馆偶遇学生会会长————藤原樱"
     "以便增进一下感情，顺便在图书馆找些情感偏方什么的。"
     "但很明显，她今天应该是不会来了。"
@@ -76,24 +80,25 @@ label chapter_1:
     "说实话，我非常不好意思说出自己想找《这样做就能永远在一起~★》之类的书。"
     "不，是超级不好意思！"
     yt "『啊啊……不用麻烦你了，我自己找就可以了』"
-    show akane none with dissolve #无表情
+    show akane normal with dissolve
     akn "『我需要早点下班，所以你只要告诉我就可以了。{nw}" #语句中切换
-    show akane interesting #饶有趣味
+    show akane normal2
     akn "『我需要早点下班，所以你只要告诉我就可以了。{fast}还是说，你是在等谁吗？』"
     yt "『！！』"
     scene black with fade
     pause 1.0
     scene bg library with fade
-    show akane normal2 with dissolve
+    show akane normal2 at top with dissolve
     akn "『在你后面第二排的那列架子上』"
     yt "『谢谢……』"
     # hide akane with dissolve
     "我非常不好意思地从书架上取了一本《心动魔法》。"
     "我看着她帮我登记，羞愧的心理让我完全不敢抬起头来。"
+    show akane normal with dissolve
     "登记完后她把《心动魔法》递给了我，同时在包里掏什么东西。应该是钥匙吧。"
     "我跟着她离开了图书馆。"
     scene bg corridor with dissolve
-    show akane normal with dissolve
+    show akane normal at top with dissolve
     "就在她锁完门后，她突然递给了我一本樱花色的笔记本。"
     "上面赫然写着“共感日记”四个大字。"
     akn "『比起你那本《心动魔法》，还是这个更有用，最起码这个是真的』"
@@ -103,7 +108,12 @@ label chapter_1:
     hide akane with dissolve
     "她说完就离开了，只剩我和书看着窗外在樱花树下正在沙化的落花。"
     stop music
-    # 依照篇幅，此处应有op
+    # 依照篇幅，此处应有op（是少是一个很帅的蒙太奇）
+    play music "休息.mp3"
+    scene bg home with fade
+    "终于回到家了。"
+    "今天发生的事真奇怪呢……"
+    "那么，要是做什么好呢？"
     jump chapter_2
 
 label love_mogic:
@@ -155,7 +165,7 @@ label diary:
 label chapter_2:
     $ f1=0
     play music "休息.mp3"
-    scene bg home with fade
+    scene bg home with dissolve
     menu:
         "看看《心动魔法》":
             $ f1=1
@@ -164,6 +174,7 @@ label chapter_2:
             call diary
         "玩游戏":
             "回到家还是打游戏要紧！"
+            "不过电脑上只有简陋的游戏啊……"
             call play_pong
             jump chapter_2
     
@@ -448,7 +459,7 @@ label chapter_3:
     yt "『又来早了？』"
     akn "『没有啊』"
     yt "『！？』"
-    show akane normal with dissolve
+    show akane normal at top with dissolve
     "熟悉的声音又从我身后传出来。"
     "转过头那个图书管理员已经自顾自地从我书包里拿出了一本书。"
     yt "『不要突然出现在别人身后啊』"
@@ -460,7 +471,7 @@ label chapter_3:
     play music "平静.mp3"
     scene bg library with fade
     "大概讲了一下共感日记旁发生的种种奇怪的事情。"
-    show akane happy2 with dissolve
+    show akane happy2 at top with dissolve
     akn "『哈哈，看来你就是那个命定之人啊哈哈』"
     yt "『所以到底是怎么回事？』"
     show akane happy with dissolve
@@ -470,26 +481,29 @@ label chapter_3:
     "封面上有着三行让人格外醒目的标识。"
     akn "『三个啊……这样，我们先交换line，之后你跟她们聊完再找我怎么样？』"
     yt "『你先回答我问题……』"
-    show akane normal with dissolve
+    show akane serious with dissolve
     akn "『行』"
     "她一反刚刚不靠谱的样子，变作严肃地把我拉到隔壁自习室。"
 
     play music "神秘.mp3" fadeout 1.0 fadein 1.0
     scene bg classroom with dissolve
-    show akane serious with dissolve
+    show akane serious at top with dissolve
     akn "『你有注意到在你身边落下的花瓣吗？』"
     yt "『花瓣？』"
+    hide akane with dissolve
     show cherry_flower at truecenter with dissolve
     yt "『这个怎么了吗？』"
     akn "『你看』"
     hide cherry_flower with Dissolve(2.0)
     "说着，花瓣就像灭霸打了响指一样散去了。"
     yt "『！』"
+    show akane serious at top with dissolve
     akn "『一开始，也只是这些不起眼的小物件』"
     yt "『！昨天在地上消失的清单』"
     akn "『其他的我也不是很了解，不过我觉得是这本本子在发挥作用』"
     
     "陆陆续续有人来到自习室里嘟嘟囔囔了几声。"
+    show akane serious at nod_greeting
     "风见茜看到后，便把我赶了出去。"
     akn "『总之，你只需要完成上面的任务就可以了，我会帮助你的』"
 
@@ -1108,3 +1122,5 @@ label play_pong:
         "看起来机魂大不悦。"
     
     return
+
+

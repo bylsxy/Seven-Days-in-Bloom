@@ -248,11 +248,7 @@ screen quick_menu():
             textbutton _("快存") action QuickSave()
             textbutton _("快读") action QuickLoad()
             textbutton _("设置") action ShowMenu('preferences')
-            # 关键：隐藏下栏 + 弹出透明遮罩（吃掉本次点击）
-            textbutton _("隐藏") action [
-                SetVariable("quick_menu", False),
-                Show("tap_to_restore_quickmenu")
-            ]
+            textbutton _("隐藏") action HideInterface()
 
 ## 此代码确保只要用户没有主动隐藏界面，就会在游戏中显示 quick_menu 屏幕。
 init python:
@@ -1488,25 +1484,6 @@ define bubble.expand_area = {
     "thought" : (0, 0, 0, 0),
 }
 
-# 3) 透明遮罩屏：拦截任意点击/按键，不推进剧情；下一次点击恢复下栏
-screen tap_to_restore_quickmenu():
-    modal True            # 模态：拦截其他交互（包括 say 的 dismiss）
-    zorder 200            # 盖在所有东西之上
-
-    # 键盘也能恢复（空格、回车、点击等）
-    key "dismiss" action [ SetVariable("quick_menu", True), Hide("tap_to_restore_quickmenu") ]
-    key "K_SPACE" action [ SetVariable("quick_menu", True), Hide("tap_to_restore_quickmenu") ]
-    key "K_RETURN" action [ SetVariable("quick_menu", True), Hide("tap_to_restore_quickmenu") ]
-    key "mousedown_1" action NullAction()  # 防抖：按下先不触发
-    key "mouseup_1"   action [ SetVariable("quick_menu", True), Hide("tap_to_restore_quickmenu") ]
-
-    # 全屏透明按钮：点击任意处恢复
-    button:
-        background None
-        xysize (config.screen_width, config.screen_height)
-        action [ SetVariable("quick_menu", True), Hide("tap_to_restore_quickmenu") ]
-
-
 ################################################################################
 ## 移动设备界面
 ################################################################################
@@ -1528,19 +1505,13 @@ screen quick_menu():
             style "quick_menu"
             style_prefix "quick"
 
-            textbutton _("回退") action Rollback()
             textbutton _("历史") action ShowMenu('history')
             textbutton _("快进") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("自动") action Preference("auto-forward", "toggle")
             textbutton _("保存") action ShowMenu('save')
             textbutton _("读取") action ShowMenu('load')#新加了一个友善的功能
             textbutton _("菜单") action ShowMenu()
-            textbutton _("设置") action ShowMenu('preferences')
-
-            textbutton _("隐藏") action [
-                            SetVariable("quick_menu", False),
-                            Show("tap_to_restore_quickmenu")
-            ]
+            textbutton _("隐藏") action HideInterface()
 
 style window:
     variant "small"
