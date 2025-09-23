@@ -1,6 +1,7 @@
 # 游戏的脚本可置于此文件中。
 # 先加一个开场logo
 image splash = "splash.png"
+# 如果可以的话我这里还想加一个loading~界面
 
 label splashscreen:
     scene black
@@ -40,6 +41,13 @@ transform nod_greeting: # 立绘点头
     yoffset 0
     linear 0.3 yoffset 18
     linear 0.3 yoffset 0
+
+transform jump_surprised: # 立绘惊讶上跳
+    xalign 0.5
+    yalign 0.0
+    yoffset 0
+    linear 0.2 yoffset -30  # 向上跳
+    linear 0.2 yoffset 0    # 回到原位
 
 label chapter_1:
     stop music
@@ -285,7 +293,7 @@ label chapter_2:
     "那本《共感日记》就先拿在了手上。"
     "跟老师确定明细时我听见了田径场的跑步声。"
 
-    show aoi happy with dissolve
+    show aoi happy at top with dissolve
     "是那个在体育和文化间摇摆不定的小早川葵同学！"
     "之前每次到田径场干活的时候，她都会莫名其妙上来对我冷嘲热讽。"
     "虽然会过来帮忙，但还是很不爽啊怒怒怒（"
@@ -303,7 +311,9 @@ label chapter_2:
 
     # 展示角色并播放移动动画
     scene bg field with fade
-    show aoi none at move_in_left
+    show aoi surprise at move_in_left
+    pause 1
+    show aoi none with dissolve
     "看到还有我在体育部办公室，葵这家伙先是不解，随后便装着没看见我走到了老师旁边。"
     stop music
     "体育部老师A" "『呐，你的资料，现在该确定了吧』"
@@ -365,9 +375,9 @@ label chapter_2:
     "体育部老师A让我明天继续。"
     "我打开饭盒，准备在教室里享受午餐。"
     "这时却有人叫我。"
-    "classmate" "『阳太，你今天上午没去天文社啊』"
+    "同班同学" "『阳太，你今天上午没去天文社啊』"
     yt "『额……嗯，我没去，我去学生会了』"
-    "classmate" "『上午天文社的同学让我叫你一回来就去天文社，说事挺急的』"
+    "同班同学" "『上午天文社的同学让我叫你一回来就去天文社，说事挺急的』"
     yt "『啊——别吧——』"
     "我关上还没吃几口的饭盒，书包还没放下来就又走了。"
     yt "（本来还想着去图书馆呢……）"
@@ -389,7 +399,7 @@ label chapter_2:
     yt "『说话，喂！』"
     "？？？" "『……』"
     "我将书包脱下，往纸箱子那里砸过去。"
-    show ao normal #可以立绘下移
+    show ao normal at jump_surprised
     "稀稀拉拉掉下来的纸箱下，露出来的是竟然是雾岛蓝同学的头。"
     yt "『……你是笨蛋吗』"
     yt "『雾岛蓝同学』"
@@ -409,7 +419,7 @@ label chapter_2:
     
     scene bg bad_room with fade
     play music "平静.mp3" fadeout 1.0 fadein 1.0
-    show ao none with dissolve
+    show ao none at top with dissolve
     "可能是我干活的同时一直在盯着雾岛蓝同学，又或许是那本子里除了第一页其他都是空白页没什么可看的。"
     "雾岛蓝在我干活中途就把本子塞给我让我出去了。"
     ao "『社长说这些是你这几天的工作。我要记录星空的声音。你先走吧』"
@@ -520,7 +530,7 @@ label chapter_3:
 
     "女の声" "『你东西忘在哪里了？』『不知道啊我去办公室找找』"
     "办公室外传来女生的声音。"
-    show sakura dressed normal with dissolve
+    show sakura dressed normal at top with dissolve
     "『砰』的一声门开了，是穿着烹饪围裙的会长藤原樱。"
     play music "阳光.mp3"
     skr "『啊，阳太你在办公室啊，你有没有看见我的挂包』"
@@ -547,7 +557,7 @@ label chapter_3:
     play music "平静.mp3" fadeout 1.0 fadein 1.0
     "藤原樱和我一起来到了烹饪课的教室。"
     "我放好书包，接过烹饪围裙，戴上了一次性手套和口罩在藤原樱旁边帮忙打下手。"
-    show sakura dressed normal with dissolve
+    show sakura dressed normal at top with dissolve
     skr "『你昨天的工作搞完了吗』"
     yt "『哦，还、还差一点，当时太多了整理到饭点也没整理完，老师就让我这几天继续』"
     skr "『工作量这么多啊，需不需要我来帮忙』"
@@ -559,7 +569,7 @@ label chapter_3:
     scene bg cooking_classroom with fade
     "我在帮忙打发奶油。"
     "到了如今这么自动化的社会还手动打奶油吗……感觉很快就会累了。"
-    show sakura dressed normal with dissolve
+    show sakura dressed normal at top with dissolve
     "藤原樱在分面团，好像是要做小蛋糕。"
     yt "『好香的味道。已经有人烤好面包了吗？』"
     skr "『是吗？』"
@@ -584,7 +594,7 @@ label chapter_3:
     "但同时一阵疲惫的感觉清晰地传入脑内。"
     "看着藤原樱的笑容，我的注意力却放在了她眼睛下的一点淤青上。"
     yt "『藤原樱同学。』"
-    show sakura dressed question with dissolve
+    show sakura dressed question with dissolve # 这一立绘还没有！！！！
     skr "『嗯？』"
     yt "『你最近很累吗？』"
     skr "『为什么突然这么说？』"
@@ -658,7 +668,7 @@ label chapter_3:
     scene black with Dissolve(0.5)
     scene bg lab with Dissolve(2.0)
     "终于打开了门，室外的光亮与室内形成鲜明的对比。"
-    show aoi sad2 with dissolve
+    show aoi sad2 at top with dissolve
     "进来的光线照在了趴在地上的小早川葵，旁边是堆起来的纸箱子，上面是窗户。"
     yt "『快！医务室！』"
     "我顾不上老师，上前要去把葵抱起来。"
@@ -691,7 +701,7 @@ label chapter_3:
     "保健室老师" "『来一杯葡萄糖休息一下应该就能走了，等会记得去吃饭，知道了吗？』"
     yt "『知道了，谢谢老师』"
     "随着保健室老师出门吃饭的关门声响起，我还没开口小早川葵就把糖水递到了我手边。"
-    show aoi sad with dissolve
+    show aoi sad at top with dissolve
     aoi "『……喝点水吧』"
     "我接过水喝了一口。"
     yt "『谢谢，不过你是怎么困在里面的？』"
@@ -707,7 +717,7 @@ label chapter_3:
     "……"
     show aoi serious tears with dissolve
     aoi "『我是说真的！器材室门给风吹上了，我要打开门刚拿出钥匙它就不见了……』{nw=0.5}"
-    show aoi suffering
+    show aoi suffering # 这个图片搞错了。。这里很难连贯
     aoi "『嘶——』"
     yt "『扯到伤口了吗？！』"
     "我一个鲤鱼打挺起来，但小早川葵倒是抓住了我的手。"
@@ -770,6 +780,9 @@ label chapter_3:
     "———"
     "后续剧情暂未进行修缮并制作演出，敬请期待~"
 
+    "……"
+    "…………"
+    "………………"
 
     "下午的下课铃响起。"
     "走廊是熙熙攘攘的人群嘈杂(培养学生情的班级活动)。"
