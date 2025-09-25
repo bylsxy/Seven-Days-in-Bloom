@@ -156,6 +156,7 @@ screen pong():
 
 # 游戏入口标签
 label play_pong:
+    $ new_node("play_pong")
     window hide
     $ quick_menu = False
 

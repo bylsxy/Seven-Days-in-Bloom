@@ -293,7 +293,8 @@ screen navigation():
 
             textbutton _("开始游戏") action Start()
 
-            textbutton _("流程图") action ShowMenu("flowchart")
+            if flowchart_accessible:
+                textbutton _("流程图") action ShowMenu("flowchart")
 
         else:
 
@@ -301,7 +302,8 @@ screen navigation():
 
             textbutton _("保存") action ShowMenu("save")
 
-            textbutton _("流程图") action ShowMenu("flowchart")
+            if flowchart_accessible:
+                textbutton _("流程图") action ShowMenu("flowchart")
 
         textbutton _("读取") action ShowMenu("load")
 

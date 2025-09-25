@@ -29,8 +29,6 @@ define ao = Character("雾岛 蓝")
 
 define n = nvl_narrator
 
-default _flowchart_selected = None
-
 # 游戏在此开始。
 # 其他设定：立绘所谓的平常标签“normal”，应该是略带微笑的表情，但不及happy
 # 同样sad重在眉尖向下，serious重在眉尖向上，none则是平的；部分表情有眼泪差分
@@ -63,6 +61,9 @@ transform move_out_right:
     linear 1.0 xalign 1.2 alpha 0.0  #移动到右侧
 
 label chapter_1:
+    $ new_node("chapter_1")
+    if not flowchart_accessible:
+        $ flowchart_accessible = True
     stop music
     "【序章:沙化的毕业季】"
 
@@ -132,6 +133,7 @@ label chapter_1:
     # 依照篇幅，此处应有op（是少是一个很帅的蒙太奇）
     play music "休息.mp3"
 label fc_ch1_home:
+    $ new_node("fc_ch1_home")
     scene bg home with fade
     "终于回到家了。"
     "今天发生的事真奇怪呢……"
@@ -139,6 +141,7 @@ label fc_ch1_home:
     jump chapter_2
 
 label love_mogic:
+    $ new_node("love_mogic")
     n """
     ____________________________________________________________________________{fast}{nw}
 
@@ -161,6 +164,7 @@ label love_mogic:
     return
 
 label diary:
+    $ new_node("diary")
     n """
     ____________________________________________________________________________{fast}{nw}
     
@@ -185,10 +189,12 @@ label diary:
     return
 
 label chapter_2:
+    $ new_node("chapter_2")
     $ f1=0
     play music "休息.mp3"
     scene bg home with dissolve
 label fc_ch2_choice:
+    $ new_node("fc_ch2_choice")
     menu:
         "看看《心动魔法》":
             $ f1=1
@@ -217,6 +223,7 @@ label fc_ch2_choice:
     "day 2"
 
 label fc_ch2_morning:
+    $ new_node("fc_ch2_morning")
     scene bg school with fade
     play music "阳光.mp3"
     # 环境描写，樱花的景象与自己对校园的不舍
@@ -235,6 +242,7 @@ label fc_ch2_morning:
     "如果不是为了和会长相处，谁又乐意待在学生会里打杂呢。"
 
 label fc_ch2_student_council:
+    $ new_node("fc_ch2_student_council")
     scene bg student_council with fade
     stop music
     "我们来到了学生会办公室门口。"
@@ -305,6 +313,7 @@ label fc_ch2_student_council:
     skr "『味觉吗，我的……』"
 
 label fc_ch2_track:
+    $ new_node("fc_ch2_track")
     scene bg field with fade
     play music "风.mp3" fadeout 1.0 fadein 1.0 #要是没有这个BGM，用阳光.mp3也行，但情绪并非那么高昂
     "我来到了田径场，将书包里的资料给到了体育部办公室的老师。"
@@ -353,6 +362,7 @@ label fc_ch2_track:
     aoi "『。好』"
 
 label fc_ch2_storage:
+    $ new_node("fc_ch2_storage")
     scene bg lab2 with fade
     show aoi serious at top with dissolve
     "刚进器材室，葵就伸手把我手上的笔记本连同清单一起抽走。"
@@ -377,6 +387,7 @@ label fc_ch2_storage:
     "离谱的是清单也不知道去哪了，我却要一个人负责清点项目。"
 
 label fc_ch2_classroom:
+    $ new_node("fc_ch2_classroom")
     scene bg classroom with fade
     play music "风.mp3" fadeout 1.0 fadein 1.0
     "上午一个人清点了器材室的所有器材，期间还帮老师顺手建了个表格。"
@@ -392,6 +403,7 @@ label fc_ch2_classroom:
     yt "（本来还想着去图书馆呢……）"
 
 label fc_ch2_astronomy:
+    $ new_node("fc_ch2_astronomy")
     scene bg bad_room with fade
     play music "平静.mp3" fadeout 1.0 fadein 1.0
     yt "『你好，有人吗？』"
@@ -444,11 +456,13 @@ label fc_ch2_astronomy:
     "我跑去图书馆，发现图书馆也关门了。"
     "我找不到图书管理员，只得先回家。"
 label fc_ch3_dessert:
+    $ new_node("fc_ch3_dessert")
     scene bg street with dissolve
     "路上经过了校门附近开的甜品店，看见里面开开心心的jk。"
     yt "（下次，可以的话，试着约会长出来吧。）"
 
 label fc_ch2_evening:
+    $ new_node("fc_ch2_evening")
     scene bg home with fade
     stop music
     n """
@@ -471,6 +485,7 @@ label fc_ch2_evening:
     jump chapter_3
 
 label chapter_3:
+    $ new_node("chapter_3")
     stop music
     "day 3"
     scene bg sky with fade
@@ -493,6 +508,7 @@ label chapter_3:
     play music "平静.mp3"
 
 label fc_ch3_library:
+    $ new_node("fc_ch3_library")
     scene bg library with fade
     "大概讲了一下共感日记旁发生的种种奇怪的事情。"
     show akane happy2 at top with dissolve
@@ -512,6 +528,7 @@ label fc_ch3_library:
     play music "神秘.mp3" fadeout 1.0 fadein 1.0
 
 label fc_ch3_self_study:
+    $ new_node("fc_ch3_self_study")
     scene bg classroom with dissolve
     show akane serious at top with dissolve
     akn "『你有注意到在你身边落下的花瓣吗？』"
@@ -570,6 +587,7 @@ label fc_ch3_self_study:
     skr "『那你也一起来吧』"
 
 label fc_ch3_cooking:
+    $ new_node("fc_ch3_cooking")
     scene bg cooking_classroom with fade #资产建议：把bg classroom传给AI让它在桌子上添加一些厨具得到。
     play music "平静.mp3" fadeout 1.0 fadein 1.0
     "藤原樱和我一起来到了烹饪课的教室。"
@@ -1000,6 +1018,7 @@ label fc_ch3_cooking:
     "此时雾岛 蓝变了一种神色看着我。"
     skr "『你认识她吗?』"
 label fc_ch3_dessert_choice:
+    $ new_node("fc_ch3_dessert_choice")
     menu:
         "A.我之前去图书馆有见过她":
             jump fc_ch3_dessert_option_a
@@ -1007,16 +1026,19 @@ label fc_ch3_dessert_choice:
             jump fc_ch3_dessert_option_b
 
 label fc_ch3_dessert_option_a:
+    $ new_node("fc_ch3_dessert_option_a")
     yt "『我之前去图书馆有见过她。』"
     ao "『欸——你连名字都不知道就邀请人啊？』"
     jump fc_ch3_dessert_option_merge
 
 label fc_ch3_dessert_option_b:
+    $ new_node("fc_ch3_dessert_option_b")
     yt "『认识，今天上午还和她聊了几句。』"
     ao "『那你可要记得好好解释一下喔。』"
     jump fc_ch3_dessert_option_merge
 
 label fc_ch3_dessert_option_merge:
+    $ new_node("fc_ch3_dessert_option_merge")
     "甜品吃完后，差不多也到了该回家的时间。"
     show aoi happy2
     aoi "『我家要搭电车，得先走一步啦。今天真的好开心，谢谢你们！』"
@@ -1038,6 +1060,7 @@ label fc_ch3_dessert_option_merge:
     scene black with fade
     "晚上八点。"
 label fc_ch3_evening:
+    $ new_node("fc_ch3_evening")
     scene bg field with fade
     play music "神秘.mp3"
     "摄影部和天文社的成员按时在旧校舍旁的树林土坡集合。"
@@ -1059,6 +1082,7 @@ label fc_ch3_evening:
     "雾岛蓝却把我拉到一旁，示意想单独聊聊。"
 
 label fc_ch3_playground:
+    $ new_node("fc_ch3_playground")
     scene bg playground with fade
     show ao normal at top with dissolve
     ao "『我知道了，是跟那个笔记有关对吧？』"
@@ -1098,6 +1122,7 @@ label fc_ch3_playground:
     ao "『如果你需要帮助的话我会帮你的，但请不要忘记我。』"
 
 label fc_ch3_afterglow:
+    $ new_node("fc_ch3_afterglow")
     scene bg field with fade
     hide ao
     "之后，我们回到了拍摄地点，一群人在欢声笑语中度过了拍摄时间。"
@@ -1108,11 +1133,13 @@ label fc_ch3_afterglow:
     stop music fadeout 1.0
 
 label fc_ch3_conclusion:
+    $ new_node("fc_ch3_conclusion")
     scene black with fade
     pause 1.0
     jump chapter_4
 
 label chapter_4:
+    $ new_node("chapter_4")
     stop music
     "day 4"
     scene bg home with fade
@@ -1146,6 +1173,7 @@ label chapter_4:
     n "『然后校内的社团活动也正式结束了，大家收拾好属于自己的物品，中午到时间就可以回去了。』"
     "可能是我们班主任叮嘱得太久，其他班级已经传来欢呼声。"
 label fc_ch4_corridor:
+    $ new_node("fc_ch4_corridor")
     scene bg corridor with dissolve
     "我望向窗外，看到已经在外面等候的葵。"
 
@@ -1175,6 +1203,7 @@ label fc_ch4_corridor:
     "说完，她推开办公室的门，把我留在原地。"
 
 label fc_ch4_campus:
+    $ new_node("fc_ch4_campus")
     scene bg school2 with fade
     "我边在校园里闲逛边思考。对于消失的樱花我已经见怪不怪，更在意的是身后越来越响的跑步声。"
     show sakura happy at top with dissolve
@@ -1197,6 +1226,10 @@ label fc_ch4_campus:
     yt "（如果我能欺骗自己说“这么做是为了保护她们”，那我到底想保护谁？）"
 
 label chapter_4_choice:
+    $ new_node("chapter_4_choice")
+    $ unlock_node("chapter_4_sakura_afternoon")
+    $ unlock_node("ch4_aoi_branch")
+    $ unlock_node("ch4_ao_branch")
     menu:
         "A.前往烹饪教室（藤原 樱）":
             jump chapter_4_sakura_afternoon
@@ -1209,6 +1242,7 @@ label chapter_4_choice:
 
 
 label chapter_4_sakura_afternoon:
+    $ new_node("chapter_4_sakura_afternoon")
     stop music
     play music "平静.mp3"
     scene bg corridor with fade
