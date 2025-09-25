@@ -293,11 +293,15 @@ screen navigation():
 
             textbutton _("开始游戏") action Start()
 
+            textbutton _("流程图") action ShowMenu("flowchart")
+
         else:
 
             textbutton _("历史") action ShowMenu("history")
 
             textbutton _("保存") action ShowMenu("save")
+
+            textbutton _("流程图") action ShowMenu("flowchart")
 
         textbutton _("读取") action ShowMenu("load")
 
