@@ -56,22 +56,13 @@ define gui.interface_text_color = '#404040'
 ## 字体和字体大小 #####################################################################
 
 ## 游戏内文本使用的字体。
-define gui.text_font = gui.FontGroup(
-    "NotoSerifSC-VF.ttf",
-    "NotoEmoji-Regular.ttf",
-)
+define gui.text_font = "NotoSerifSC-VF.ttf"
 
 ## 角色名称使用的字体。
-define gui.name_text_font = gui.FontGroup(
-    "NotoSerifSC-VF.ttf",
-    "NotoEmoji-Regular.ttf",
-)
+define gui.name_text_font = "NotoSerifSC-VF.ttf"
 
 ## 游戏外文本使用的字体。
-define gui.interface_text_font = gui.FontGroup(
-    "NotoSerifSC-VF.ttf",
-    "NotoEmoji-Regular.ttf",
-)
+define gui.interface_text_font = "NotoSerifSC-VF.ttf"
 
 ## 普通对话文本的大小。
 define gui.text_size = 33

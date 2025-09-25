@@ -289,13 +289,18 @@ style flowchart_node_title:
     size 30
     color "#ffffff"
     outlines [(2, "#2c3e8f", 0, 0)]
+    xalign 0.5
+    text_align 0.5
+    yalign 0.5
 
 style flowchart_node_summary:
     font gui.interface_text_font
     size 24
     color "#ecf2ff"
     outlines [(1, "#2c3e8f", 0, 0)]
-    text_align 0.0
+    text_align 0.5
+    xalign 0.5
+    yalign 0.5
     layout "subtitle"
 
 style flowchart_detail_frame:
