@@ -1,9 +1,11 @@
 init python:
     import math
     from collections import defaultdict
+    from renpy import store
     from renpy.display import im
-    from renpy.display.behavior import Function
-    import renpy
+    from renpy.display.core import Displayable
+    from renpy.display.render import Render
+    from renpy.exports import call_in_new_context, hide_screen, jump
 
     FLOWCHART_VIEW_WIDTH = 2000
     FLOWCHART_VIEW_HEIGHT = 8200
@@ -115,9 +117,9 @@ init python:
         FLOWCHART_NEIGHBORS[start].append(end)
         FLOWCHART_NEIGHBORS[end].append(start)
 
-    class FlowchartEdges(renpy.Displayable):
+    class FlowchartEdges(Displayable):
         def __init__(self, nodes, edges, width, height, line_color="#cfd7ff", arrow_color="#5c6ed8", line_width=6):
-            super(FlowchartEdges, self).__init__()
+            super().__init__()
             self.nodes = nodes
             self.edges = edges
             self.width = width
@@ -127,8 +129,8 @@ init python:
             self.line_width = line_width
 
         def render(self, width, height, st, at):
-            render = renpy.Render(self.width, self.height)
-            canvas = render.canvas()
+            edge_render = Render(self.width, self.height)
+            canvas = edge_render.canvas()
             for start_id, end_id in self.edges:
                 start_node = self.nodes[start_id]
                 end_node = self.nodes[end_id]
@@ -151,18 +153,18 @@ init python:
                 left = (px - uy * arrow_width / 2.0, py + ux * arrow_width / 2.0)
                 right = (px + uy * arrow_width / 2.0, py - ux * arrow_width / 2.0)
                 canvas.polygon(self.arrow_color, [(ex, ey), left, right])
-            return render
+            return edge_render
 
     def flowchart_jump(node_id, from_main_menu):
         node = FLOWCHART_LOOKUP.get(node_id)
         if not node or not node.get("label"):
             return
-        renpy.store._flowchart_selected = node_id
-        renpy.hide_screen("flowchart")
+        store._flowchart_selected = node_id
+        hide_screen("flowchart")
         if from_main_menu:
-            renpy.call_in_new_context(node["label"])
+            call_in_new_context(node["label"])
         else:
-            renpy.jump(node["label"])
+            jump(node["label"])
 
 screen flowchart():
     tag menu
@@ -205,8 +207,10 @@ screen flowchart():
                             action SetScreenVariable("selected_node", node_id)
                             if not node.get("label"):
                                 sensitive False
-                            add Solid("#ffffff22") if node_id == selected_node else Null()
-                            add Solid("#ffffff11") if hovered_node == node_id and node_id != selected_node else Null()
+                            if node_id == selected_node:
+                                add Solid("#ffffff22")
+                            if hovered_node == node_id and node_id != selected_node:
+                                add Solid("#ffffff11")
                             vbox:
                                 style "flowchart_node_content"
                                 text node["title"] style "flowchart_node_title"
