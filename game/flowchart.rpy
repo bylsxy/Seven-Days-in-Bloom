@@ -1,6 +1,6 @@
 init python:
     import math
-    from collections import defaultdict
+    from collections import Counter, defaultdict
     from renpy import store
     from renpy.display import im
     from renpy.display.core import Displayable
@@ -27,6 +27,11 @@ init python:
             "size": (360, 360),
         },
     }
+
+    _COLUMN_GAP = 80
+    _MAX_NODE_WIDTH = max(spec["size"][0] for spec in FLOWCHART_SPECS.values())
+    _COLUMN_SPACING = _MAX_NODE_WIDTH + _COLUMN_GAP
+    _CENTER_LINE = FLOWCHART_VIEW_WIDTH / 2.0
 
     FLOWCHART_NODES = [
         dict(id="ch1_start", title="序章 · 图书馆邂逅", summary="在图书馆与风见茜相遇，首次见到会发光的《共感日记》。", type="chapter", label="chapter_1", pos=(640, 80), thumbnail="images/场景图/bg library.png"),
@@ -107,11 +112,44 @@ init python:
     FLOWCHART_LOOKUP = {}
     FLOWCHART_NEIGHBORS = defaultdict(list)
 
+    _original_x_counts = Counter(int(node["pos"][0]) for node in FLOWCHART_NODES)
+    _center_reference = _CENTER_LINE
+    if _original_x_counts:
+        _center_reference = _original_x_counts.most_common(1)[0][0]
+
+    _COLUMN_OFFSETS = {
+        "left": -_COLUMN_SPACING,
+        "center": 0.0,
+        "right": _COLUMN_SPACING,
+    }
+
+    def _classify_column(x_value):
+        if x_value < _center_reference:
+            return "left"
+        if x_value > _center_reference:
+            return "right"
+        return "center"
+
     for node in FLOWCHART_NODES:
         spec = FLOWCHART_SPECS[node["type"]]
         node["size"] = spec["size"]
         node["image"] = spec["image"]
+        column = _classify_column(node["pos"][0])
+        column_center = _CENTER_LINE + _COLUMN_OFFSETS[column]
+        node_x = column_center - node["size"][0] / 2.0
+        node_x = int(round(node_x))
+        node["pos"] = (node_x, node["pos"][1])
+        node["_column"] = column
         FLOWCHART_LOOKUP[node["id"]] = node
+
+    def _node_center(node):
+        return (
+            node["pos"][0] + node["size"][0] / 2.0,
+            node["pos"][1] + node["size"][1] / 2.0,
+        )
+
+    for node in FLOWCHART_NODES:
+        node["_center"] = _node_center(node)
 
     for start, end in FLOWCHART_EDGES:
         FLOWCHART_NEIGHBORS[start].append(end)
@@ -131,16 +169,63 @@ init python:
         def render(self, width, height, st, at):
             edge_render = Render(self.width, self.height)
             canvas = edge_render.canvas()
+            def _node_center(node):
+                return node["_center"]
+
+            def _anchor_point(node, other):
+                cx, cy = _node_center(node)
+                ox, oy = _node_center(other)
+                if node["type"] == "choice" and ox != cx:
+                    if ox < cx:
+                        return (node["pos"][0], cy)
+                    else:
+                        return (node["pos"][0] + node["size"][0], cy)
+                if oy >= cy:
+                    return (cx, node["pos"][1] + node["size"][1])
+                return (cx, node["pos"][1])
+
+            def _path_points(start_node, end_node):
+                start = _anchor_point(start_node, end_node)
+                end = _anchor_point(end_node, start_node)
+                sx, sy = start
+                ex, ey = end
+                points = [start]
+                start_cx, start_cy = _node_center(start_node)
+                side_anchor = (
+                    start_node["type"] == "choice"
+                    and abs(sy - start_cy) < 0.01
+                    and abs(sx - start_cx) > 0.01
+                )
+                if side_anchor:
+                    if sx != ex:
+                        points.append((ex, sy))
+                    if sy != ey:
+                        points.append((ex, ey))
+                else:
+                    if sx != ex and sy != ey:
+                        mid_y = (sy + ey) / 2.0
+                        points.append((sx, mid_y))
+                        points.append((ex, mid_y))
+                    elif sx != ex:
+                        points.append((ex, sy))
+                    elif sy != ey:
+                        points.append((sx, ey))
+                if points[-1] != end:
+                    points.append(end)
+                return points
+
             for start_id, end_id in self.edges:
                 start_node = self.nodes[start_id]
                 end_node = self.nodes[end_id]
-                sx = start_node["pos"][0] + start_node["size"][0] / 2.0
-                sy = start_node["pos"][1] + start_node["size"][1]
-                ex = end_node["pos"][0] + end_node["size"][0] / 2.0
-                ey = end_node["pos"][1]
-                canvas.line(self.line_color, (sx, sy), (ex, ey), width=self.line_width)
-                dx = ex - sx
-                dy = ey - sy
+                path = _path_points(start_node, end_node)
+                for idx in range(len(path) - 1):
+                    canvas.line(self.line_color, path[idx], path[idx + 1], width=self.line_width)
+                if len(path) < 2:
+                    continue
+                ex, ey = path[-1]
+                px, py = path[-2]
+                dx = ex - px
+                dy = ey - py
                 distance = math.hypot(dx, dy)
                 if distance == 0:
                     continue
@@ -148,10 +233,10 @@ init python:
                 uy = dy / distance
                 arrow_len = 24
                 arrow_width = 16
-                px = ex - ux * arrow_len
-                py = ey - uy * arrow_len
-                left = (px - uy * arrow_width / 2.0, py + ux * arrow_width / 2.0)
-                right = (px + uy * arrow_width / 2.0, py - ux * arrow_width / 2.0)
+                base_x = ex - ux * arrow_len
+                base_y = ey - uy * arrow_len
+                left = (base_x - uy * arrow_width / 2.0, base_y + ux * arrow_width / 2.0)
+                right = (base_x + uy * arrow_width / 2.0, base_y - ux * arrow_width / 2.0)
                 canvas.polygon(self.arrow_color, [(ex, ey), left, right])
             return edge_render
 
@@ -214,7 +299,6 @@ screen flowchart():
                             vbox:
                                 style "flowchart_node_content"
                                 text node["title"] style "flowchart_node_title"
-                                text node["summary"] style "flowchart_node_summary"
 
             frame:
                 style "flowchart_detail_frame"
@@ -264,7 +348,6 @@ style flowchart_node_button is button
 style flowchart_node_button_text is button_text
 style flowchart_node_content is vbox
 style flowchart_node_title is text
-style flowchart_node_summary is text
 style flowchart_detail_frame is frame
 style flowchart_detail_title is text
 style flowchart_detail_summary is text
@@ -282,7 +365,11 @@ style flowchart_node_button:
     foreground None
 
 style flowchart_node_content:
-    spacing 10
+    spacing 0
+    xalign 0.5
+    yalign 0.5
+    xfill True
+    yfill True
 
 style flowchart_node_title:
     font gui.interface_text_font
@@ -292,16 +379,6 @@ style flowchart_node_title:
     xalign 0.5
     text_align 0.5
     yalign 0.5
-
-style flowchart_node_summary:
-    font gui.interface_text_font
-    size 24
-    color "#ecf2ff"
-    outlines [(1, "#2c3e8f", 0, 0)]
-    text_align 0.5
-    xalign 0.5
-    yalign 0.5
-    layout "subtitle"
 
 style flowchart_detail_frame:
     background Frame("gui/frame.png", gui.frame_borders, tile=gui.frame_tile)

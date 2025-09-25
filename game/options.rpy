@@ -34,6 +34,7 @@ define gui.about = _p("""
 脚本：徐阳、廖信同、陈宗波
 原画CG、角色设计：廖信同
 美术：廖信同、徐阳
+流程图组件开源作者：Devil Spiδεr（https://devilspider.itch.io/flowchart-plug-in）
 """)
 
 
