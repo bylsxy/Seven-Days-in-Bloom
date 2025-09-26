@@ -295,6 +295,8 @@ screen navigation():
 
             textbutton _("开始游戏") action Start()
 
+            textbutton _("鉴赏模式") action ShowMenu("appreciation_mode")
+
             if flowchart_accessible:
                 textbutton _("流程图") action ShowMenu("flowchart")
 
