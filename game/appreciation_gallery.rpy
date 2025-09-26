@@ -2,8 +2,29 @@
 ## 参考一般 galgame 鉴赏实现，提供 CG 和立绘两类浏览。
 
 init python:
-    import renpy
     from renpy import store
+
+    try:
+        from renpy import exports as _renpy_exports
+    except ImportError:
+        _renpy_exports = None
+
+    try:
+        from renpy import loader as _renpy_loader
+    except ImportError:
+        _renpy_loader = None
+
+    def _iter_game_files():
+        if _renpy_exports and hasattr(_renpy_exports, "list_files"):
+            return _renpy_exports.list_files()
+        if _renpy_loader and hasattr(_renpy_loader, "listdirfiles"):
+            return _renpy_loader.listdirfiles()
+        raise RuntimeError("无法枚举资源文件，请检查 Ren'Py 运行环境是否完整。")
+
+    def _image_size(filename):
+        if _renpy_exports and hasattr(_renpy_exports, "image_size"):
+            return _renpy_exports.image_size(filename)
+        return (None, None)
 
     def _appreciation_is_image(filename):
         filename = filename.lower()
@@ -12,7 +33,7 @@ init python:
     def _appreciation_collect(prefix):
         prefix = prefix.rstrip("/") + "/"
         files = []
-        for fn in renpy.list_files():
+        for fn in _iter_game_files():
             if not fn.startswith(prefix):
                 continue
             remainder = fn[len(prefix):]
@@ -133,7 +154,7 @@ screen appreciation_cg_preview():
 
     $ preview_w = int(config.screen_width * 0.85)
     $ preview_h = int(config.screen_height * 0.85)
-    $ img_w, img_h = renpy.image_size(appreciation_selected_cg)
+    $ img_w, img_h = _image_size(appreciation_selected_cg)
     $ scale_factor = 1.0
     if img_w and img_h:
         $ scale_factor = min(1.0, preview_w / float(img_w), preview_h / float(img_h))
