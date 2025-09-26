@@ -1,6 +1,6 @@
 # 游戏的脚本可置于此文件中。
 # 先加一个开场logo
-image splash = "splash.png"
+image splash = "splash.jpg"
 # 如果可以的话我这里还想加一个loading~界面
 # 还有好多剧情没有测试，流程图，鉴赏模式
 # 安卓安装图标巨丑
