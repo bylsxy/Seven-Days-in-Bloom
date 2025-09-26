@@ -8,7 +8,7 @@ init -3:
     default endings = []
     default story_flags = {}
 
-    default flowchart_accessible = False
+    default flowchart_accessible = True
 
 
 init python:
@@ -87,15 +87,16 @@ screen flowchart():
 
     $ current_segment = segment if segment in nodes else next(iter(nodes.keys()))
 
-    use game_menu(_("流程图"), scroll="viewport"):
+    use game_menu(_("流程图")):
         vbox:
             align (0.5, 0.0)
             spacing 30
 
             viewport:
                 xalign 0.5
-                xysize (1625, 7925)
-                child_size (1600, 7900)
+                xsize 1380
+                ysize 600
+                child_size (1380, 7900)
                 mousewheel True
                 scrollbars "vertical"
                 edgescroll (150, 2000)
@@ -120,6 +121,7 @@ screen flowchart():
             frame:
                 style_prefix "flowchart_panel"
                 xalign 0.5
+                xsize 1380
 
                 vbox:
                     spacing 12

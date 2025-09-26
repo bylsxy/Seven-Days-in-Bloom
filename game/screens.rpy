@@ -245,6 +245,8 @@ screen quick_menu():
             textbutton _("自动") action Preference("auto-forward", "toggle")
             textbutton _("保存") action ShowMenu('save')
             textbutton _("读取") action ShowMenu('load')
+            if flowchart_accessible:
+                textbutton _("流程图") action ShowMenu('flowchart')
             textbutton _("快存") action QuickSave()
             textbutton _("快读") action QuickLoad()
             textbutton _("设置") action ShowMenu('preferences')
