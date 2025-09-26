@@ -8,7 +8,7 @@ init -3:
     default endings = []
     default story_flags = {}
 
-    default flowchart_accessible = False
+    default flowchart_accessible = True
 
 
 init python:
@@ -85,17 +85,21 @@ screen flowchart():
 
     default select_node = None
 
-    $ current_segment = segment if segment in nodes else next(iter(nodes.keys()))
+    $ default_node = next(iter(nodes.keys()))
+    $ is_main_menu = getattr(renpy.context(), "_main_menu", False)
+    $ chart_segments = list(nodes.keys()) if is_main_menu else segments
+    $ current_segment = segment if (not is_main_menu and segment in nodes) else default_node
 
-    use game_menu(_("流程图"), scroll="viewport"):
+    use game_menu(_("流程图")):
         vbox:
             align (0.5, 0.0)
             spacing 30
 
             viewport:
                 xalign 0.5
-                xysize (1625, 7925)
-                child_size (1600, 7900)
+                xsize 1380
+                ysize 600
+                child_size (1380, 7900)
                 mousewheel True
                 scrollbars "vertical"
                 edgescroll (150, 2000)
@@ -108,7 +112,7 @@ screen flowchart():
 
                 imagemap:
                     auto "flowchart/image/%s.png"
-                    for i in segments:
+                    for i in chart_segments:
                         if i in nodes:
                             hotspot nodes[i][0] + gui.flow_hotspot_size:
                                 action SetScreenVariable("select_node", i)
@@ -120,6 +124,7 @@ screen flowchart():
             frame:
                 style_prefix "flowchart_panel"
                 xalign 0.5
+                xsize 1380
 
                 vbox:
                     spacing 12
