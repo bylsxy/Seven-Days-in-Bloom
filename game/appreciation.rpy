@@ -230,4 +230,3 @@ style appreciation_sprite_stage:
 style appreciation_switcher:
     spacing 40
     xalign 0.5
-
