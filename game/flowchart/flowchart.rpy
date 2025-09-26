@@ -85,7 +85,10 @@ screen flowchart():
 
     default select_node = None
 
-    $ current_segment = segment if segment in nodes else next(iter(nodes.keys()))
+    $ default_node = next(iter(nodes.keys()))
+    $ is_main_menu = getattr(renpy.context(), "_main_menu", False)
+    $ chart_segments = list(nodes.keys()) if is_main_menu else segments
+    $ current_segment = segment if (not is_main_menu and segment in nodes) else default_node
 
     use game_menu(_("流程图")):
         vbox:
@@ -109,7 +112,7 @@ screen flowchart():
 
                 imagemap:
                     auto "flowchart/image/%s.png"
-                    for i in segments:
+                    for i in chart_segments:
                         if i in nodes:
                             hotspot nodes[i][0] + gui.flow_hotspot_size:
                                 action SetScreenVariable("select_node", i)
