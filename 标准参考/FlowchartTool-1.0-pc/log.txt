@@ -1,0 +1,59 @@
+Fri Sep 26 11:20:07 2025
+Windows-10-10.0.26100
+Ren'Py 8.1.3.23091805
+ 
+
+Bootstrap to the start of init.init. took 0.05s
+Early init. took 0.00s
+Loader init. took 0.02s
+Loading error handling. took 0.04s
+Loading script. took 0.14s
+Loading save slot metadata. took 0.09s
+Loading persistent. took 0.00s
+Set script version to: (8, 1, 3)
+Running init code. took 0.06s
+Loading analysis data. took 0.02s
+Analyze and compile ATL. took 0.00s
+Reloading save slot metadata. took 0.02s
+Index archives took 0.00s
+Dump and make backups. took 0.00s
+Cleaning cache. took 0.00s
+Making clean stores. took 0.00s
+Initial gc. took 0.02s
+DPI scale factor: 2.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Creating interface object. took 0.01s
+Cleaning stores took 0.00s
+Init translation took 0.04s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.02s
+Prepare screens took 0.07s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.00s
+Running _start took 0.00s
+Performance test:
+Interface start. took 0.15s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 3072, 1920)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'Intel'"
+Renderer: b'Intel(R) Arc(TM) Graphics'
+Version: b'4.6.0 - Build 31.0.101.5333'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(2969, 1670) drawable=(2969, 1670)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(1412, 803) drawable=(1412, 803)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(1294, 721) drawable=(1294, 721)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(1274, 717) drawable=(1274, 717)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(1274, 719) drawable=(1274, 719)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(1274, 716) drawable=(1274, 716)
+Maximum texture size: 4096x4096
