@@ -298,6 +298,8 @@ screen navigation():
             if flowchart_accessible:
                 textbutton _("流程图") action ShowMenu("flowchart")
 
+            textbutton _("鉴赏模式") action ShowMenu("appreciation_gallery")
+
         else:
 
             textbutton _("历史") action ShowMenu("history")
