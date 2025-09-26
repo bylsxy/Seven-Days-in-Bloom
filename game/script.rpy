@@ -67,7 +67,7 @@ label chapter_1:
     stop music
     "【序章:沙化的毕业季】"
 
-    play music "平静.mp3"
+    play music "calm.mp3"
 
     scene bg sky with fade
     "樱花盛开的3月份。"
@@ -131,7 +131,7 @@ label chapter_1:
     "她说完就离开了，只剩我和书看着窗外在樱花树下正在沙化的落花。"
     stop music
     # 依照篇幅，此处应有op（是少是一个很帅的蒙太奇）
-    play music "休息.mp3"
+    play music "leisurely.mp3"
 label fc_ch1_home:
     $ new_node("fc_ch1_home")
     scene bg home with fade
@@ -191,7 +191,7 @@ label diary:
 label chapter_2:
     $ new_node("chapter_2")
     $ f1=0
-    play music "休息.mp3"
+    play music "leisurely.mp3"
     scene bg home with dissolve
 label fc_ch2_choice:
     $ new_node("fc_ch2_choice")
@@ -225,7 +225,7 @@ label fc_ch2_choice:
 label fc_ch2_morning:
     $ new_node("fc_ch2_morning")
     scene bg school with fade
-    play music "阳光.mp3"
+    play music "sunshine.mp3"
     # 环境描写，樱花的景象与自己对校园的不舍
     "三月的阳光无比温和。"
     "校园里到处都是樱花，风一吹就漫天飞舞。"
@@ -234,7 +234,7 @@ label fc_ch2_morning:
     "但还是有一部分同学留在学校里忙着社团的事，以及听老师讲过无数遍的的安全教育。"
     scene bg school2 with dissolve # 既然这样，背景学校2的就默认是在图书馆前拍摄的广角相片
     "我来到图书馆门口，发现门还没有开。"
-    "男の声" "『你书包不放在教室吗？』"
+    "男声" "『你书包不放在教室吗？』"
     "学生会的同僚吗。他看起来也是来还书的。"
     yt "『这个嘛，我着急还书就先过来了，没想到门还没开』"
     "同僚" "『书不重吧，等会到学生会肯定又是给其他社团打杂去了』"
@@ -246,7 +246,7 @@ label fc_ch2_student_council:
     scene bg student_council with fade
     stop music
     "我们来到了学生会办公室门口。"
-    play music "平静.mp3"
+    play music "calm.mp3"
     "我推开门，与平时拥挤的场景不同，办公室里一片寂静。"
     show sakura serious at top with dissolve
     "只有会长一个人坐在办公桌前，埋头在资料上写写画画，听得见笔尖划过纸张的细微声响。"
@@ -256,7 +256,7 @@ label fc_ch2_student_council:
     skr "『所以才晚了啊』"
     "会长对着桌前的一沓资料抬了抬眼睛。"
     skr "『这是你要干的活，园艺社的，最上面那张是我打印出来的工作细则』"
-    "同僚" "『好~知道了~~会长大人~~~』"
+    "同僚" "『好~知道了，会长大人~』"
 
     scene bg student_council with fade
     show sakura normal at top with dissolve
@@ -273,7 +273,7 @@ label fc_ch2_student_council:
     "可能是方便吧，她先我一步伸手将里面的两本书拿……不对？怎么就一本？还忘了一本在家？"
     "在我慌忙回忆是哪一本时，书在会长的手中微微发光。封面似乎浮现出一行字：“味觉：未同步”。"
     "？？？"
-    "是《共感日记》？？？来真的？？"
+    "难道真的是《共感日记》？不会吧……"
     "那一缕光也被会长察觉到了，她看了看书封面上的内容。"
     show sakura serious with dissolve
     skr "『味觉？』"
@@ -315,7 +315,7 @@ label fc_ch2_student_council:
 label fc_ch2_track:
     $ new_node("fc_ch2_track")
     scene bg field with fade
-    play music "风.mp3" fadeout 1.0 fadein 1.0 #要是没有这个BGM，用阳光.mp3也行，但情绪并非那么高昂
+    play music "wind.mp3" fadeout 1.0 fadein 1.0 #要是没有这个BGM，用sunshine.mp3也行，但情绪并非那么高昂
     "我来到了田径场，将书包里的资料给到了体育部办公室的老师。"
     "那本《共感日记》就先拿在了手上。"
     "跟老师确定明细时我听见了田径场的跑步声。"
@@ -370,7 +370,7 @@ label fc_ch2_storage:
     aoi "『你就是过来找我麻烦的吗？』"
     show aoi surprise with dissolve
     "还没等我回答，笔记本不出意外也发出了光，并且在封闭的器材室更加明显。{nw}"
-    play music "神秘.mp3" #用作压抑、微恐、神迹的音乐
+    play music "mysterious.mp3" #用作压抑、微恐、神迹的音乐
     "还没等我回答，笔记本不出意外也发出了光，并且在封闭的器材室更加明显。{fast}"
     show aoi serious with dissolve
     aoi "『这是什么啊？』"
@@ -389,7 +389,7 @@ label fc_ch2_storage:
 label fc_ch2_classroom:
     $ new_node("fc_ch2_classroom")
     scene bg classroom with fade
-    play music "风.mp3" fadeout 1.0 fadein 1.0
+    play music "wind.mp3" fadeout 1.0 fadein 1.0
     "上午一个人清点了器材室的所有器材，期间还帮老师顺手建了个表格。"
     "工作量之大让我不得不牺牲掉午餐时间，虽然还是没清点完。"
     "体育部老师A让我明天继续。"
@@ -405,7 +405,7 @@ label fc_ch2_classroom:
 label fc_ch2_astronomy:
     $ new_node("fc_ch2_astronomy")
     scene bg bad_room with fade
-    play music "平静.mp3" fadeout 1.0 fadein 1.0
+    stop music
     yt "『你好，有人吗？』"
     "我敲了敲一如既往阴森的社团活动室。"
     "由于天文社主要是室外观测，再加上天台有人失足掉下去后就被封住了。"
@@ -413,15 +413,19 @@ label fc_ch2_astronomy:
     "室外观测也只是去学校现在楼花漫天的小树林里面的小土包上面。"
     "反正就是天文社活动室阴森森的。每次我来都是要人打扫卫生打杂之类。"
     yt "（那看样子是没人了）"
+    play music "mysterious.mp3" fadeout 1.0 fadein 1.0
     "？？？" "『喀哒，喀哒……』"
+    "突然有声音从堆着的纸箱里传来。"
     yt "『我靠什么鬼！！』"
     "我吼道，每次都有这种奇奇怪怪的声音出现。"
     "？？？" "『……喀哒，喀哒……』"
     "貌似是按动笔的声音？从那群纸箱子里传来的……"
     yt "『说话，喂！』"
     "？？？" "『……』"
+    # 加个屏幕震动和碰撞音效
     "我将书包脱下，往纸箱子那里砸过去。"
     show ao normal at jump_surprised
+    play music "calm.mp3" fadeout 1.0 fadein 1.0
     "稀稀拉拉掉下来的纸箱下，露出来的是竟然是雾岛蓝同学的头。"
     yt "『……你是笨蛋吗』"
     yt "『雾岛蓝同学』"
@@ -440,7 +444,7 @@ label fc_ch2_astronomy:
     "雾岛蓝用按动笔指着我，要不是环境很安静我都不一定听得见她很小的声音。"
     
     scene bg bad_room with fade
-    play music "平静.mp3" fadeout 1.0 fadein 1.0
+    play music "calm.mp3" fadeout 1.0 fadein 1.0
     show ao none at top with dissolve
     "可能是我干活的同时一直在盯着雾岛蓝同学，又或许是那本子里除了第一页其他都是空白页没什么可看的。"
     "雾岛蓝在我干活中途就把本子塞给我让我出去了。"
@@ -489,7 +493,7 @@ label chapter_3:
     stop music
     "day 3"
     scene bg sky with fade
-    play music "阳光.mp3"
+    play music "sunshine.mp3"
     "终于记得带上那本《心动魔法》，我走在去教室的路上。"
     scene bg school2 with dissolve
     "顺路也去了趟图书馆，不过图书馆还是没开门，又吃了一次闭门羹。"
@@ -505,7 +509,7 @@ label chapter_3:
     akn "『啊不是，我说的是这个“翻开了的”心动魔法』"
     yt "『………………』"
 
-    play music "平静.mp3"
+    play music "calm.mp3"
 
 label fc_ch3_library:
     $ new_node("fc_ch3_library")
@@ -525,7 +529,7 @@ label fc_ch3_library:
     akn "『行』"
     "她一反刚刚不靠谱的样子，变作严肃地把我拉到隔壁自习室。"
 
-    play music "神秘.mp3" fadeout 1.0 fadein 1.0
+    play music "mysterious.mp3" fadeout 1.0 fadein 1.0
 
 label fc_ch3_self_study:
     $ new_node("fc_ch3_self_study")
@@ -551,9 +555,9 @@ label fc_ch3_self_study:
     akn "『总之，你只需要完成上面的任务就可以了，我会帮助你的』"
 
     scene bg student_council with fade
-    play music "平静.mp3"
+    play music "calm.mp3"
     "本想叫昨天的同僚一起去来学生会办公室。发现人不在了，就直接来了。"
-    "而到了学生会办公室，则比昨天更加地寂静，甚至会长都不在。"
+    "而到了学生会办公室，则比昨天更加寂静，甚至会长都不在。"
     yt "『……』"
     stop music
     yt "（难道人也会像花瓣一样消失……！）"
@@ -561,11 +565,12 @@ label fc_ch3_self_study:
     "我疯狂地在办公室内查看，试图找寻一些蛛丝马迹。"
     yt "『不会吧……不会吧……』"
 
-    "女の声" "『你东西忘在哪里了？』『不知道啊我去办公室找找』"
+    "女声" "『——你东西忘在哪里了？』"
+    "女声" "『——不知道啊我去办公室找找』"
     "办公室外传来女生的声音。"
     show sakura dressed normal at top with dissolve
     "『砰』的一声门开了，是穿着烹饪围裙的会长藤原樱。"
-    play music "阳光.mp3"
+    play music "sunshine.mp3"
     skr "『啊，阳太你在办公室啊，你有没有看见我的挂包』"
     yt "『啊！……哦哦，是这个吗』"
     "我心里大舒一口气，提起了窗边的一个白色包包，上面已经有几片樱花花瓣了。"
@@ -589,7 +594,7 @@ label fc_ch3_self_study:
 label fc_ch3_cooking:
     $ new_node("fc_ch3_cooking")
     scene bg cooking_classroom with fade #资产建议：把bg classroom传给AI让它在桌子上添加一些厨具得到。
-    play music "平静.mp3" fadeout 1.0 fadein 1.0
+    play music "calm.mp3" fadeout 1.0 fadein 1.0
     "藤原樱和我一起来到了烹饪课的教室。"
     "我放好书包，接过烹饪围裙，戴上了一次性手套和口罩在藤原樱旁边帮忙打下手。"
     show sakura dressed normal at top with dissolve
@@ -686,7 +691,7 @@ label fc_ch3_cooking:
     "没有任何前缀或多余的话语——"
     "『去器材室』"
     "『快』{nw}"
-    play music "神秘.mp3"
+    play music "mysterious.mp3"
     "『快』{fast}"
     yt "（她怎么知道我在田径部？我刚刚去到过器材室，器材室是锁着的啊？）"
     yt "（什么情况？）"
@@ -712,7 +717,7 @@ label fc_ch3_cooking:
     "我和小早川葵互相支撑着对方，她看上去很虚弱，一只手还一直摁着肩膀。"
     yt "（我要不行了……）"
     stop music fadeout 1.0
-    play sound "扑通倒地音效.mp3"
+    play sound "fall_down.mp3"
     scene black with fade
     pause 2.0
     "……"
@@ -731,7 +736,7 @@ label fc_ch3_cooking:
     scene bg health_room with Dissolve(2.5)
     "再次醒来是因为又一阵的痛觉传递，小早川葵在擦风油精。"
     "看到我醒了，旁边床的葵出声把保健室老师叫了过来。"
-    play music "休息.mp3"
+    play music "leisurely.mp3"
     "保健室老师" "『你是因为没吃饭加上运动的低血糖晕倒了是吗』"
     "保健室老师" "『来一杯葡萄糖休息一下应该就能走了，等会记得去吃饭，知道了吗？』"
     yt "『知道了，谢谢老师』"
@@ -787,7 +792,7 @@ label fc_ch3_cooking:
     yt "『不要这么说自己，你能同时兼顾两边考试已经很不错了，你不需要自责，因为做一个选择而去否定掉自己的一切。』"
     yt "『如果可以的话你可以试着说说找找自己真正想要的是什么。』"
     yt "『刚刚你释放了情绪也是很正常的现象，不用着急给自己上价值没事的。我可以暂时听你说话。』"
-    yt "（还是话疗管用点……）"
+    "还是话疗管用点……"
     "我这么想着，手上也没停地给小早川葵递纸巾。"
     "小早川葵看上去也不再哭泣了，静静地坐在那里思考我所说的话。"
     "她把手放在了她的受伤的肩颈部位，就像是习惯性的防御性肢体动作。"
@@ -957,7 +962,7 @@ label fc_ch3_cooking:
         zoom 0.8
     show sakura happy at topleft:
         zoom 0.8
-    show ao happy at top with dissolve:
+    show ao normal at top with dissolve:
         zoom 0.7
     ao "『你邀请哒』"
     skr "『诶呀，还不是上午和阳太一起在烹饪教室时他先说的』"
@@ -973,68 +978,82 @@ label fc_ch3_cooking:
     aoi "『是啊，难得能和班级以外的同学一起去吃甜品，还是大美女，这是何等的喜事呀』"
     ao "『也是，不用担心吃坏肚子影响什么考试，真是舒服呢』"
     aoi "『真是期待呢樱花的味道』"
-    skr "『。。是呢，真是期待呢。。』"
-    "进到店内，符合季节的樱花装饰将店面搞得粉不拉机。"
+    skr "『……是呢，真是期待呢……』"
+    "进到店内，符合季节的樱花装饰将店面搞得粉不拉几。"
     "我们找了最近的靠窗位置坐下"
-    aoi "『哇，这里新品好多欸，甚至专门搞了一面菜单。』"
-    ao "『是欸，粉粉的呢。』"
-    skr "『都有什么啊。』"
-    aoi "『很多呢，樱花奶昔，樱花慕斯，樱花果冻花麻糬什么的。』"
-    yt "『麻糬?像年糕一样的吗?』"
-    skr "『差不多呢，也是拿糯米闹成黏糊状，要有樱花味的话就需要在内陷和糯米上下手了。』"
-    ao "『藤原 樱同学好了解啊，不愧是烹饪教室的!』"
-    skr "『什么?抱歉我刚刚没听清。』"
-    aoi "『她说你很厉害呢，我也觉得。』"
-    skr "『也没有啦。。』"
-    "藤原 樱不好意思地低下了头，她们俩个已经想好了自己想点的东西。"
-    ao "『藤原 樱同学会想试试这家店的樱花麻糬吗？』"
+    aoi "『哇，这里新品好多欸，甚至专门搞了一面菜单』"
+    ao "『是欸，粉粉的呢』"
+    skr "『都有什么啊』"
+    aoi "『很多呢，樱花奶昔，樱花慕斯，樱花果冻花麻糬什么的』"
+    yt "『麻糬？像年糕一样的吗？』"
+    skr "『差不多呢，也是拿糯米闹成黏糊状，要有樱花味的话就需要在内陷和糯米上下手了』"
+    ao "『藤原樱同学好了解啊，不愧是烹饪教室的!』"
+    skr "『什么？抱歉我刚刚没听清』"
+    aoi "『她说你很厉害呢，我也觉得』"
+    skr "『也没有啦……』"
+    "藤原樱不好意思地低下了头，她们俩个已经想好了自己想点的东西。"
+    ao "『藤原樱同学会想试试这家店的樱花麻糬吗？』"
     skr "『嗯？』"
-    "藤原 樱同学好像是又没听见，摆出了’没听见的表情‘。"
-    ao "『啊，抱歉，藤原 樱同学还是点自己想吃的吧，我只是说说』"
-    skr "『啊，不用。我本来就比较想吃一下这家店的樱花麻糬.』"
-    "藤原 樱的表情有些僵硬，但还是微笑着回复零岛蓝："
-    skr "『如果很好吃的话我还要向店长要配方呢。』"
-    yt "『那我点一个奶昔，樱花味的。』"
+    "藤原樱同学好像是又没听见，摆出了“没听见的表情”。"
+    ao "『啊，抱歉，藤原樱同学还是点自己想吃的吧，我只是说说』"
+    skr "『啊，不用。我本来就比较想吃一下这家店的樱花麻糬』"
+    "藤原樱的表情有些僵硬，但还是微笑着回复零岛蓝："
+    skr "『如果很好吃的话我还要向店长要配方呢』"
+    yt "『那我点一个奶昔，樱花味的』"
     "甜品到了，对面那两人看上去是真的挺喜欢这些甜品。"
-    "藤原 樱同学则像平时办公一样沉稳。"
-    aoi "『怎么样怎么样、好吃吗？』"
-    skr "『还可以，味道淡淡的。』"
-    yt "『手让一下我再拿个勺子。』"
-    "我伸手跨过藤原 樱的位置，朝桌子边的餐具盒伸去。"
-    "结果不小心碰到了藤原 樱的手肘，‘共感’又一次触发了"
+    "藤原樱同学则像平时办公一样沉稳。"
+    aoi "『怎么样怎么样、好吃吗』"
+    skr "『还可以，味道淡淡的』"
+    yt "『手让一下我再拿个勺子』"
+    "我伸手跨过藤原樱的位置，朝桌子边的餐具盒伸去。"
+    "结果不小心碰到了藤原樱的手肘，“共感”又一次触发了"
     "本来还在嘴里的甜腻奶昔味道瞬间消失了。"
     yt "(我尝不到味道了?)"
-    "看着藤原 樱再一次吃那个破麻糬。"
+    "看着藤原樱再一次吃那个破麻糬。"
     "我嘴里奶昔味存在的感觉越来越淡。"
-    yt "(是’共感“啊，这就是她一直以来的感觉吗?)"
-    yt "(如果我喝了她也会感觉到吗?)"
-    "然后我喝了奶昔，还看着藤原 樱，注意着她的反应。"
-    "藤原 楼的反应cg。"
+    yt "(是共感啊。难道这就是她一直以来的感觉吗)"
+    yt "(如果我喝了，她也会感觉到吗？)"
+    "然后我喝了奶昔，还看着藤原樱，注意着她的反应。"
+    "藤原樱的反应cg（暂无图。描述：惊讶）"
     yt "(果然是可以的啊，真是不容易。)"
     "大家在甜品店里都有说有笑的，其乐融融。"
+    hide aoi with dissolve
+    hide sakura with dissolve
+    hide ao with dissolve
     "这时候一个熟悉的声音进了甜品店。"
-    yt "『你好，我要这个樱花麻糬。』"
+    show akane normal2 at top with dissolve
+    akn "『你好，我要这个樱花麻糬。』"
     "我转过头看了看她，她没理我，打包了麻糬就走了。"
-    "此时雾岛 蓝变了一种神色看着我。"
+    hide akane with dissolve
+    yt "『……』"
+    show aoi happy at topright:
+        zoom 0.8
+    show sakura happy at topleft:
+        zoom 0.8
+    show ao none at top with dissolve:
+        zoom 0.7
+    "此时雾岛蓝变了一种神色看着我。"
     skr "『你认识她吗?』"
 label fc_ch3_dessert_choice:
     $ new_node("fc_ch3_dessert_choice")
     menu:
-        "A.我之前去图书馆有见过她":
+        "我之前去图书馆有见过她（樱）":
             jump fc_ch3_dessert_option_a
-        "B.认识，今天上午还和她聊了几句":
+        "认识，今天上午还和她聊了几句":
             jump fc_ch3_dessert_option_b
 
 label fc_ch3_dessert_option_a:
     $ new_node("fc_ch3_dessert_option_a")
-    yt "『我之前去图书馆有见过她。』"
-    ao "『欸——你连名字都不知道就邀请人啊？』"
+    yt "『我之前去图书馆有见过她』"
+    skr "『哦，这样子啊』"
+    ao "『……』"
     jump fc_ch3_dessert_option_merge
 
 label fc_ch3_dessert_option_b:
     $ new_node("fc_ch3_dessert_option_b")
-    yt "『认识，今天上午还和她聊了几句。』"
-    ao "『那你可要记得好好解释一下喔。』"
+    yt "『认识，今天上午还和她聊了几句』"
+    skr "『哦，这样子啊……』"
+    ao "『……』"
     jump fc_ch3_dessert_option_merge
 
 label fc_ch3_dessert_option_merge:
@@ -1044,17 +1063,17 @@ label fc_ch3_dessert_option_merge:
     aoi "『我家要搭电车，得先走一步啦。今天真的好开心，谢谢你们！』"
     hide aoi with dissolve
     show sakura happy
-    skr "『我也去坐公交了，大家路上小心。』"
+    skr "『我也去坐公交了，大家路上小心』"
     hide sakura with dissolve
     show ao normal
-    ao "『我们顺路，我陪你走一段。』"
+    ao "『我们顺路，我陪你走一段』"
 
     scene bg street with fade
     show ao normal at top with dissolve
-    ao "『今天晚上八点钟记得。』"
-    yt "『我知道了。』"
-    ao "『我有话要和你说。』"
-    yt "『？知道了。』"
+    ao "『今天晚上八点钟记得』"
+    yt "『我知道了』"
+    ao "『我有话要和你说』"
+    yt "『？知道了』"
     hide ao with dissolve
 
     scene black with fade
@@ -1062,7 +1081,7 @@ label fc_ch3_dessert_option_merge:
 label fc_ch3_evening:
     $ new_node("fc_ch3_evening")
     scene bg field with fade
-    play music "神秘.mp3"
+    play music "mysterious.mp3"
     "摄影部和天文社的成员按时在旧校舍旁的树林土坡集合。"
     "摄影部预计拍摄间隔照相的视频，我们负责定时观测星空剪影，最后剪辑在一起作为社团宣传。"
     "我摆好了器材，换手给另外两位同学操刀，环顾四周才发现天文社只来了四个人。"
@@ -1143,12 +1162,13 @@ label chapter_4:
     stop music
     "day 4"
     scene bg home with fade
-    play music "悠闲.mp3"
+    play music "leisurely.mp3"
     "上学前，我把那本《共感日记》从书包里拿出来。"
     "本子比之前稍微厚了一些，封面上的刻度也悄悄发生了变化。"
     "页间增加的是我每一次和她们接触时发生的事情，像一本在不停自我书写的日记。"
     n "「关于其他人的记忆会慢慢消散，就连人也会不见。」"
     n "「如果全都记录在本子里，她们是不是就不会消失了？」"
+    nvl clear
     "——『不要用那本本子的能力来欺骗你在意的人。』"
     "蓝昨天说的话回响在脑海里。"
     "『如果可以的话我也不希望欺骗你们。』"
@@ -1171,14 +1191,16 @@ label chapter_4:
     n "『从今天下午开始我们就算正式进入暑假了，不过大后天记得参加毕业典礼喔。』"
     n "『暑期注意用火安全，小心明火，防溺水……』"
     n "『然后校内的社团活动也正式结束了，大家收拾好属于自己的物品，中午到时间就可以回去了。』"
+    nvl clear
     "可能是我们班主任叮嘱得太久，其他班级已经传来欢呼声。"
 label fc_ch4_corridor:
+    nvl clear
     $ new_node("fc_ch4_corridor")
     scene bg corridor with dissolve
     "我望向窗外，看到已经在外面等候的葵。"
 
     show aoi happy at top with dissolve
-    aoi "『你不记得昨天的事了吗！😡』"
+    aoi "『等会能稍微聊一下吗？😡』"
     yt "『什么事？』"
     aoi "『……嗯～😕好吧……谢谢你。』"
     yt "『啊？哦。』"
@@ -1236,7 +1258,7 @@ label chapter_4_choice:
         "B.去田径场（小早川 葵）":
             n "（当前版本尚未实装，还是先去烹饪教室吧。）"
             jump chapter_4_choice
-        "C.去找雾岛 蓝":
+        "C.去找雾岛蓝":
             n "（当前版本尚未实装，还是先去烹饪教室吧。）"
             jump chapter_4_choice
 
@@ -1244,7 +1266,7 @@ label chapter_4_choice:
 label chapter_4_sakura_afternoon:
     $ new_node("chapter_4_sakura_afternoon")
     stop music
-    play music "平静.mp3"
+    play music "calm.mp3"
     scene bg corridor with fade
     "经过一番独自思考，我在熙熙攘攘的人群中穿梭着，推开通往烹饪教室的门。"
     scene bg cooking_classroom with dissolve
