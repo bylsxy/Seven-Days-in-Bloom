@@ -37,6 +37,10 @@ init python:
         """Collect image files under the given prefix while skipping helpers."""
         valid_exts = (".png", ".jpg", ".jpeg", ".webp")
         prefix = prefix or ""
+        blacklist = [
+            "images/场景图/bg pong.png",   # 把你不想显示的 CG 路径写在这里
+            "images/场景图/black.png",
+        ]
         results = []
         for entry in _iter_appreciation_files():
             filename = _normalise_filename(entry)
@@ -47,6 +51,8 @@ init python:
             if "/素材" in filename or "/素材库" in filename:
                 continue
             if filename.lower().endswith(valid_exts):
+                if filename in blacklist:   # 跳过黑名单里的文件
+                    continue
                 results.append(filename)
         results.sort()
         return results
@@ -139,17 +145,29 @@ screen appreciation_mode():
 
                 if category == "cg":
                     if APPRECIATION_CG_IMAGES:
+                        python:
+                            total = len(APPRECIATION_CG_IMAGES)
+                            columns = 3
+                            rows = (total + columns - 1) // columns if total else 1
+
                         viewport:
                             scrollbars "vertical"
                             mousewheel True
                             draggable True
                             pagekeys True
 
-                            grid 3 None spacing 20 transpose True:
+                            grid rows columns spacing 20:
                                 for image_path in APPRECIATION_CG_IMAGES:
                                     frame:
                                         style "appreciation_thumbnail"
-                                        add Transform(image_path, fit="contain", xalign=0.5, yalign=0.5, xsize=360, ysize=220)
+                                        add Transform(
+                                            image_path,
+                                            fit="contain",
+                                            xalign=0.5,
+                                            yalign=0.5,
+                                            xsize=360,
+                                            ysize=220
+                                        )
                     else:
                         text _("目前没有可用的CG素材。") style "appreciation_body"
                 else:
@@ -168,14 +186,19 @@ screen appreciation_mode():
                                 xfill True
                                 yfill True
 
-                                fixed:
-                                    xfill True
-                                    yfill True
+                                viewport:
+                                    scrollbars "vertical"
+                                    mousewheel True
+                                    draggable True
+                                    pagekeys True
 
-                                    drag:
-                                        draggable True
-                                        droppable False
-                                        child Transform(heroine["images"][sprite_index], fit="contain", xalign=0.5, yalign=1.0)
+                                    add Transform(
+                                        heroine["images"][sprite_index],
+                                        fit="contain",   # 按比例缩放
+                                        xalign=0.5,
+                                        yalign=0.0,
+                                        xsize=int(config.screen_width * 0.5)
+                                    )
 
                             if len(heroine["images"]) > 1:
                                 hbox:
@@ -194,6 +217,8 @@ screen appreciation_mode():
                                         )
                     else:
                         text _("当前角色暂无可鉴赏的立绘。") style "appreciation_body"
+
+
 
 
 style appreciation_sidebar is frame
