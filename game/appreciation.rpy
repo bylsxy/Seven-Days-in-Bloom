@@ -1,47 +1,87 @@
 # -*- coding: utf-8 -*-
 
 init python:
-    import renpy
+    """
+    Utility helpers for the appreciation mode screen.
+
+    The functions below are designed to work with the Ren'Py 8 series API.
+    They avoid importing the legacy "renpy" module directly and instead rely
+    on the modern exports helpers that remain stable between versions.
+    """
+
+    try:
+        from renpy import exports as _renpy_exports
+    except Exception:
+        _renpy_exports = None
+
+    def _iter_appreciation_files():
+        """Yield project file names using the safest available API."""
+        if _renpy_exports and hasattr(_renpy_exports, "list_files"):
+            try:
+                return _renpy_exports.list_files()
+            except Exception:
+                pass
+        return []
+
+    def _normalise_filename(entry):
+        """Extract the real filename from different iterator return types."""
+        if isinstance(entry, str):
+            return entry
+        if isinstance(entry, (list, tuple)) and entry:
+            head = entry[0]
+            if isinstance(head, str):
+                return head
+        return None
 
     def _list_appreciation_files(prefix):
-        """Collect image files under the given prefix while skipping helper folders."""
+        """Collect image files under the given prefix while skipping helpers."""
         valid_exts = (".png", ".jpg", ".jpeg", ".webp")
+        prefix = prefix or ""
         results = []
-        for filepath in renpy.list_files():
-            if not filepath.startswith(prefix):
+        for entry in _iter_appreciation_files():
+            filename = _normalise_filename(entry)
+            if not filename:
                 continue
-            if "/素材" in filepath or "/素材库" in filepath:
+            if prefix and not filename.startswith(prefix):
                 continue
-            if filepath.lower().endswith(valid_exts):
-                results.append(filepath)
+            if "/素材" in filename or "/素材库" in filename:
+                continue
+            if filename.lower().endswith(valid_exts):
+                results.append(filename)
         results.sort()
         return results
 
+    def _build_heroine_catalog():
+        """Assemble heroine metadata with optional user overrides."""
+        # Developers can provide a custom list named appreciation_heroines in
+        # store to override the defaults below. Each entry is expected to be a
+        # mapping with id, name, and optional "prefix" or explicit "images".
+        try:
+            from store import appreciation_heroines as custom_heroines
+        except Exception:
+            custom_heroines = None
+
+        catalog = []
+        source = custom_heroines
+        if not source:
+            source = [
+                {"id": "aoi", "name": _("小早川葵"), "prefix": "images/小早川葵/"},
+                {"id": "sakura", "name": _("藤原樱"), "prefix": "images/藤原樱/"},
+                {"id": "ao", "name": _("雾岛蓝"), "prefix": "images/雾岛蓝/"},
+                {"id": "akane", "name": _("风见茜"), "prefix": "images/风见茜/"},
+            ]
+
+        for heroine in source:
+            entry = dict(heroine)
+            if "images" not in entry:
+                prefix = entry.get("prefix", "")
+                entry["images"] = _list_appreciation_files(prefix)
+            entry.setdefault("images", [])
+            catalog.append(entry)
+        return catalog
+
     APPRECIATION_CG_IMAGES = _list_appreciation_files("images/场景图/")
-
-    APPRECIATION_HEROINES = [
-        {
-            "id": "aoi",
-            "name": _("小早川葵"),
-            "images": _list_appreciation_files("images/小早川葵/"),
-        },
-        {
-            "id": "sakura",
-            "name": _("藤原樱"),
-            "images": _list_appreciation_files("images/藤原樱/"),
-        },
-        {
-            "id": "ao",
-            "name": _("雾岛蓝"),
-            "images": _list_appreciation_files("images/雾岛蓝/"),
-        },
-        {
-            "id": "akane",
-            "name": _("风见茜"),
-            "images": _list_appreciation_files("images/风见茜/"),
-        },
-    ]
-
+    APPRECIATION_HEROINES = _build_heroine_catalog()
     APPRECIATION_HEROINES_MAP = {heroine["id"]: heroine for heroine in APPRECIATION_HEROINES}
 
 
@@ -77,13 +117,20 @@ screen appreciation_mode():
                         null height 15
                         text _("角色") style "appreciation_heading"
 
-                        for heroine in APPRECIATION_HEROINES:
-                            textbutton heroine["name"]:
-                                action [
-                                    SetScreenVariable("selected_heroine", heroine["id"]),
-                                    SetScreenVariable("sprite_index", 0),
-                                ]
-                                selected selected_heroine == heroine["id"]
+                        viewport:
+                            mousewheel True
+                            scrollbars "vertical"
+                            ymaximum 480
+
+                            vbox:
+                                spacing 8
+                                for heroine in APPRECIATION_HEROINES:
+                                    textbutton heroine["name"]:
+                                        action [
+                                            SetScreenVariable("selected_heroine", heroine["id"]),
+                                            SetScreenVariable("sprite_index", 0),
+                                        ]
+                                        selected selected_heroine == heroine["id"]
 
             frame:
                 style "appreciation_content"
@@ -92,18 +139,13 @@ screen appreciation_mode():
 
                 if category == "cg":
                     if APPRECIATION_CG_IMAGES:
-                        python:
-                            total = len(APPRECIATION_CG_IMAGES)
-                            columns = 3
-                            rows = (total + columns - 1) // columns if total else 1
-
                         viewport:
                             scrollbars "vertical"
                             mousewheel True
                             draggable True
                             pagekeys True
 
-                            grid rows columns spacing 20:
+                            grid 3 None spacing 20 transpose True:
                                 for image_path in APPRECIATION_CG_IMAGES:
                                     frame:
                                         style "appreciation_thumbnail"
@@ -132,6 +174,7 @@ screen appreciation_mode():
 
                                     drag:
                                         draggable True
+                                        droppable False
                                         child Transform(heroine["images"][sprite_index], fit="contain", xalign=0.5, yalign=1.0)
 
                             if len(heroine["images"]) > 1:
@@ -187,4 +230,3 @@ style appreciation_sprite_stage:
 style appreciation_switcher:
     spacing 40
     xalign 0.5
-
