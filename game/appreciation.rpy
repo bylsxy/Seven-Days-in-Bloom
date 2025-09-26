@@ -38,8 +38,8 @@ init python:
         valid_exts = (".png", ".jpg", ".jpeg", ".webp")
         prefix = prefix or ""
         blacklist = [
-            "images/场景图/bg pong.png",   # 把你不想显示的 CG 路径写在这里
-            "images/场景图/black.png",
+            "images/cg/bg pong.png",   # 把你不想显示的 CG 路径写在这里
+            "images/cg/black.png",
         ]
         results = []
         for entry in _iter_appreciation_files():
@@ -73,7 +73,7 @@ init python:
             source = [
                 {"id": "aoi", "name": _("小早川葵"), "prefix": "images/小早川葵/"},
                 {"id": "sakura", "name": _("藤原樱"), "prefix": "images/藤原樱/"},
-                {"id": "ao", "name": _("雾岛蓝"), "prefix": "images/雾岛蓝/"},
+                {"id": "ao", "name": _("雾岛蓝"), "prefix": "images/kirishima_ao/"},
                 {"id": "akane", "name": _("风见茜"), "prefix": "images/风见茜/"},
             ]
 
@@ -86,7 +86,7 @@ init python:
             catalog.append(entry)
         return catalog
 
-    APPRECIATION_CG_IMAGES = _list_appreciation_files("images/场景图/")
+    APPRECIATION_CG_IMAGES = _list_appreciation_files("images/cg/")
     APPRECIATION_HEROINES = _build_heroine_catalog()
     APPRECIATION_HEROINES_MAP = {heroine["id"]: heroine for heroine in APPRECIATION_HEROINES}
 
