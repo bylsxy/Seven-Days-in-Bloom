@@ -568,7 +568,7 @@ label fc_ch3_self_study:
     "女声" "『——你东西忘在哪里了？』"
     "女声" "『——不知道啊我去办公室找找』"
     "办公室外传来女生的声音。"
-    show sakura dressed normal at top with dissolve
+    show sakura dressed happy at top with dissolve
     "『砰』的一声门开了，是穿着烹饪围裙的会长藤原樱。"
     play music "sunshine.mp3"
     skr "『啊，阳太你在办公室啊，你有没有看见我的挂包』"
@@ -580,7 +580,7 @@ label fc_ch3_self_study:
     yt "『你身体不舒服吗会长？』"
     skr "『没事……谢谢你，那我先走了』"
     yt "『你要去哪？』"
-    show sakura dressed none with dissolve
+    show sakura dressed question with dissolve
     "莫名担心使我急忙上去抓住了樱。"
     "刹那间的理性思考又让我只拉住她的围裙边。"
     skr "『……』"
@@ -588,7 +588,7 @@ label fc_ch3_self_study:
     "我松开了手，为我不礼貌的行为道歉。"
     "藤原樱看着我的表情低头思考了一会。"
     "再抬起头时，便是和我对上了眼睛。"
-    show sakura dressed normal with dissolve
+    show sakura dressed happy with dissolve
     skr "『那你也一起来吧』"
 
 label fc_ch3_cooking:
@@ -597,7 +597,7 @@ label fc_ch3_cooking:
     play music "calm.mp3" fadeout 1.0 fadein 1.0
     "藤原樱和我一起来到了烹饪课的教室。"
     "我放好书包，接过烹饪围裙，戴上了一次性手套和口罩在藤原樱旁边帮忙打下手。"
-    show sakura dressed normal at top with dissolve
+    show sakura dressed happy at top with dissolve
     skr "『你昨天的工作搞完了吗』"
     yt "『哦，还、还差一点，当时太多了整理到饭点也没整理完，老师就让我这几天继续』"
     skr "『工作量这么多啊，需不需要我来帮忙』"
@@ -609,7 +609,7 @@ label fc_ch3_cooking:
     scene bg cooking_classroom with fade
     "我在帮忙打发奶油。"
     "到了如今这么自动化的社会还手动打奶油吗……感觉很快就会累了。"
-    show sakura dressed normal at top with dissolve
+    show sakura dressed happy at top with dissolve
     "藤原樱在分面团，好像是要做小蛋糕。"
     yt "『好香的味道。已经有人烤好面包了吗？』"
     skr "『是吗？』"
@@ -645,9 +645,7 @@ label fc_ch3_cooking:
     "我指了指她眼睛底下。"
     "现在看，她还是拿化妆品铺了一层粉来盖住的。"
     yt "『熬夜了吗？那对皮肤会很不好的』"
-    show sakura dressed none2 with dissolve
     skr "『哦哦，是最近有些事……』"
-    show sakura dressed none with dissolve
     "一段时间的沉默————"
     yt "『那个……校门口有家甜品店，还挺香的。放学后有空的话不如我们一起去吧』"
     yt "『吃点甜的也对心情好，怎么样？』"
@@ -703,7 +701,7 @@ label fc_ch3_cooking:
     "体育老师B" "『到底怎么了？』"
     "疑惑的老师开始找钥匙。"
     "也许是我制造的声响太大声，不等我解释，一阵细微的女声就从器材室里传出来。"    
-    "微弱の声" "『有人吗……救命……』"
+    "微弱的声音" "『有人吗……救命……』"
     "佐佐木 阳太&体育老师B" "『有人在里面！！』"
     scene black with Dissolve(0.5)
     scene bg lab with Dissolve(2.0)

@@ -2,7 +2,7 @@
     "expansion": false,
     "google_play_key": null,
     "google_play_salt": null,
-    "heap_size": "16",
+    "heap_size": "3",
     "icon_name": "\u6a31\u82b1\u8272\u7684\u4e03\u65e5\u5947\u8ff9",
     "include_pil": false,
     "include_sqlite": false,
