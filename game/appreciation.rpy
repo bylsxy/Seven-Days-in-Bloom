@@ -71,10 +71,10 @@ init python:
         source = custom_heroines
         if not source:
             source = [
-                {"id": "aoi", "name": _("小早川葵"), "prefix": "images/小早川葵/"},
-                {"id": "sakura", "name": _("藤原樱"), "prefix": "images/藤原樱/"},
+                {"id": "aoi", "name": _("小早川葵"), "prefix": "images/kobayakawa_aoi/"},
+                {"id": "sakura", "name": _("藤原樱"), "prefix": "images/fujiwara_sakura/"},
                 {"id": "ao", "name": _("雾岛蓝"), "prefix": "images/kirishima_ao/"},
-                {"id": "akane", "name": _("风见茜"), "prefix": "images/风见茜/"},
+                {"id": "akane", "name": _("风见茜"), "prefix": "images/kazami_akane/"},
             ]
 
         for heroine in source:
