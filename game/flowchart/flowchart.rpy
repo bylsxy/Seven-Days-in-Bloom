@@ -87,7 +87,7 @@ screen flowchart():
 
     $ default_node = next(iter(nodes.keys()))
     $ is_main_menu = getattr(renpy.context(), "_main_menu", False)
-    $ chart_segments = list(nodes.keys()) if is_main_menu else segments
+    $ chart_segments = list(nodes.keys())
     $ current_segment = segment if (not is_main_menu and segment in nodes) else default_node
 
     use game_menu(_("流程图")):

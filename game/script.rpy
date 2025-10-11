@@ -320,12 +320,12 @@ label fc_ch2_track:
     "那本《共感日记》就先拿在了手上。"
     "跟老师确定明细时我听见了田径场的跑步声。"
 
-    show aoi happy at top with dissolve
+    show aoi happy at truecenter with dissolve
     "是那个在体育和文化间摇摆不定的小早川葵同学！"
     "之前每次到田径场干活的时候，她都会莫名其妙上来对我冷嘲热讽。"
     "虽然会过来帮忙，但还是很不爽啊怒怒怒（"
     "话说这还是第一次看见她训练诶？"
-    hide aoi with dissolve
+    hide aoi at top with dissolve
     "……"
     "在我走神的同时，体育部老师探出头来朝葵喊道。"
     "体育部老师A" "『小早川！过来！』"
@@ -753,9 +753,9 @@ label fc_ch3_cooking:
     "听到肩膀二字，她身体抖了一下，抽了张纸巾擦了擦又转过来和我说话。"
     aoi "『……我不是困在里面，我是说我带了钥匙，但是钥匙就在我手里不见了』"
     "……"
-    show aoi serious tears with dissolve
+    show aoi suffering with dissolve
     aoi "『我是说真的！器材室门给风吹上了，我要打开门刚拿出钥匙它就不见了……』{nw=0.5}"
-    show aoi suffering # 这个图片搞错了。。这里很难连贯
+    show aoi serious tears # 这个图片搞错了。。这里很难连贯
     aoi "『嘶——』"
     yt "『扯到伤口了吗？！』"
     "我一个鲤鱼打挺起来，但小早川葵倒是抓住了我的手。"
@@ -795,7 +795,7 @@ label fc_ch3_cooking:
     "小早川葵看上去也不再哭泣了，静静地坐在那里思考我所说的话。"
     "她把手放在了她的受伤的肩颈部位，就像是习惯性的防御性肢体动作。"
     "按压时的阵痛也通过“共感”传递到我的身上。"
-    show aoi none with dissolve
+    show aoi serious tears with dissolve
     aoi "『我想吃甜品了。』"
     yt "『什么？』"
     aoi "『快放学了我们一起去吃甜品好吗，就在校门口。』"
@@ -803,12 +803,10 @@ label fc_ch3_cooking:
     yt "（可是我约了藤原樱啊！）"
     "这样的话语出现在我的脑海里。"
     "但她看上去就好像她只有我一个人一样，让我很难拒绝。"
-    show aoi sad with dissolve
     yt "『……抱歉我已经约了同学了。』"
+    show aoi sad with dissolve
     "我不好意思地回复她，在她失落之际补充到又补充道。"
-    show aoi none with dissolve
     yt "『……那要一起去吗？』"
-    show aoi surprise with Dissolve(0.2)
     aoi "『！』"
     show aoi happy2 with dissolve
     aoi "『好！』"
@@ -823,7 +821,7 @@ label fc_ch3_cooking:
     "下午的下课铃响起。"
     "走廊是熙熙攘攘的人群嘈杂，所谓培养学生情的班级活动。"
     "聊天间，我们也差不多休息好了。"
-    show aoi happy at top with dissolve
+    show aoi happy2 at top with dissolve
     aoi "『你下午还要去干学生会的活吗？』"
     yt "『嗯。我还有资料在书包里，都给我捏皱了还』"
     aoi "『嗯……好，那就先再见啦，我就在B班』"
@@ -926,7 +924,7 @@ label fc_ch3_cooking:
     "藤原樱愣住了。"
     skr "『可以呀！』"
     skr "『是雾岛蓝同学吗？我下午也见过她的』"
-    show ao happy with dissolve
+    show ao normal with dissolve
     ao "『o！有我的份吗！要去要去！』"
     transform pos_right_jump:
         xalign 1.0
@@ -937,7 +935,7 @@ label fc_ch3_cooking:
     yt "『不是！』"
     "我脱口而出，不料语气有些没有礼貌。"
     yt "『等会我不是这个意思！*语无伦次*……是B班的小早川葵同学。』"
-    show ao happy with dissolve
+    show ao normal with dissolve
     ao "『o我们班的！』"
     skr "『她班的？』"
     "两个人都转过头来看我。"
@@ -956,7 +954,7 @@ label fc_ch3_cooking:
     "路上，三个女生互相聊天。"
     "先是谈论今天下午的班级活动。"
     "再是聊到自己怎么想到要来甜品店。"
-    show aoi happy at topright:
+    show aoi happy2 at topright:
         zoom 0.8
     show sakura happy at topleft:
         zoom 0.8
@@ -1012,19 +1010,23 @@ label fc_ch3_cooking:
     yt "(是共感啊。难道这就是她一直以来的感觉吗)"
     yt "(如果我喝了，她也会感觉到吗？)"
     "然后我喝了奶昔，还看着藤原樱，注意着她的反应。"
-    "藤原樱的反应cg（暂无图。描述：惊讶）"
+    transform pos_left_jump:
+        xalign 0.0
+        yalign 0.0
+        linear 0.2 yoffset -30
+        linear 0.2 yoffset 0
+    show sakura serious at pos_left_jump
     yt "(果然是可以的啊，真是不容易。)"
+
+    scene bg street with fade
     "大家在甜品店里都有说有笑的，其乐融融。"
-    hide aoi with dissolve
-    hide sakura with dissolve
-    hide ao with dissolve
     "这时候一个熟悉的声音进了甜品店。"
     show akane normal2 at top with dissolve
     akn "『你好，我要这个樱花麻糬。』"
     "我转过头看了看她，她没理我，打包了麻糬就走了。"
     hide akane with dissolve
     yt "『……』"
-    show aoi happy at topright:
+    show aoi happy2 at topright:
         zoom 0.8
     show sakura happy at topleft:
         zoom 0.8
@@ -1078,15 +1080,16 @@ label fc_ch3_dessert_option_merge:
     "晚上八点。"
 label fc_ch3_evening:
     $ new_node("fc_ch3_evening")
-    scene bg field with fade
+    scene bg field night with fade
     play music "mysterious.mp3"
     "摄影部和天文社的成员按时在旧校舍旁的树林土坡集合。"
     "摄影部预计拍摄间隔照相的视频，我们负责定时观测星空剪影，最后剪辑在一起作为社团宣传。"
     "我摆好了器材，换手给另外两位同学操刀，环顾四周才发现天文社只来了四个人。"
-    show ao none at top with dissolve
+    show ao normal at top with dissolve
     yt "『蓝，另外两个人怎么没来？』"
+    show ao none at top with dissolve
     ao "『哪两个？』"
-    yt "『A和B啊，初二的时候扮成鬼娃娃和贞子的那两个。』"
+    yt "『A和B啊，初二的时候扮成鬼娃娃和贞子的那两个』"
     ao "『你在说谁啊？』"
 
     yt "（不对劲……她是联合了那几个人想再耍我一次吗？）"
@@ -1096,12 +1099,12 @@ label fc_ch3_evening:
     ao "『是你在说什么啊？！』"
 
     "争论声太大，大家都察觉到我们之间的火药味，另外两位同学主动把我们分开。"
-    "雾岛蓝却把我拉到一旁，示意想单独聊聊。"
+    "雾岛蓝却飞快地把我拉到天台，示意想单独聊聊。"
 
 label fc_ch3_playground:
     $ new_node("fc_ch3_playground")
-    scene bg playground with fade
-    show ao normal at top with dissolve
+    scene bg school night with fade
+    show ao none at top with dissolve
     ao "『我知道了，是跟那个笔记有关对吧？』"
     yt "『笔记？你知道什么？』"
     ao "『因为你现在都忘记了你为什么不怕黑不怕鬼的事！现在你居然还觉得我们社团会凭空出现两个人？！』"
@@ -1112,24 +1115,24 @@ label fc_ch3_playground:
 
     "我们四目相对，看上去都明白了那本笔记的秘密。"
     ao "『跟昨天我拿的你那本发光的笔记本有关系吗？』"
-    yt "『我不知道。』"
+    yt "『我不知道』"
     ao "『zheyangne……』"
     yt "『你说什么？』"
 
     "她握住了我的手，她的声音变得更加清晰。"
-    ao "『这样呢。』"
-    yt "『变得清晰了。』"
+    ao "『这样呢』"
+    yt "『变得清晰了』"
 
-    ao "『如果你还是会相信像“心动魔法”的偏方，那就别再去用那本笔记本了。』"
-    yt "『那本笔记本除了会发光跟其他本子没什么两样。』"
-    ao "『但是我不知道和“她”是不是有什么关系。』"
+    ao "『如果你还是会相信像“心动魔法”的偏方，那就别再去用那本笔记本了』"
+    yt "『那本笔记本除了会发光跟其他本子没什么两样』"
+    ao "『但是我不知道和“她”是不是有什么关系』"
     yt "『什么？她是谁？』"
-    ao "『一个人不能死两次，但你却能两次都害怕鬼。』"
-    yt "『别这样……我也不知道。』"
-    ao "『……如果是这样的话——不要忘记我。』"
+    ao "『一个人不能死两次，但你却能两次都害怕鬼』"
+    yt "『别这样……我也不知道』"
+    ao "『……如果是这样的话——不要忘记我』"
 
     "她把录音笔塞到我手里，双手紧紧地握住我。"
-    ao "『但请你也不要用那本本子的能力来欺骗你在意的人。』"
+    ao "『但请你也不要用那本本子的能力来欺骗你在意的人』"
     yt "『我……』"
     "我不知道如何回答。好像就是因为有了那本本子，我才有勇气和她们聊天。"
 
@@ -1140,11 +1143,11 @@ label fc_ch3_playground:
 
 label fc_ch3_afterglow:
     $ new_node("fc_ch3_afterglow")
-    scene bg field with fade
+    scene bg field night with fade
     hide ao
     "之后，我们回到了拍摄地点，一群人在欢声笑语中度过了拍摄时间。"
-    scene bg school with fade
-    "结束离开校门时，耳中隐隐约约听到小蓝的声音。"
+    scene bg sky night with dissolve
+    "结束离开校门时，耳中隐隐约约听到蓝的声音。"
     ao "『小心那个茜。』"
 
     stop music fadeout 1.0
@@ -1174,9 +1177,9 @@ label chapter_4:
     "即便努力不去想那些事也做不到。如果茜说的是真的，我就必须找到那个真正属于我的人吗？"
     "但很明显，茜已经是个危险人物了。我该怎么办？"
 
-    scene bg school with dissolve
+    scene bg corridor with dissolve
     "走到教室门口，小葵已经在走廊上等我。"
-    show aoi happy at top with dissolve
+    show aoi none at top with dissolve
     aoi "『等会能稍微聊一下吗？』"
     yt "『什么事？』"
     aoi "『关于我昨天的事。啊！那等你上完班会我再来吧！我先不打扰你了！』"
@@ -1186,10 +1189,11 @@ label chapter_4:
     scene bg classroom with fade
     "班会开始，可能是昨天班级活动的缘故，教室里少了不少桌椅，人也陆陆续续外出搬东西。"
     "班主任在讲台上交代起暑假的注意事项。"
-    n "『从今天下午开始我们就算正式进入暑假了，不过大后天记得参加毕业典礼喔。』"
-    n "『暑期注意用火安全，小心明火，防溺水……』"
-    n "『然后校内的社团活动也正式结束了，大家收拾好属于自己的物品，中午到时间就可以回去了。』"
-    nvl clear
+    "『从今天下午开始我们就算正式进入暑假了，不过大后天记得参加毕业典礼喔。』"
+    "『暑期注意用火安全，小心明火，防溺水……』"
+    "『然后校内的社团活动也正式结束了，大家收拾好属于自己的物品，中午到时间就可以回去了。』"
+    "『……』"
+    "『…………』"
     "可能是我们班主任叮嘱得太久，其他班级已经传来欢呼声。"
 label fc_ch4_corridor:
     nvl clear
@@ -1197,28 +1201,30 @@ label fc_ch4_corridor:
     scene bg corridor with dissolve
     "我望向窗外，看到已经在外面等候的葵。"
 
-    show aoi happy at top with dissolve
-    aoi "『等会能稍微聊一下吗？😡』"
+    show aoi serious at top with dissolve
+    aoi "『等会能稍微聊一下吗？』"
     yt "『什么事？』"
-    aoi "『……嗯～😕好吧……谢谢你。』"
-    yt "『啊？哦。』"
-    aoi "『谢谢你昨天跟我说的那些话。』"
-    yt "『哦那个啊。』"
-    aoi "『我回去想了很久。包括你说会帮我和其他同学搞好关系什么的，我都特别感谢你。』"
-    aoi "『还有关于学籍的，我想好了。』"
+    show aoi none with dissolve
+    aoi "『……嗯～😕好吧……就是说……谢谢你』"
+    yt "『啊？哦』"
+    aoi "『谢谢你昨天跟我说的那些话』"
+    yt "『哦那个啊』"
+    aoi "『我回去想了很久。包括你说会帮我和其他同学搞好关系什么的，我都特别感谢你』"
+    aoi "『还有关于学籍的，我想好了』"
     yt "『嗯，是什么？』"
-    aoi "『我要继续跑体育，我想要上和你一起的高中。』"
+    aoi "『我要继续跑体育，我想要上和你一起的高中』"
     yt "『我的学校？』"
-    aoi "『可以的话我想继续我的体育专业，以回应这段时间一直支持我的朋友们。』"
+    aoi "『可以的话我想继续我的体育专业，以回应这段时间一直支持我的朋友们』"
     "她的脚步停在了体育办公室门前，眼神坚定，手里握着反复修改的资料。"
-    aoi "『你在我最需要帮助的时候陪在身边。』"
-    aoi "『和你在一起的时候，伤口也不会有阵痛了。』"
-    aoi "『佐佐木阳太同学，我需要你。』"
+    aoi "『你在我最需要帮助的时候陪在身边』"
+    aoi "『和你在一起的时候，伤口也不会有阵痛了』"
+    aoi "『佐佐木阳太同学，我需要你』"
+    show aoi serious with dissolve
     "她拉住我的手，用满怀期待的眼神看向我。"
-    aoi "『从今天中午开始我们就算半个暑假了对吧。』"
-    aoi "『可以的话，今天放学后我会在这里等你。』"
+    aoi "『从今天中午开始我们就算半个暑假了对吧』"
+    aoi "『可以的话，今天放学后我会在这里等你』"
     yt "『等会……』"
-    aoi "『佐佐木阳太同学，我需要你。下午见。』"
+    aoi "『佐佐木阳太同学，我需要你。下午见』"
     hide aoi with dissolve
     "说完，她推开办公室的门，把我留在原地。"
 
@@ -1227,19 +1233,19 @@ label fc_ch4_campus:
     scene bg school2 with fade
     "我边在校园里闲逛边思考。对于消失的樱花我已经见怪不怪，更在意的是身后越来越响的跑步声。"
     show sakura happy at top with dissolve
-    skr "『你怎么在这啊，我刚刚去天文社都没开门。』"
+    skr "『你怎么在这啊，我刚刚去天文社都没开门』"
     yt "『怎么了？有什么急事吗？』"
-    skr "『这个，昨天忘记给你了。』"
+    skr "『这个，昨天忘记给你了』"
     "她伸出手，递来一个袋子装好的小蛋糕，是我们昨天在烹饪教室里一起做的。"
     skr "『隔夜了味道可能没刚出炉那么好吃，你不介意吧？』"
-    yt "『哦哦，好，谢谢你。』"
+    yt "『哦哦，好，谢谢你』"
     "我接过蛋糕，袋子摩擦让奶油抹得有些凌乱。"
-    skr "『那你要不要再去做一次蛋糕？和我。』"
+    skr "『那你要不要再去做一次蛋糕？和我』"
     yt "『啊？』"
-    skr "『会不会有点唐突哈哈。但我是真的想和你再一起做蛋糕。』"
+    skr "『会不会有点唐突哈哈。但我是真的想和你再一起做蛋糕』"
     yt "『是这样吗……』"
-    skr "『总之就是，我觉得和你在一起会有不同的感觉。谢谢你。』"
-    skr "『放学后我就在烹饪教室，要找我的话就直接来喔，拜拜。』"
+    skr "『总之就是，我觉得和你在一起会有不同的感觉。谢谢你』"
+    skr "『放学后我就在烹饪教室，要找我的话就直接来喔，拜拜』"
     hide sakura with dissolve
 
     "她说完便自顾自地离开了。"
@@ -1268,36 +1274,38 @@ label chapter_4_sakura_afternoon:
     scene bg corridor with fade
     "经过一番独自思考，我在熙熙攘攘的人群中穿梭着，推开通往烹饪教室的门。"
     scene bg cooking_classroom with dissolve
-    show sakura happy at top with dissolve
+    show sakura dress happy at top with dissolve
     yt "『樱同学，我没来晚吧？』"
     "她回眸，手里的动作随之停下。"
-    skr "『阳太你来啦。』"
+    skr "『阳太你来啦』"
     "我把包放到门口的挂钩上，换上她递来的围裙。教室里只有我们两个人，一起再次做起蛋糕。"
-    skr "『谢谢你啊。』"
+    skr "『谢谢你啊』"
     yt "『怎么突然说这个？』"
-    skr "『跟你在一起我能感受到跟之前不一样的感觉，不是打趣喔。』"
-    yt "『不要开玩笑了会长，以前聚餐的时候你都没搭理我我记得的哈哈。』"
-    skr "『你是指特别明显地坐到我身边跟我聊天气那次吗？哈哈。』"
+    skr "『跟你在一起我能感受到跟之前不一样的感觉，不是打趣喔』"
+    yt "『不要开玩笑了会长，以前聚餐的时候你都没搭理我我记得的哈哈』"
+    show sakura dress happy2 with dissolve
+    skr "『你是指特别明显地坐到我身边跟我聊天气那次吗？哈哈』"
     yt "『啊那个……』"
     "我尴尬地挠头，为过去的行为感到悔恨。但樱的笑容真的很好看。"
 
+    show sakura dress happy with dissolve
     "除了蛋糕，我们还计划用剩下的原料再做点别的。"
-    skr "『还剩下一些原料，来做蛋挞吧。』"
+    skr "『还剩下一些原料，来做蛋挞吧』"
     yt "『哦，好啊。』"
     "不知道为什么心里涌上了一点点失落。我是不想吃蛋挞吗？"
-    yt "『樱同学，你为什么突然想和我一起做呀，搞得我有点不好意思。』"
-    skr "『我刚刚说过啦，因为和你在一起让我有不一样的感觉。』"
+    yt "『樱同学，你为什么突然想和我一起做呀，搞得我有点不好意思』"
+    skr "『我刚刚说过啦，因为和你在一起让我有不一样的感觉』"
     "她用手指粘了一点打发好的奶油尝了尝。"
-    skr "『我想知道为什么。你就当作我想进一步了解你吧。』"
+    skr "『我想知道为什么。你就当作我想进一步了解你吧』"
 
-    yt "『为什么不做樱花麻薯？这几天樱花盛开得很漂亮啊。』"
+    yt "『为什么不做樱花麻薯？这几天樱花盛开得很漂亮啊』"
     skr "『那你明天有空吗？』"
-    skr "『我们一起去家庭餐厅吧。』"
+    skr "『我们一起去家庭餐厅吧』"
     "失落的情绪这才找到源头——是麻薯！我竟然忘了麻薯。"
     yt "『啊……这样可以吗？』"
-    skr "『我想了解你，阳太。』"
+    skr "『我想了解你，阳太』"
     yt "『好，好！』"
-    skr "『那就谢谢你了。』"
+    skr "『那就谢谢你了』"
 
     "我们聊着有的没的，等待面包与蛋挞出炉。"
     "烹饪的过程漫长，却因为有她的陪伴而变得格外幸福。"
