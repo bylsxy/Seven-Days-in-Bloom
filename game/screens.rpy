@@ -321,7 +321,7 @@ screen navigation():
 
             textbutton _("标题菜单") action MainMenu()
 
-        textbutton _("关于") action ShowMenu("about")
+        textbutton _("制作信息") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 

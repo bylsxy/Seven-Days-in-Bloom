@@ -21,20 +21,21 @@ define gui.show_name = True
 
 ## 游戏版本号。
 
-define config.version = "0.2"
+define config.version = "v0.2"
 
 
 ## 放置在游戏内“关于”屏幕上的文本。将文本放在三个引号之间，并在段落之间留出空
 ## 行。
 
 define gui.about = _p("""
-这里是数据结构课5班第1小组课设~\n
-导演/企划：徐阳、廖信同、陈宗波、黎欣欣
-原作：陈宗波、其他外援成员
-脚本：徐阳、廖信同、陈宗波
-原画CG、角色设计：廖信同
-美术：廖信同、徐阳
-流程图组件开源作者：Devil Spiδεr（https://devilspider.itch.io/flowchart-plug-in）
+这里是数据结构课5班第1小组课设~★\n
+导演/企划：徐阳、廖信同、陈宗波、黎欣欣\n
+脚本：徐阳、廖信同、陈宗波\n
+原画CG、角色设计：廖信同\n
+美术：廖信同、徐阳\n
+特别鸣谢：\n
+流程图组件开源作者：{a=https://devilspider.itch.io/flowchart-plug-in}Devil Spiδεr{/a}\n
+原作：刘子倩
 """)
 
 
