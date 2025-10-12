@@ -427,7 +427,7 @@ init python:
         gui.navigation_spacing = 30
         gui.pref_button_spacing = 15
 
-        gui.history_height = 285
+        gui.history_height = 150
         gui.history_text_width = 1035
 
         gui.quick_button_text_size = 30
@@ -437,7 +437,7 @@ init python:
         gui.file_slot_rows = 2
 
         ## NVL 模式。
-        gui.nvl_height = 255
+        gui.nvl_height = 150
 
         gui.nvl_name_width = 458
         gui.nvl_name_xpos = 488

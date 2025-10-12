@@ -102,7 +102,7 @@ screen flowchart():
                 child_size (1380, 7900)
                 mousewheel True
                 scrollbars "vertical"
-                edgescroll (150, 2000)
+                # edgescroll (150, 2000)
                 draggable True
                 xinitial 0.5
 

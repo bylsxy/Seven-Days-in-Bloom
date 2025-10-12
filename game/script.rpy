@@ -131,13 +131,6 @@ label chapter_1:
     "她说完就离开了，只剩我和书看着窗外在樱花树下正在沙化的落花。"
     stop music
     # 依照篇幅，此处应有op（是少是一个很帅的蒙太奇）
-    play music "leisurely.mp3"
-label fc_ch1_home:
-    $ new_node("fc_ch1_home")
-    scene bg home with fade
-    "终于回到家了。"
-    "今天发生的事真奇怪呢……"
-    "那么，要是做什么好呢？"
     jump chapter_2
 
 label love_mogic:
@@ -191,8 +184,11 @@ label diary:
 label chapter_2:
     $ new_node("chapter_2")
     $ f1=0
+    scene bg home with fade
     play music "leisurely.mp3"
-    scene bg home with dissolve
+    "终于回到家了。"
+    "今天发生的事真奇怪呢……"
+    "那么，要是做什么好呢？"
 label fc_ch2_choice:
     $ new_node("fc_ch2_choice")
     menu:
@@ -218,13 +214,13 @@ label fc_ch2_choice:
                 call love_mogic
 
     "先塞书包里面明天还给图书管理员吧。"
-    stop music
+    stop music fadeout 1.0
     scene black with Dissolve(2.5)
     "day 2"
 
 label fc_ch2_morning:
     $ new_node("fc_ch2_morning")
-    scene bg school with fade
+    scene bg sky with fade
     play music "sunshine.mp3"
     # 环境描写，樱花的景象与自己对校园的不舍
     "三月的阳光无比温和。"
@@ -1274,7 +1270,7 @@ label chapter_4_sakura_afternoon:
     scene bg corridor with fade
     "经过一番独自思考，我在熙熙攘攘的人群中穿梭着，推开通往烹饪教室的门。"
     scene bg cooking_classroom with dissolve
-    show sakura dress happy at top with dissolve
+    show sakura dressed happy at top with dissolve
     yt "『樱同学，我没来晚吧？』"
     "她回眸，手里的动作随之停下。"
     skr "『阳太你来啦』"
@@ -1283,12 +1279,12 @@ label chapter_4_sakura_afternoon:
     yt "『怎么突然说这个？』"
     skr "『跟你在一起我能感受到跟之前不一样的感觉，不是打趣喔』"
     yt "『不要开玩笑了会长，以前聚餐的时候你都没搭理我我记得的哈哈』"
-    show sakura dress happy2 with dissolve
+    show sakura dressed happy2 with dissolve
     skr "『你是指特别明显地坐到我身边跟我聊天气那次吗？哈哈』"
     yt "『啊那个……』"
     "我尴尬地挠头，为过去的行为感到悔恨。但樱的笑容真的很好看。"
 
-    show sakura dress happy with dissolve
+    show sakura dressed happy with dissolve
     "除了蛋糕，我们还计划用剩下的原料再做点别的。"
     skr "『还剩下一些原料，来做蛋挞吧』"
     yt "『哦，好啊。』"
@@ -1313,5 +1309,8 @@ label chapter_4_sakura_afternoon:
     stop music fadeout 1.0
     "……"
     "这段时光，恐怕会成为我这一生都难以忘记的回忆。"
+    "END"
+    "（原作正在更新，现版本到此为止）"
+    "（感谢游玩）"
     return
 
