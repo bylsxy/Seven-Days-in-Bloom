@@ -156,7 +156,7 @@ screen appreciation_mode():
                             draggable True
                             pagekeys True
 
-                            grid rows columns spacing 20:
+                            grid columns rows spacing 20:
                                 for image_path in APPRECIATION_CG_IMAGES:
                                     frame:
                                         style "appreciation_thumbnail"
@@ -238,7 +238,7 @@ style appreciation_content:
     padding (30, 30)
 
 style appreciation_thumbnail:
-    xsize 360
+    xsize 378
     ysize 220
     padding (10, 10)
 
