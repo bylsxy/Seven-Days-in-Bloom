@@ -189,20 +189,41 @@ label chapter_2:
     "终于回到家了。"
     "今天发生的事真奇怪呢……"
     "那么，要是做什么好呢？"
+
 label fc_ch2_choice:
     $ new_node("fc_ch2_choice")
     menu:
         "看看《心动魔法》":
             $ f1=1
             call love_mogic
+            jump after_reading
+
         "看看《共感日记》":
             call diary
-        "玩游戏":
+            jump after_reading
+
+        "玩游戏放松一下":
             "回到家还是打游戏要紧！"
             "不过电脑上只有简陋的游戏啊……"
-            call play_pong
-            jump chapter_2
-    
+            "要玩哪个游戏呢？"
+            menu:
+                "乒乓球游戏":
+                    call play_pong
+                "贪吃蛇游戏":
+                    call play_snake
+            "玩了一会儿游戏，感觉放松了不少。"
+            "现在该看看书了。"
+            jump choose_book_after_game
+
+label choose_book_after_game:
+    menu:
+        "看看《心动魔法》":
+            $ f1=1
+            call love_mogic
+        "看看《共感日记》":
+            call diary
+
+label after_reading:  
     if f1:
         menu:
             "再看看《共感日记》":
