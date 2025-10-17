@@ -211,6 +211,8 @@ label fc_ch2_choice:
                     call play_pong
                 "贪吃蛇游戏":
                     call play_snake
+                "俄罗斯方块":
+                    call play_tetris
             "玩了一会儿游戏，感觉放松了不少。"
             "现在该看看书了。"
             jump choose_book_after_game
