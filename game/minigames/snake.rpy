@@ -1,5 +1,7 @@
 # 游戏脚本文件：game/minigames/snake.rpy
 
+default persistent.snake_high_score = 0
+
 init python:
     import random
     import pygame
@@ -14,9 +16,13 @@ init python:
             super().__init__()
 
             # 区域参数
-            self.LEFT, self.RIGHT = 200, 1300
-            self.TOP, self.BOTTOM = 200, 800
+            self.GAME_WIDTH = 1100
+            self.GAME_HEIGHT = 600
             self.SIZE = 30
+
+            # 动态计算的区域，将在第一次渲染时设置
+            self.LEFT, self.RIGHT, self.TOP, self.BOTTOM = 0, 0, 0, 0
+            self.initialized = False
 
             # 触摸控制参数
             self.touch_start = None
@@ -39,10 +45,10 @@ init python:
             renpy.music.stop(channel="music")
 
         def reset(self):
-            self.snake = [(400, 400), (370, 400), (340, 400)]
+            self.snake = []
             self.direction = (1, 0)
             self.next_direction = (1, 0)
-            self.food = self.new_food()
+            self.food = (0, 0)
             self.score = 0
             # 修复：确保 high_score 是整数
             self.high_score = getattr(persistent, "snake_high_score", 0)
@@ -53,6 +59,7 @@ init python:
             self.paused = False
             self.time_accum = 0
             self.old_st = None
+            self.initialized = False
 
         def new_food(self):
             while True:
@@ -67,7 +74,28 @@ init python:
             food_rect = pygame.Rect(food[0], food[1], self.SIZE, self.SIZE)
             return head_rect.colliderect(food_rect)
 
+        def setup_positions(self, screen_width, screen_height):
+            """在第一次渲染时计算游戏区域并设置初始位置"""
+            self.LEFT = (screen_width - self.GAME_WIDTH) // 2
+            self.TOP = (screen_height - self.GAME_HEIGHT) // 2
+            self.RIGHT = self.LEFT + self.GAME_WIDTH
+            self.BOTTOM = self.TOP + self.GAME_HEIGHT
+
+            # 将蛇的初始位置设置在游戏区域中心
+            center_x = self.LEFT + (self.GAME_WIDTH // 2)
+            center_y = self.TOP + (self.GAME_HEIGHT // 2)
+            # 对齐到网格
+            center_x = center_x - center_x % self.SIZE
+            center_y = center_y - center_y % self.SIZE
+            
+            self.snake = [(center_x, center_y), (center_x - self.SIZE, center_y), (center_x - 2 * self.SIZE, center_y)]
+            self.food = self.new_food()
+            self.initialized = True
+
         def render(self, width, height, st, at):
+            if not self.initialized:
+                self.setup_positions(width, height)
+
             r = Render(width, height)
             if self.old_st is None:
                 self.old_st = st
@@ -276,9 +304,9 @@ init python:
 
 # --- screen 部分 ---
 screen snake(snake_game):
-    add "images/snake eat bg.jpg"
-    add snake_game
-    text "贪吃蛇小游戏" xpos 0.5 ypos 0.05 xanchor 0.5 size 50 color "#FFFFFF" outlines [(2, "#000")]
+    add "images/cg/bg snack.jpg"
+    add snake_game xalign 0.5 yalign 0.5
+    text "贪吃蛇小游戏" xalign 0.5 ypos 0.05 size 50 color "#FFFFFF" outlines [(2, "#000")]
 
 label play_snake:
     window hide

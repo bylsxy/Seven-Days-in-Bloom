@@ -1,5 +1,7 @@
 # 文件：game/minigames/tetris.rpy
 
+default persistent.tetris_high_score = 0
+
 init python:
     import random
     import pygame
@@ -39,8 +41,10 @@ init python:
             self.BLOCK_SIZE = 30
             self.GRID_WIDTH = 10
             self.GRID_HEIGHT = 20
-            self.LEFT = 400
-            self.TOP = 200
+            self.GAME_WIDTH = self.GRID_WIDTH * self.BLOCK_SIZE
+            self.GAME_HEIGHT = self.GRID_HEIGHT * self.BLOCK_SIZE
+            self.LEFT, self.RIGHT, self.TOP, self.BOTTOM = 0, 0, 0, 0
+            self.initialized = False
             
             # 游戏状态
             self.reset()
@@ -108,7 +112,7 @@ init python:
             # 转置矩阵并反转每一行来实现旋转
             shape = self.current_piece['shape']
             rotated = [[shape[y][x] for y in range(len(shape)-1, -1, -1)] 
-                      for x in range(len(shape[0]))]
+                        for x in range(len(shape[0]))]
             
             old_shape = self.current_piece['shape']
             self.current_piece['shape'] = rotated
@@ -182,7 +186,18 @@ init python:
             if renpy.loadable(self.drop_sound):
                 sound.play(self.drop_sound)
 
+        def setup_positions(self, screen_width, screen_height):
+            """在第一次渲染时计算游戏区域并设置初始位置"""
+            self.LEFT = (screen_width - self.GAME_WIDTH) // 2
+            self.TOP = (screen_height - self.GAME_HEIGHT) // 2
+            self.RIGHT = self.LEFT + self.GAME_WIDTH
+            self.BOTTOM = self.TOP + self.GAME_HEIGHT
+            self.initialized = True
+
         def render(self, width, height, st, at):
+            if not self.initialized:
+                self.setup_positions(width, height)
+
             r = Render(width, height)
             
             if self.old_st is None:
@@ -207,12 +222,12 @@ init python:
             border_height = self.GRID_HEIGHT * self.BLOCK_SIZE + 4
             border = Solid("#FFFFFF", xsize=border_width, ysize=border_height)
             r.blit(render_displayable(border, width, height, st, at), 
-                  (self.LEFT - 2, self.TOP - 2))
+                    (self.LEFT - 2, self.TOP - 2))
             
             # 游戏区域背景
             game_bg = Solid("#000000", xsize=border_width-4, ysize=border_height-4)
             r.blit(render_displayable(game_bg, width, height, st, at), 
-                  (self.LEFT, self.TOP))
+                    (self.LEFT, self.TOP))
 
             # 绘制已锁定的方块
             for y in range(self.GRID_HEIGHT):
@@ -222,8 +237,8 @@ init python:
                                     xsize=self.BLOCK_SIZE-2, 
                                     ysize=self.BLOCK_SIZE-2)
                         r.blit(render_displayable(block, width, height, st, at),
-                              (self.LEFT + x * self.BLOCK_SIZE + 1,
-                               self.TOP + y * self.BLOCK_SIZE + 1))
+                                (self.LEFT + x * self.BLOCK_SIZE + 1,
+                                self.TOP + y * self.BLOCK_SIZE + 1))
 
             # 绘制当前方块
             if not self.game_over:
@@ -235,8 +250,8 @@ init python:
                                         xsize=self.BLOCK_SIZE-2,
                                         ysize=self.BLOCK_SIZE-2)
                             r.blit(render_displayable(block, width, height, st, at),
-                                  (self.LEFT + (self.current_piece['x'] + x) * self.BLOCK_SIZE + 1,
-                                   self.TOP + (self.current_piece['y'] + y) * self.BLOCK_SIZE + 1))
+                                    (self.LEFT + (self.current_piece['x'] + x) * self.BLOCK_SIZE + 1,
+                                    self.TOP + (self.current_piece['y'] + y) * self.BLOCK_SIZE + 1))
 
             # 绘制信息面板
             self.draw_info_panel(r, width, height, st, at)
@@ -271,8 +286,8 @@ init python:
                                     xsize=self.BLOCK_SIZE-2,
                                     ysize=self.BLOCK_SIZE-2)
                         r.blit(render_displayable(block, width, height, st, at),
-                              (preview_x + x * self.BLOCK_SIZE,
-                               preview_y + y * self.BLOCK_SIZE))
+                                (preview_x + x * self.BLOCK_SIZE,
+                                preview_y + y * self.BLOCK_SIZE))
 
             # 分数信息
             info_y = preview_y + len(next_shape) * self.BLOCK_SIZE + 30
@@ -296,7 +311,7 @@ init python:
             # 控制提示
             controls_y = self.TOP + self.GRID_HEIGHT * self.BLOCK_SIZE - 100
             controls_text = Text("方向键移动\n上键旋转\n空格键快速下落\nP暂停", 
-                               size=18, color="#CCCCCC")
+                                size=18, color="#CCCCCC")
             controls_rend = render_displayable(controls_text, width, height, st, at)
             r.blit(controls_rend, (panel_x, controls_y))
 
@@ -370,8 +385,8 @@ init python:
 
 # 屏幕定义
 screen tetris(tetris_game):
-    add "images/tetris_bg.jpg"  # 可以准备一个俄罗斯方块背景图
-    add tetris_game
+    add "images/cg/bg tetris.jpg"  # 可以准备一个俄罗斯方块背景图
+    add tetris_game xalign 0.5 yalign 0.5
     text "俄罗斯方块" xpos 0.5 ypos 0.05 xanchor 0.5 size 50 color "#FFFFFF" outlines [(2, "#000")]
 
 # 游戏标签
