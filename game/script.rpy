@@ -9,7 +9,8 @@ label splashscreen:
     scene black
     with Pause(1)
 
-    play sound "dinglingling.MP3"
+    # play sound "dinglingling.MP3"
+    play sound "title.opus"
 
     show splash with dissolve
     with Pause(2)
@@ -75,6 +76,7 @@ label chapter_1:
     "随风飘落的樱花通过窗户进到了图书馆内。"
     "我上前想要把窗户关上。"
     show akane normal at top with dissolve
+    play sound "voices/03.opus"
     akn "『开着吧，反正之后也会清理的』"
     show akane normal2 with dissolve #闭眼
     "被不知道什么时候在我身后的图书管理员阻止了。"
@@ -89,28 +91,34 @@ label chapter_1:
     yt "『是我眼花了吗？』"
 
     show akane normal at top with dissolve
+    play sound "voices/04.opus"
     akn "『阳太同学，这个点你怎么还在图书馆？』"
     yt "『啊，我是学生会成员，过来帮忙整理图书馆的』"
     "——此乃谎言。"
     "其实我是想掐着点在图书馆偶遇学生会会长————藤原樱。"
     "以便增进一下感情，顺便在图书馆找些情感偏方什么的。"
     "但很明显，她今天应该是不会来了。"
+    play sound "voices/05.opus"
     akn "『快毕业了，学生会的工作不是停了吗？』"
     yt "『嗯……』"
     yt "『我还需要找书，抱歉』"
+    play sound "voices/06.opus"
     akn "『什么类型的？』"
     "说实话，我非常不好意思说出自己想找《这样做就能永远在一起~★》之类的书。"
     "不，是超级不好意思！"
     yt "『啊啊……不用麻烦你了，我自己找就可以了』"
     show akane normal with dissolve
+    play sound "voices/07.opus"
     akn "『我需要早点下班，所以你只要告诉我就可以了。{nw}" #语句中切换
     show akane normal2
+    play sound "voices/08.opus"
     akn "『我需要早点下班，所以你只要告诉我就可以了。{fast}还是说，你是在等谁吗？』"
     yt "『！！』"
     scene black with fade
     pause 1.0
     scene bg library with fade
     show akane normal2 at top with dissolve
+    play sound "voices/09.opus"
     akn "『在你后面第二排的那列架子上』"
     yt "『谢谢……』"
     # hide akane with dissolve
@@ -123,9 +131,11 @@ label chapter_1:
     show akane normal at top with dissolve
     "就在她锁完门后，她突然递给了我一本樱花色的笔记本。"
     "上面赫然写着“共感日记”四个大字。"
+    play sound "voices/10.opus"
     akn "『比起你那本《心动魔法》，还是这个更有用，最起码这个是真的』"
     "“真的”？我接过《共感日记》看了一眼。"
     yt "『不用了还是还给你吧』"
+    play sound "voices/11.opus"
     akn "『不，你拿着。这个对你有用，我试过了，放心』"
     hide akane with dissolve
     "她说完就离开了，只剩我和书看着窗外在樱花树下正在沙化的落花。"
@@ -195,11 +205,11 @@ label fc_ch2_choice:
     menu:
         "看看《心动魔法》":
             $ f1=1
-            call love_mogic
+            call love_mogic from _call_love_mogic
             jump after_reading
 
         "看看《共感日记》":
-            call diary
+            call diary from _call_diary
             jump after_reading
 
         "玩游戏放松一下":
@@ -208,11 +218,11 @@ label fc_ch2_choice:
             "要玩哪个游戏呢？"
             menu:
                 "乒乓球游戏":
-                    call play_pong
+                    call play_pong from _call_play_pong
                 "贪吃蛇游戏":
-                    call play_snake
+                    call play_snake from _call_play_snake
                 "俄罗斯方块":
-                    call play_tetris
+                    call play_tetris from _call_play_tetris
             "玩了一会儿游戏，感觉放松了不少。"
             "现在该看看书了。"
             jump choose_book_after_game
@@ -221,20 +231,20 @@ label choose_book_after_game:
     menu:
         "看看《心动魔法》":
             $ f1=1
-            call love_mogic
+            call love_mogic from _call_love_mogic_1
         "看看《共感日记》":
-            call diary
+            call diary from _call_diary_1
 
 label after_reading:  
     if f1:
         menu:
             "再看看《共感日记》":
-                call diary
+                call diary from _call_diary_2
 
     else:
         menu:
             "再看看《心动魔法》":
-                call love_mogic
+                call love_mogic from _call_love_mogic_2
 
     "先塞书包里面明天还给图书管理员吧。"
     stop music fadeout 1.0
@@ -270,10 +280,13 @@ label fc_ch2_student_council:
     show sakura serious at top with dissolve
     "只有会长一个人坐在办公桌前，埋头在资料上写写画画，听得见笔尖划过纸张的细微声响。"
     "同僚" "『我们这么早的？』"
+    play sound "voices/12.opus"
     skr "『嗯？你们来晚了』"
     "同僚" "『没有吧，我就刚刚去图书馆还书，发现还没开门就回来了』"
+    play sound "voices/13.opus"
     skr "『所以才晚了啊』"
     "会长对着桌前的一沓资料抬了抬眼睛。"
+    play sound "voices/14.opus"
     skr "『这是你要干的活，园艺社的，最上面那张是我打印出来的工作细则』"
     "同僚" "『好~知道了，会长大人~』"
 
@@ -281,11 +294,15 @@ label fc_ch2_student_council:
     show sakura normal at top with dissolve
     "同僚走了之后，办公室内就只剩下我和会长两个人。"
     "或许是樱花的原因，窗外的风景让会长显得比平常更加神圣。"
+    play sound "voices/15.opus"
     skr "『你怎么还背着包？』"
     yt "『！！哦！哦哦！！好，我我刚刚也是去图书馆忘了！』"
+    play sound "voices/16.opus"
     skr "『你把包拿过来』"
+    play sound "voices/17.opus"
     skr "『你负责田径部的，资料还挺多，拿包来装刚刚好』"
     "我听话地上前把包放在桌上，一只手帮忙扶着书包。"
+    play sound "voices/18.opus"
     skr "『？里面还有书，先拿出来再塞资料吧。诶我刚打印的清单呢』"
     yt "『哦哦好的！！』"
     "等等好个鬼啊！我慌忙地把包拉开，想要赶紧把书拿出来。"
@@ -295,8 +312,10 @@ label fc_ch2_student_council:
     "难道真的是《共感日记》？不会吧……"
     "那一缕光也被会长察觉到了，她看了看书封面上的内容。"
     show sakura serious with dissolve
+    play sound "voices/19.opus"
     skr "『味觉？』"
     "她皱了皱眉头。"
+    play sound "voices/20.opus"
     skr "『什么东西？』"
     yt "『哦抱歉是我要还的书我先拿着吧不麻烦您了——』"
     "会长的神色有些奇怪，但手上的工作还没有停。"
@@ -329,6 +348,7 @@ label fc_ch2_student_council:
 
     "关上门，隐隐约约听见会长在自言自语。"
     show sakura none with dissolve
+    play sound "voices/21.opus"
     skr "『味觉吗，我的……』"
 
 label fc_ch2_track:
@@ -348,6 +368,7 @@ label fc_ch2_track:
     "……"
     "在我走神的同时，体育部老师探出头来朝葵喊道。"
     "体育部老师A" "『小早川！过来！』"
+    play sound "voices/22.opus"
     aoi "『好！』"
 
     # 展示角色并播放移动动画
@@ -358,12 +379,15 @@ label fc_ch2_track:
     "看到还有我在体育部办公室，葵这家伙先是不解，随后便装着没看见我走到了老师旁边。"
     stop music
     "体育部老师A" "『呐，你的资料，现在该确定了吧』"
+    play sound "voices/23.opus"
     aoi "『……』"
     "体育部老师A" "『你已经拖了很久了。现在你两方面都考完试了总该确定下来了吧』"
     "嗯？什么事？她要改学籍？"
+    play sound "voices/24.opus"
     aoi "『老师……我还需要想一想……』"
     "体育部老师A" "『你还有多久时间？剩六七天了，现在人家都过来了，你为难我也别为难他啊』"
     show aoi serious with Dissolve(0.2)
+    play sound "voices/25.opus"
     aoi "『……！』"
     "小早川葵突然朝我瞪了一眼，但她的事好像依旧没有确定。"
     show aoi none with dissolve
@@ -372,12 +396,14 @@ label fc_ch2_track:
     "体育部老师A" "『……』"
     "体育部老师A" "『再给你两天，后天我就确定了，就不管你了，你自己看着办』"
     show aoi none2 with dissolve #最理想的：2都代表闭眼差分
+    play sound "voices/26.opus"
     aoi "『……嗯』"
     show aoi none with dissolve
     "看样子暂时是没问题了，我将剩下的资料堆好在老师桌上。"
     yt "『那老师我就先去清点一下器材室的器材咯』"
     "体育部老师A" "『小早川去搭把手』"
     show aoi none with dissolve
+    play sound "voices/27.opus"
     aoi "『。好』"
 
 label fc_ch2_storage:
@@ -386,17 +412,20 @@ label fc_ch2_storage:
     show aoi serious at top with dissolve
     "刚进器材室，葵就伸手把我手上的笔记本连同清单一起抽走。"
     show aoi angry with Dissolve(0.2)
+    play sound "voices/28.opus"
     aoi "『你就是过来找我麻烦的吗？』"
     show aoi surprise with dissolve
     "还没等我回答，笔记本不出意外也发出了光，并且在封闭的器材室更加明显。{nw}"
     play music "mysterious.mp3" #用作压抑、微恐、神迹的音乐
     "还没等我回答，笔记本不出意外也发出了光，并且在封闭的器材室更加明显。{fast}"
     show aoi serious with dissolve
+    play sound "voices/29.opus"
     aoi "『这是什么啊？』"
     "她刚翻看着几页，手却突然像被电击般抽走，书掉落在地上。"
     yt "『嗨！干嘛？』"
     show aoi suffering with dissolve
     "她用手捂着肩胛骨的位置，延续了在老师那时的沉默。"
+    play sound "voices/30.opus"
     aoi "『嘶。随便你，你自己干吧软脚虾』"
 
     show aoi serious with dissolve
@@ -449,16 +478,20 @@ label fc_ch2_astronomy:
     yt "『……你是笨蛋吗』"
     yt "『雾岛蓝同学』"
     show ao normal with dissolve #移动到原位
+    play sound "voices/31.opus"
     ao "『怎么了，不尖叫了？还吓得你要扔书包』"
     "雾岛蓝是天文部的幽灵社员，说话声音很小。我虽然很无语，但也还是压低了声音。"
     yt "『算了。社长有什么事？』"
     "雾岛蓝拿起了从我书包里掉出来的《共感日记》。我来的很急，所以书包拉链还没关。"
+    play sound "voices/32.opus"
     ao "『果然……』"
     yt "『什么？』"
     "本子又在雾岛蓝的接触下发光了，上面又浮现出其他的字样。"
     "我下意识地想上去把本子拿回来却扑了个空。"
+    play sound "voices/33.opus"
     ao "『社长叫你打扫教室，然后拿块干净干燥的布把天文望远镜盖上』"
     yt "『那你现在能把本子还给我了吗？』"
+    play sound "voices/34.opus"
     ao "『你还要把这些箱子给整理回来，等你干完了我再还你』"
     "雾岛蓝用按动笔指着我，要不是环境很安静我都不一定听得见她很小的声音。"
     
@@ -467,6 +500,7 @@ label fc_ch2_astronomy:
     show ao none at top with dissolve
     "可能是我干活的同时一直在盯着雾岛蓝同学，又或许是那本子里除了第一页其他都是空白页没什么可看的。"
     "雾岛蓝在我干活中途就把本子塞给我让我出去了。"
+    play sound "voices/35.opus"
     ao "『社长说这些是你这几天的工作。我要记录星空的声音。你先走吧』"
     "很莫名其妙的一个人，但看样子，她应该知道一些关于本子的事。"
     hide ao with dissolve
@@ -517,14 +551,17 @@ label chapter_3:
     scene bg school2 with dissolve
     "顺路也去了趟图书馆，不过图书馆还是没开门，又吃了一次闭门羹。"
     yt "『又来早了？』"
+    play sound "voices/36.opus"
     akn "『没有啊』"
     yt "『！？』"
     show akane normal at top with dissolve
     "熟悉的声音又从我身后传出来。"
     "转过头那个图书管理员已经自顾自地从我书包里拿出了一本书。"
     yt "『不要突然出现在别人身后啊』"
+    play sound "voices/37.opus"
     akn "『怎么样你试过了吗，这本？』"
     yt "『啊，试过啦，除了会突然像个手电筒一样发光也没什么』"
+    play sound "voices/38.opus"
     akn "『啊不是，我说的是这个“翻开了的”心动魔法』"
     yt "『………………』"
 
@@ -535,16 +572,20 @@ label fc_ch3_library:
     scene bg library with fade
     "大概讲了一下共感日记旁发生的种种奇怪的事情。"
     show akane happy2 at top with dissolve
+    play sound "voices/39.opus"
     akn "『哈哈，看来你就是那个命定之人啊哈哈』"
     yt "『所以到底是怎么回事？』"
     show akane happy with dissolve
+    play sound "voices/40.opus"
     akn "『反正是对你有用的，你就先拿着那本书呗』"
     yt "『你倒是听人说话啊……』"
     "说着我从包里掏出了共感日记。"
     "封面上有着三行让人格外醒目的标识。"
+    play sound "voices/41.opus"
     akn "『三个啊……这样，我们先交换line，之后你跟她们聊完再找我怎么样？』"
     yt "『你先回答我问题……』"
     show akane serious with dissolve
+    play sound "voices/42.opus"
     akn "『行』"
     "她一反刚刚不靠谱的样子，变作严肃地把我拉到隔壁自习室。"
 
@@ -554,23 +595,28 @@ label fc_ch3_self_study:
     $ new_node("fc_ch3_self_study")
     scene bg classroom with dissolve
     show akane serious at top with dissolve
+    play sound "voices/43.opus"
     akn "『你有注意到在你身边落下的花瓣吗？』"
     yt "『花瓣？』"
     hide akane with dissolve
     show cherry_flower at truecenter with dissolve
     yt "『这个怎么了吗？』"
+    play sound "voices/44.opus"
     akn "『你看』"
     hide cherry_flower with Dissolve(2.0)
     "说着，花瓣就像灭霸打了响指一样散去了。"
     yt "『！』"
     show akane serious at top with dissolve
+    play sound "voices/45.opus"
     akn "『一开始，也只是这些不起眼的小物件』"
     yt "『！昨天在地上消失的清单』"
+    play sound "voices/46.opus"
     akn "『其他的我也不是很了解，不过我觉得是这本本子在发挥作用』"
     
     "陆陆续续有人来到自习室里嘟嘟囔囔了几声。"
     show akane serious at nod_greeting
     "风见茜看到后，便把我赶了出去。"
+    play sound "voices/47.opus"
     akn "『总之，你只需要完成上面的任务就可以了，我会帮助你的』"
 
     scene bg student_council with fade
@@ -590,24 +636,30 @@ label fc_ch3_self_study:
     show sakura dressed happy at top with dissolve
     "『砰』的一声门开了，是穿着烹饪围裙的会长藤原樱。"
     play music "sunshine.mp3"
+    play sound "voices/48.opus"
     skr "『啊，阳太你在办公室啊，你有没有看见我的挂包』"
     yt "『啊！……哦哦，是这个吗』"
     "我心里大舒一口气，提起了窗边的一个白色包包，上面已经有几片樱花花瓣了。"
+    play sound "voices/49.opus"
     skr "『对没错』"
     "她接过包包。"
+    play sound "voices/50.opus"
     skr "『里面装着我的药』"
     yt "『你身体不舒服吗会长？』"
+    play sound "voices/51.opus"
     skr "『没事……谢谢你，那我先走了』"
     yt "『你要去哪？』"
     show sakura dressed question with dissolve
     "莫名担心使我急忙上去抓住了樱。"
     "刹那间的理性思考又让我只拉住她的围裙边。"
+    play sound "voices/52.opus"
     skr "『……』"
     yt "『抱歉拉住了你！对不起……』"
     "我松开了手，为我不礼貌的行为道歉。"
     "藤原樱看着我的表情低头思考了一会。"
     "再抬起头时，便是和我对上了眼睛。"
     show sakura dressed happy with dissolve
+    play sound "voices/53.opus"
     skr "『那你也一起来吧』"
 
 label fc_ch3_cooking:
@@ -617,12 +669,15 @@ label fc_ch3_cooking:
     "藤原樱和我一起来到了烹饪课的教室。"
     "我放好书包，接过烹饪围裙，戴上了一次性手套和口罩在藤原樱旁边帮忙打下手。"
     show sakura dressed happy at top with dissolve
+    play sound "voices/54.opus"
     skr "『你昨天的工作搞完了吗』"
     yt "『哦，还、还差一点，当时太多了整理到饭点也没整理完，老师就让我这几天继续』"
+    play sound "voices/55.opus"
     skr "『工作量这么多啊，需不需要我来帮忙』"
     yt "『不用了不用了，我可以的！相信我』"
     "说实话我有一点想，但是器材室我还没打扫，灰尘比较多还是不要让会长来了。"
     "而听到了我的回答，会长眼睛好像亮了一点，转过头继续切面团，像笑了一下说道。"
+    play sound "voices/56.opus"
     skr "『这样啊，这么厉害』"
 
     scene bg cooking_classroom with fade
@@ -631,21 +686,27 @@ label fc_ch3_cooking:
     show sakura dressed happy at top with dissolve
     "藤原樱在分面团，好像是要做小蛋糕。"
     yt "『好香的味道。已经有人烤好面包了吗？』"
+    play sound "voices/57.opus"
     skr "『是吗？』"
     "樱环顾了一下四周。"
+    play sound "voices/58.opus"
     skr "『看样子是的』"
     yt "『会长你喜欢烹饪啊，我都不知道学校里还有烹饪教室来着哈哈』"
+    play sound "voices/59.opus"
     skr "『嗯，确实比较偏来着』"
     yt "『那个，如果你喜欢的话……』{nw=0.5}" #打断说话效果
+    play sound "voices/60.opus"
     skr "『不过我鼻子可能闻不清什么味道，所以我更习惯和别人一起烹饪』"
     "她抬头看向我。"
     show sakura dressed happy2 with dissolve
+    play sound "voices/61.opus"
     skr "『而且我也喜欢和别人一起聊天』"
     yt "『！啊，哦！！好的！！！』"
     show sakura dressed happy with dissolve
     "我开心到飞起。"
     yt "『我我去装点水，你渴了吧！』"
     "我慌忙地转过头去找饮水机的位置。"
+    play sound "voices/62.opus"
     skr "『嗯谢谢你』"
     "她轻笑着说。"
     "水拿回来了，但我太过激动，以至于不小心碰到了她的手——"
@@ -654,8 +715,10 @@ label fc_ch3_cooking:
     "看着藤原樱的笑容，我的注意力却放在了她眼睛下的一点淤青上。"
     yt "『藤原樱同学。』"
     show sakura dressed question with dissolve # 这一立绘还没有！！！！
+    play sound "voices/63.opus"
     skr "『嗯？』"
     yt "『你最近很累吗？』"
+    play sound "voices/64.opus"
     skr "『为什么突然这么说？』"
     "果然刚刚那个就是“共感”吗。"
     "我这么笃定，是因为我这几天完全没有熬夜。"
@@ -664,6 +727,7 @@ label fc_ch3_cooking:
     "我指了指她眼睛底下。"
     "现在看，她还是拿化妆品铺了一层粉来盖住的。"
     yt "『熬夜了吗？那对皮肤会很不好的』"
+    play sound "voices/65.opus"
     skr "『哦哦，是最近有些事……』"
     "一段时间的沉默————"
     yt "『那个……校门口有家甜品店，还挺香的。放学后有空的话不如我们一起去吧』"
@@ -671,12 +735,14 @@ label fc_ch3_cooking:
     "可能是太突然了，她一时没反应过来。"
     "但她却很快给了一个令我惊讶的答复。"
     show sakura dressed happy2 with dissolve
+    play sound "voices/66.opus"
     skr "『为什么不呢，我们今天下午放学后一起去吧！』"
     show sakura dressed happy with dissolve
     yt "『！！』"
     "这让本来已经想好反悔的话的我惊喜万分。"
     "仿佛这一天比过去的每一天都明亮。"
     "犯花痴的我刚开始不知所措就被会长提醒该去田径部了。"
+    play sound "voices/67.opus"
     skr "『下午我带小蛋糕去找你』"
     scene bg sky with fade
     "我在一路上走路都轻飘飘的。"
@@ -759,45 +825,63 @@ label fc_ch3_cooking:
     yt "『知道了，谢谢老师』"
     "随着保健室老师出门吃饭的关门声响起，我还没开口小早川葵就把糖水递到了我手边。"
     show aoi sad at top with dissolve
+    play sound "voices/68.opus"
     aoi "『……喝点水吧』"
     "我接过水喝了一口。"
     yt "『谢谢，不过你是怎么困在里面的？』"
     "我故意学着她平时的语气，尝试让气氛变得不要那么严肃。"
+    play sound "voices/69.opus"
     aoi "『……』"
+    play sound "voices/70.opus"
     aoi "『……呜呜』"
     show aoi crying with dissolve
+    play sound "voices/71.opus"
     aoi "『那你是为什么找到我的啊……你不是已经走了吗……』"
     "卧槽她哭了！她不好意思地把头扭了过去，细微的抽泣声在保健室里格外清晰。"
     yt "『！你怎么了？啊那个，，你肩膀膝盖还疼是吗？』"
     "听到肩膀二字，她身体抖了一下，抽了张纸巾擦了擦又转过来和我说话。"
+    play sound "voices/72.opus"
     aoi "『……我不是困在里面，我是说我带了钥匙，但是钥匙就在我手里不见了』"
     "……"
     show aoi suffering with dissolve
+    play sound "voices/73.opus"
     aoi "『我是说真的！器材室门给风吹上了，我要打开门刚拿出钥匙它就不见了……』{nw=0.5}"
     show aoi serious tears # 这个图片搞错了。。这里很难连贯
+    play sound "voices/74.opus"
     aoi "『嘶——』"
     yt "『扯到伤口了吗？！』"
     "我一个鲤鱼打挺起来，但小早川葵倒是抓住了我的手。"
     show aoi serious with dissolve
+    play sound "voices/75.opus"
     aoi "『你是怎么知道我肩膀上有伤的』"
     yt "『这里有药需要我帮你上药吗……因为你之前一直捂着你的肩膀』"
     show aoi sad with dissolve
+    play sound "voices/76.opus"
     aoi "『嗯…………不了谢谢……』"
     "她低下头，平常梳起的头发顺着头的低下而散下来，遮住了她的半张脸让我看不见她的表情。"
     "她开始慢慢诉说，一滴滴的眼泪掺杂着她的话语落下。"
+    play sound "voices/77.opus"
     aoi "『肩膀上是考试前一个月跑步时摔的，倒地时肩胛骨肌肉拉伤了』"
+    play sound "voices/78.opus"
     aoi "『还有半月板磨损，虽然所幸现在恢复得差不多』"
+    play sound "voices/79.opus"
     aoi "『当时感觉这辈子完了，我都不敢想家里人会对我有多失望……』"
+    play sound "voices/80.opus"
     aoi "『甚至我都有些自暴自弃开始学起了文化课，哈哈……』"
+    play sound "voices/81.opus"
     aoi "『体育考试那天身体还在恢复阶段，当然也跑了个还好的成绩但当时我不知道。就想着给自己一个退路把文化考试也考了，结果成绩还比体育的更加好，搞的我都动摇了哈哈……』"
     show aoi crying with dissolve
     "说着她又哭了起来。"
     yt "『纸巾纸巾。呐擦擦……』"
     show aoi sad tears with dissolve
+    play sound "voices/82.opus"
     aoi "『……按体育成绩去高中的话还要更努力才能到父母要求的学校，但我已经无法恢复到原来的水平了』"
+    play sound "voices/83.opus"
     aoi "『按文化考试的话能去那所学校，但我就不能继续体育集训了……这也不是我想要的……所以一直到现在我都不知道要怎么弄资料……』"
     yt "『噢…………』"
+    play sound "voices/84.opus"
     aoi "『然后昨天还往你身上撒脾气了我真是神经病，对不起……果然我这种人就不配有什么好未来，什么事在我身上都会被搞砸。』"
+    play sound "voices/85.opus"
     aoi "『连钥匙在我手上都能被搞丢……还觉得是钥匙像被沙化了一样真是笑死人了…………』"
     yt "『不，别这样……需要我帮忙吗？可以的话』"
     yt "（……我要告诉她关于物品消失的事吗？但我也不清楚啊。她现在看上去情况很不好）"
@@ -815,8 +899,10 @@ label fc_ch3_cooking:
     "她把手放在了她的受伤的肩颈部位，就像是习惯性的防御性肢体动作。"
     "按压时的阵痛也通过“共感”传递到我的身上。"
     show aoi serious tears with dissolve
+    play sound "voices/86.opus"
     aoi "『我想吃甜品了。』"
     yt "『什么？』"
+    play sound "voices/87.opus"
     aoi "『快放学了我们一起去吃甜品好吗，就在校门口。』"
     "她的眼圈泛着刚哭完的红晕，声音装着无事发生但也比平时要更加颤抖。"
     yt "（可是我约了藤原樱啊！）"
@@ -826,8 +912,10 @@ label fc_ch3_cooking:
     show aoi sad with dissolve
     "我不好意思地回复她，在她失落之际补充到又补充道。"
     yt "『……那要一起去吗？』"
+    play sound "voices/88.opus"
     aoi "『！』"
     show aoi happy2 with dissolve
+    play sound "voices/89.opus"
     aoi "『好！』"
     # 今日改写工作至此，明天有脑子再继续。25.8.9-4:09
     "青春期jk喜极而泣的笑容和话语交错着回应我。"
@@ -841,11 +929,14 @@ label fc_ch3_cooking:
     "走廊是熙熙攘攘的人群嘈杂，所谓培养学生情的班级活动。"
     "聊天间，我们也差不多休息好了。"
     show aoi happy2 at top with dissolve
+    play sound "voices/90.opus"
     aoi "『你下午还要去干学生会的活吗？』"
     yt "『嗯。我还有资料在书包里，都给我捏皱了还』"
+    play sound "voices/91.opus"
     aoi "『嗯……好，那就先再见啦，我就在B班』"
     yt "『我去找你吧，放学见』"
     show aoi happy2 with dissolve
+    play sound "voices/92.opus"
     aoi "『放学见！』"
     hide aoi with dissolve
     yt "(emmmm，要跟藤原樱讲一下临时加人的事情啊……)"
@@ -877,22 +968,28 @@ label fc_ch3_cooking:
     show ao none at jump_surprised
     yt "『！……』"
     show ao normal with dissolve
+    play sound "voices/93.opus"
     ao "『大叫什么啊？』"
     yt "『我被吓到了』"
+    play sound "voices/94.opus"
     ao "『喂喂，不要每次都被吓得这么狼狈啊……』"
     yt "『闭嘴，你们就不能不要一声不吭地突然出现在别人的身后吗？』"
     show ao none with dissolve
+    play sound "voices/95.opus"
     ao "『“你们”？』"
     "雾岛蓝疑惑地看着我。"
     "此时窗外吵嚷的活动声音打断了我们的对视。"
+    play sound "voices/96.opus"
     ao "『你怎么也没去底下参加班级活动啊？』"
     yt "『有班级活动吗？我不知道，我经过图书馆就直接上来了』"
     yt "『另外什么叫“也”？』"
+    play sound "voices/97.opus"
     ao "『这个班级活动完了就直接放学了，比平时要早半个小时。我们班刚好有个女生身体不好，我借着照顾她的名义就跑出来了』"
     yt "(emmmm)"
     yt "(提早放学的话)"
     yt "(看来我要先去找藤原樱才行，看她什么时候能结束活动)"
     show ao normal with dissolve
+    play sound "voices/98.opus"
     ao "『你最近怎么经常去图书馆了？又怕鬼了？』"
     yt "『还不是你吓的……』"
     "我直到加入天文社之前都是坚强的唯物主义者。"
@@ -902,17 +999,23 @@ label fc_ch3_cooking:
     "之前认识雾岛蓝的时候还专门问了关于鬼怪的故事。"
     "果然是那时太坦白了，搞得她现在都能随意抓住我这点来嘲弄了是吗。"
     yt "『所以说为什么又要晚上去啊，晚上回家也很危险的，连末班车都不一定赶得到』"
+    play sound "voices/99.opus"
     ao "『你怎么又和之前一样啊，刚你没来的时候还是我们几个跟学生会会长沟通的呢』"
     yt "『会长过来说的？』"
+    play sound "voices/100.opus"
     ao "『是啊，她比我们还急呢』"
     yt "(会长有因为今晚时间被社活占用而着急吗？！有点开心啊！)"
     "雾岛蓝看着我窃喜时的神态，转身时透过了一丝无语。"
+    play sound "voices/101.opus"
     ao "『你不会是……嘛，算了』"
     yt "『什么？』"
+    play sound "voices/102.opus"
     ao "『没什么，这个桌子，和这个，这些』"
     "她指着这些稀稀拉拉的设备对着我说。"
+    play sound "voices/103.opus"
     ao "『你先把这些搬去一楼的空教室，钥匙我一把他们俩一把。走吧』"
     yt "『这么多？』"
+    play sound "voices/104.opus"
     ao "『我和他们俩下午已经把该搬的搬完了，快点』"
     scene bg classroom with dissolve
     yt "『……嘿！』"
@@ -925,6 +1028,7 @@ label fc_ch3_cooking:
         zoom 0.9
     yt "『可以了吧就这些了，今天晚上八点钟我会来的』"
     yt "(……我是不是该换身衣服。)"
+    play sound "voices/105.opus"
     ao "『不要说的我好像是故意虐待你一样，我也有搬好吗』"
     "没想到和雾岛蓝继续拌着嘴，藤原樱就从楼梯口下来了。"
     define topleft  = Position(xalign=0.0, yalign=0.0)
@@ -935,15 +1039,20 @@ label fc_ch3_cooking:
     with dissolve
     yt "(手中的包比上午要鼓了一倍，是装了资料回去吗？唉真是辛苦呢)"
     yt "『藤原会长，你怎么在这？』"
+    play sound "voices/106.opus"
     skr "『啊，刚刚下楼的时候看到你们在搬东西了，想着和你们打个招呼』"
     yt "『哦哦！抱歉我身上有些味道，能不能麻烦你等我一下我去换身衣服』"
     yt "(尴尬啊，还想着尽量给出自己好的一面呢www……)"
+    play sound "voices/107.opus"
     skr "『可以啊』"
     yt "『哦哦，对了！抱歉能临时加一个人吗？』"
     "藤原樱愣住了。"
+    play sound "voices/108.opus"
     skr "『可以呀！』"
+    play sound "voices/109.opus"
     skr "『是雾岛蓝同学吗？我下午也见过她的』"
     show ao normal with dissolve
+    play sound "voices/110.opus"
     ao "『o！有我的份吗！要去要去！』"
     transform pos_right_jump:
         xalign 1.0
@@ -955,12 +1064,18 @@ label fc_ch3_cooking:
     "我脱口而出，不料语气有些没有礼貌。"
     yt "『等会我不是这个意思！*语无伦次*……是B班的小早川葵同学。』"
     show ao normal with dissolve
+    play sound "voices/111.opus"
     ao "『o我们班的！』"
+    play sound "voices/112.opus"
     skr "『她班的？』"
     "两个人都转过头来看我。"
+    play sound "voices/113.opus"
     ao "『那我还能去吗？』"
+    play sound "voices/114.opus"
     skr "『那还要邀请她去吗？』"
+    play sound "voices/115.opus"
     ao "『一起吧！』"
+    play sound "voices/116.opus"
     skr "『一起吧！』"
     "两个人爱逗人的部分都展现的淋漓尽致，像是已经准备好了的。"
     "看他们俩个人一唱一和的样子我也只能放弃解释，无力只能同意。"
@@ -979,7 +1094,9 @@ label fc_ch3_cooking:
         zoom 0.8
     show ao normal at top with dissolve:
         zoom 0.7
+    play sound "voices/117.opus"
     ao "『你邀请哒』"
+    play sound "voices/118.opus"
     skr "『诶呀，还不是上午和阳太一起在烹饪教室时他先说的』"
     yt "『昨天放学时路过看到了嘛』"
     yt "『上面还出了樱花味的新品，好像只在学生毕业季才有』"
@@ -990,34 +1107,54 @@ label fc_ch3_cooking:
     yt "(她现在还好吗?)"
     "我这么担心着，不过显然是我多虑了。"
     "小早川葵发挥自己属于体育生刻板印象的豪爽的一面。"
+    play sound "voices/119.opus"
     aoi "『是啊，难得能和班级以外的同学一起去吃甜品，还是大美女，这是何等的喜事呀』"
+    play sound "voices/120.opus"
     ao "『也是，不用担心吃坏肚子影响什么考试，真是舒服呢』"
+    play sound "voices/121.opus"
     aoi "『真是期待呢樱花的味道』"
+    play sound "voices/122.opus"
     skr "『……是呢，真是期待呢……』"
     "进到店内，符合季节的樱花装饰将店面搞得粉不拉几。"
     "我们找了最近的靠窗位置坐下"
+    play sound "voices/123.opus"
     aoi "『哇，这里新品好多欸，甚至专门搞了一面菜单』"
+    play sound "voices/124.opus"
     ao "『是欸，粉粉的呢』"
+    play sound "voices/125.opus"
     skr "『都有什么啊』"
+    play sound "voices/126.opus"
     aoi "『很多呢，樱花奶昔，樱花慕斯，樱花果冻花麻糬什么的』"
     yt "『麻糬？像年糕一样的吗？』"
+    play sound "voices/127.opus"
     skr "『差不多呢，也是拿糯米闹成黏糊状，要有樱花味的话就需要在内陷和糯米上下手了』"
+    play sound "voices/128.opus"
     ao "『藤原樱同学好了解啊，不愧是烹饪教室的！』"
+    play sound "voices/129.opus"
     skr "『什么？抱歉我刚刚没听清』"
+    play sound "voices/130.opus"
     aoi "『她说你很厉害呢，我也觉得』"
+    play sound "voices/131.opus"
     skr "『也没有啦……』"
     "藤原樱不好意思地低下了头，她们俩个已经想好了自己想点的东西。"
+    play sound "voices/132.opus"
     ao "『藤原樱同学会想试试这家店的樱花麻糬吗？』"
+    play sound "voices/133.opus"
     skr "『嗯？』"
     "藤原樱同学好像是又没听见，摆出了“没听见的表情”。"
+    play sound "voices/134.opus"
     ao "『啊，抱歉，藤原樱同学还是点自己想吃的吧，我只是说说』"
+    play sound "voices/135.opus"
     skr "『啊，不用。我本来就比较想吃一下这家店的樱花麻糬』"
     "藤原樱的表情有些僵硬，但还是微笑着回复零岛蓝："
+    play sound "voices/136.opus"
     skr "『如果很好吃的话我还要向店长要配方呢』"
     yt "『那我点一个奶昔，樱花味的』"
     "甜品到了，对面那两人看上去是真的挺喜欢这些甜品。"
     "藤原樱同学则像平时办公一样沉稳。"
+    play sound "voices/137.opus"
     aoi "『怎么样怎么样、好吃吗』"
+    play sound "voices/138.opus"
     skr "『还可以，味道淡淡的』"
     yt "『手让一下我再拿个勺子』"
     "我伸手跨过藤原樱的位置，朝桌子边的餐具盒伸去。"
@@ -1041,6 +1178,7 @@ label fc_ch3_cooking:
     "大家在甜品店里都有说有笑的，其乐融融。"
     "这时候一个熟悉的声音进了甜品店。"
     show akane normal2 at top with dissolve
+    play sound "voices/139.opus"
     akn "『你好，我要这个樱花麻糬。』"
     "我转过头看了看她，她没理我，打包了麻糬就走了。"
     hide akane with dissolve
@@ -1052,6 +1190,7 @@ label fc_ch3_cooking:
     show ao none at top with dissolve:
         zoom 0.7
     "此时雾岛蓝变了一种神色看着我。"
+    play sound "voices/140.opus"
     skr "『你认识她吗？』"
 label fc_ch3_dessert_choice:
     $ new_node("fc_ch3_dessert_choice")
@@ -1064,14 +1203,18 @@ label fc_ch3_dessert_choice:
 label fc_ch3_dessert_option_a:
     $ new_node("fc_ch3_dessert_option_a")
     yt "『我之前去图书馆有见过她』"
+    play sound "voices/141.opus"
     skr "『哦，这样子啊』"
+    play sound "voices/142.opus"
     ao "『……』"
     jump fc_ch3_dessert_option_merge
 
 label fc_ch3_dessert_option_b:
     $ new_node("fc_ch3_dessert_option_b")
     yt "『认识，今天上午还和她聊了几句』"
+    play sound "voices/143.opus"
     skr "『哦，这样子啊……』"
+    play sound "voices/144.opus"
     ao "『……』"
     jump fc_ch3_dessert_option_merge
 
@@ -1079,18 +1222,23 @@ label fc_ch3_dessert_option_merge:
     $ new_node("fc_ch3_dessert_option_merge")
     "甜品吃完后，差不多也到了该回家的时间。"
     show aoi happy2
+    play sound "voices/145.opus"
     aoi "『我家要搭电车，得先走一步啦。今天真的好开心，谢谢你们！』"
     hide aoi with dissolve
     show sakura happy
+    play sound "voices/146.opus"
     skr "『我也去坐公交了，大家路上小心』"
     hide sakura with dissolve
     show ao normal
+    play sound "voices/147.opus"
     ao "『我们顺路，我陪你走一段』"
 
     scene bg street with fade
     show ao normal at top with dissolve
+    play sound "voices/148.opus"
     ao "『今天晚上八点钟记得』"
     yt "『我知道了』"
+    play sound "voices/149.opus"
     ao "『我有话要和你说』"
     yt "『？知道了』"
     hide ao with dissolve
@@ -1107,14 +1255,18 @@ label fc_ch3_evening:
     show ao normal at top with dissolve
     yt "『蓝，另外两个人怎么没来？』"
     show ao none at top with dissolve
+    play sound "voices/150.opus"
     ao "『哪两个？』"
     yt "『A和B啊，初二的时候扮成鬼娃娃和贞子的那两个』"
+    play sound "voices/151.opus"
     ao "『你在说谁啊？』"
 
     yt "（不对劲……她是联合了那几个人想再耍我一次吗？）"
     yt "『喂，别搞了。本来就因为你们那时候的恶作剧，我现在才怕鬼。这次又要再来一次吗？』"
+    play sound "voices/152.opus"
     ao "『？你到底在说什么啊，三年级不就只有我们四个是天文社的吗？！当时不是已经给你治好了吗？』"
     yt "『你在说什么啊？！』"
+    play sound "voices/153.opus"
     ao "『是你在说什么啊？！』"
 
     "争论声太大，大家都察觉到我们之间的火药味，另外两位同学主动把我们分开。"
@@ -1124,40 +1276,54 @@ label fc_ch3_playground:
     $ new_node("fc_ch3_playground")
     scene bg school night with fade
     show ao none at top with dissolve
+    play sound "voices/154.opus"
     ao "『我知道了，是跟那个笔记有关对吧？』"
     yt "『笔记？你知道什么？』"
+    play sound "voices/155.opus"
     ao "『因为你现在都忘记了你为什么不怕黑不怕鬼的事！现在你居然还觉得我们社团会凭空出现两个人？！』"
     yt "『不，等会……天文社的录音笔，对！我之前送给你的录音笔，还在吗？』"
+    play sound "voices/156.opus"
     ao "『……』"
     "她看着我，思索片刻才从书包里把录音笔拿了出来。"
     "录音笔的记录在某一处出现了明显的沉默。"
 
     "我们四目相对，看上去都明白了那本笔记的秘密。"
+    play sound "voices/157.opus"
     ao "『跟昨天我拿的你那本发光的笔记本有关系吗？』"
     yt "『我不知道』"
+    play sound "voices/158.opus"
     ao "『zheyangne……』"
     yt "『你说什么？』"
 
     "她握住了我的手，她的声音变得更加清晰。"
+    play sound "voices/159.opus"
     ao "『这样呢』"
     yt "『变得清晰了』"
 
+    play sound "voices/160.opus"
     ao "『如果你还是会相信像“心动魔法”的偏方，那就别再去用那本笔记本了』"
     yt "『那本笔记本除了会发光跟其他本子没什么两样』"
+    play sound "voices/161.opus"
     ao "『但是我不知道和“她”是不是有什么关系』"
     yt "『什么？她是谁？』"
+    play sound "voices/162.opus"
     ao "『一个人不能死两次，但你却能两次都害怕鬼』"
     yt "『别这样……我也不知道』"
+    play sound "voices/163.opus"
     ao "『……如果是这样的话——不要忘记我』"
 
     "她把录音笔塞到我手里，双手紧紧地握住我。"
+    play sound "voices/164.opus"
     ao "『但请你也不要用那本本子的能力来欺骗你在意的人』"
     yt "『我……』"
     "我不知道如何回答。好像就是因为有了那本本子，我才有勇气和她们聊天。"
 
+    play sound "voices/165.opus"
     ao "『我经常戴着的耳机其实多数时候都是助听器。我的听觉是基因疾病，迟早会消失的，在重大刺激下会恶化得更严重。』"
     yt "『所以你才会用录音笔。』"
+    play sound "voices/166.opus"
     ao "『我希望能一直记住你们的声音，可是现在的情况可能很难办了。』"
+    play sound "voices/167.opus"
     ao "『如果你需要帮助的话我会帮你的，但请不要忘记我。』"
 
 label fc_ch3_afterglow:
@@ -1167,6 +1333,7 @@ label fc_ch3_afterglow:
     "之后，我们回到了拍摄地点，一群人在欢声笑语中度过了拍摄时间。"
     scene bg sky night with dissolve
     "结束离开校门时，耳中隐隐约约听到蓝的声音。"
+    play sound "voices/168.opus"
     ao "『小心那个茜。』"
 
     stop music fadeout 1.0
@@ -1201,8 +1368,10 @@ label chapter_4:
     scene bg corridor with dissolve
     "走到教室门口，小葵已经在走廊上等我。"
     show aoi none at top with dissolve
+    play sound "voices/169.opus"
     aoi "『等会能稍微聊一下吗？』"
     yt "『什么事？』"
+    play sound "voices/170.opus"
     aoi "『关于我昨天的事。啊！那等你上完班会我再来吧！我先不打扰你了！』"
     hide aoi with dissolve
     "她慌慌张张地又离开了。"
@@ -1223,28 +1392,41 @@ label fc_ch4_corridor:
     "我望向窗外，看到已经在外面等候的葵。"
 
     show aoi serious at top with dissolve
+    play sound "voices/171.opus"
     aoi "『等会能稍微聊一下吗？』"
     yt "『什么事？』"
     show aoi none with dissolve
+    play sound "voices/172.opus"
     aoi "『……嗯～😕好吧……就是说……谢谢你』"
     yt "『啊？哦』"
+    play sound "voices/173.opus"
     aoi "『谢谢你昨天跟我说的那些话』"
     yt "『哦那个啊』"
+    play sound "voices/174.opus"
     aoi "『我回去想了很久。包括你说会帮我和其他同学搞好关系什么的，我都特别感谢你』"
+    play sound "voices/175.opus"
     aoi "『还有关于学籍的，我想好了』"
     yt "『嗯，是什么？』"
+    play sound "voices/176.opus"
     aoi "『我要继续跑体育，我想要上和你一起的高中』"
     yt "『我的学校？』"
+    play sound "voices/177.opus"
     aoi "『可以的话我想继续我的体育专业，以回应这段时间一直支持我的朋友们』"
     "她的脚步停在了体育办公室门前，眼神坚定，手里握着反复修改的资料。"
+    play sound "voices/178.opus"
     aoi "『你在我最需要帮助的时候陪在身边』"
+    play sound "voices/179.opus"
     aoi "『和你在一起的时候，伤口也不会有阵痛了』"
+    play sound "voices/180.opus"
     aoi "『佐佐木阳太同学，我需要你』"
     show aoi serious with dissolve
     "她拉住我的手，用满怀期待的眼神看向我。"
+    play sound "voices/181.opus"
     aoi "『从今天中午开始我们就算半个暑假了对吧』"
+    play sound "voices/182.opus"
     aoi "『可以的话，今天放学后我会在这里等你』"
     yt "『等会……』"
+    play sound "voices/183.opus"
     aoi "『佐佐木阳太同学，我需要你。下午见』"
     hide aoi with dissolve
     "说完，她推开办公室的门，把我留在原地。"
@@ -1254,18 +1436,25 @@ label fc_ch4_campus:
     scene bg school2 with fade
     "我边在校园里闲逛边思考。对于消失的樱花我已经见怪不怪，更在意的是身后越来越响的跑步声。"
     show sakura happy at top with dissolve
+    play sound "voices/184.opus"
     skr "『你怎么在这啊，我刚刚去天文社都没开门』"
     yt "『怎么了？有什么急事吗？』"
+    play sound "voices/185.opus"
     skr "『这个，昨天忘记给你了』"
     "她伸出手，递来一个袋子装好的小蛋糕，是我们昨天在烹饪教室里一起做的。"
+    play sound "voices/186.opus"
     skr "『隔夜了味道可能没刚出炉那么好吃，你不介意吧？』"
     yt "『哦哦，好，谢谢你』"
     "我接过蛋糕，袋子摩擦让奶油抹得有些凌乱。"
+    play sound "voices/187.opus"
     skr "『那你要不要再去做一次蛋糕？和我』"
     yt "『啊？』"
+    play sound "voices/188.opus"
     skr "『会不会有点唐突哈哈。但我是真的想和你再一起做蛋糕』"
     yt "『是这样吗……』"
+    play sound "voices/189.opus"
     skr "『总之就是，我觉得和你在一起会有不同的感觉。谢谢你』"
+    play sound "voices/190.opus"
     skr "『放学后我就在烹饪教室，要找我的话就直接来喔，拜拜』"
     hide sakura with dissolve
 
@@ -1302,34 +1491,45 @@ label chapter_4_sakura_afternoon:
     show sakura dressed happy at top with dissolve
     yt "『樱同学，我没来晚吧？』"
     "她回眸，手里的动作随之停下。"
+    play sound "voices/191.opus"
     skr "『阳太你来啦』"
     "我把包放到门口的挂钩上，换上她递来的围裙。教室里只有我们两个人，一起再次做起蛋糕。"
+    play sound "voices/192.opus"
     skr "『谢谢你啊』"
     yt "『怎么突然说这个？』"
+    play sound "voices/193.opus"
     skr "『跟你在一起我能感受到跟之前不一样的感觉，不是打趣喔』"
     yt "『不要开玩笑了会长，以前聚餐的时候你都没搭理我我记得的哈哈』"
     show sakura dressed happy2 with dissolve
+    play sound "voices/194.opus"
     skr "『你是指特别明显地坐到我身边跟我聊天气那次吗？哈哈』"
     yt "『啊那个……』"
     "我尴尬地挠头，为过去的行为感到悔恨。但樱的笑容真的很好看。"
 
     show sakura dressed happy with dissolve
     "除了蛋糕，我们还计划用剩下的原料再做点别的。"
+    play sound "voices/195.opus"
     skr "『还剩下一些原料，来做蛋挞吧』"
     yt "『哦，好啊。』"
     "不知道为什么心里涌上了一点点失落。我是不想吃蛋挞吗？"
     yt "『樱同学，你为什么突然想和我一起做呀，搞得我有点不好意思』"
+    play sound "voices/196.opus"
     skr "『我刚刚说过啦，因为和你在一起让我有不一样的感觉』"
     "她用手指粘了一点打发好的奶油尝了尝。"
+    play sound "voices/197.opus"
     skr "『我想知道为什么。你就当作我想进一步了解你吧』"
 
     yt "『为什么不做樱花麻薯？这几天樱花盛开得很漂亮啊』"
+    play sound "voices/198.opus"
     skr "『那你明天有空吗？』"
+    play sound "voices/199.opus"
     skr "『我们一起去家庭餐厅吧』"
     "失落的情绪这才找到源头——是麻薯！我竟然忘了麻薯。"
     yt "『啊……这样可以吗？』"
+    play sound "voices/200.opus"
     skr "『我想了解你，阳太』"
     yt "『好，好！』"
+    play sound "voices/201.opus"
     skr "『那就谢谢你了』"
 
     "我们聊着有的没的，等待面包与蛋挞出炉。"
