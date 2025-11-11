@@ -9,8 +9,8 @@ label splashscreen:
     scene black
     with Pause(1)
 
-    # play sound "dinglingling.MP3"
-    play sound "title.opus"
+    play sound "dinglingling.MP3"
+    # play sound "title.opus"    # 声音暂时还不好听，暂时去除
 
     show splash with dissolve
     with Pause(2)
